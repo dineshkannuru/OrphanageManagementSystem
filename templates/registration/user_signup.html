@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>User registration</title>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+
+  <!-- JQuery -->
+  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body >
+<div class="container">
+    <div class="row my-5 ">
+        <div class="col col-5 mx-auto">
+<!-- Default form register -->
+<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'user_signup12' %}">{% csrf_token %}
+
+    <p class="h4 mb-4">Sign up</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+        </div>
+    </div>
+    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">
+
+    <!-- E-mail -->
+    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+    <!-- Password -->
+    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters and 1 digit
+    </small>
+    <div class="form-row mb-4">
+        <div class="col">
+            <input type="date" name="DOB"  class="form-control mb-4" placeholder="Username">
+        </div>
+        <div class="col">
+            <select name="gender" class="form-control mb-4">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+        </div>
+
+    </div>
+    <!-- Phone number -->
+    <input type="number"  name="phone_number" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+</form>
+<!-- Default form register -->
+        </div>
+    </div>
+</div>
+
+
+<!-- SCRIPTS -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+<script>
+
+</script>
+</body>
+
+</html>

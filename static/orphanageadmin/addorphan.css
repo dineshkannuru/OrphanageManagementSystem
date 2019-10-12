@@ -1,0 +1,42 @@
+.container {
+    width:32%;
+}
+.card{
+    border-radius: 2%;
+    border: 1px solid #0066cc;
+    background-color:rgba(35,43,85,0.80);
+}
+.font1 {
+    color :#F0F0F0;
+    font-family: "arial";
+    font-size:14px;
+}
+.font2 {
+    color :#F0F0F0;
+    font-family: "arial";
+    font-size:22px;
+}
+button {
+    background-color:#0066cc;
+    width: 45%;
+    color: #ffffff;
+    border: none;
+    padding: 7px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    border-radius: 20px;
+}
+input[type=text],input[type=date], textarea {
+    width: 90%;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    background : rgba(255,255,255,.2);
+    outline: none;
+}
+
+body{
+    background-color :#F6F7F9;
+}

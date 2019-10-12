@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Admin</title>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+<style></style>
+
+  <!-- JQuery -->
+  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body >
+<div class="container">
+    <div class="row my-5 ">
+        <div class="col col-5 mx-auto">
+            <!-- Default form login -->
+            <form class="text-center border border-light p-5 hoverable" action="#!">
+
+            <p class="h4 mb-4">Log in as Admin</p>
+
+            <!-- Email -->
+            <input type="email" name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
+            <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+
+
+
+
+
+
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+            <div class="d-flex justify-content-around">
+                
+                <div>
+                    <!-- Forgot password -->
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+            <!-- Register -->
+            <p>Not a member?
+{#                <a href="{% url 'signup1' %}">Register</a>#}
+            </p>
+            <!-- Social login -->
+            </form>
+
+        </div>
+        <div class="col col-5 mx-auto">
+            <!-- Default form login -->
+            <form method="post" class="text-center border border-light p-5 hoverable" action="login12">
+             {% csrf_token %}
+            <p class="h4 mb-4">Log in as User</p>
+
+            <!-- Email -->
+            <input type="" name="email"  class="form-control mb-4" placeholder="E-mail">
+
+            <!-- Password -->
+            <input type="password"  name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+
+            <!-- Sign in button -->
+            <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+            <div class="d-flex justify-content-around">
+                
+                <div>
+                    <!-- Forgot password -->
+                    <a href="">Forgot password?</a>
+                </div>
+            </div>
+            <!-- Register -->
+            <p>Not a member?
+{#                <a href="{% url 'signup1' %}">Register</a>#}
+            </p>
+            </form>
+            <!-- Default form login -->
+        </div>
+    </div>
+</div>
+
+
+<!-- SCRIPTS -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+<script>
+
+</script>
+</body>
+
+</html>
