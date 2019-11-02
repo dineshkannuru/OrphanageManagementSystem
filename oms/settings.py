@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
+    
 ]
 
 MIDDLEWARE = [
@@ -133,4 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 
+#django-paypal settings
+PAYPAL_RECEIVER_EMAIL='harshab@harsha.com'
+PAYPAL_TEST = True
 
