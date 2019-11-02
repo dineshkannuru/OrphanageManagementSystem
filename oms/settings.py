@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'orphanageadmin.apps.OrphanageadminConfig',
     'registration.apps.RegistrationConfig',
     'superuser.apps.SuperuserConfig',
+    'userdashboard.apps.UserdashboardConfig',
     'django.contrib.admin',
     'widget_tweaks',
     'rest_framework',

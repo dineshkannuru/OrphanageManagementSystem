@@ -18,6 +18,8 @@ urlpatterns = [
     path('signup12/user', views.user_signup12, name='user_signup12'),
     path('signup1/orphanage', views.orphanage_signup1, name='orphanage_signup1'),
     path('signup12/orphanage', views.orphanage_signup12, name='orphanage_signup12'),
+    path('register', views.signup1, name='signup1'),
+
 ]
 
 

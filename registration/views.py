@@ -1,12 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 
 from homepage.models import Orphanage, Type, UserDetails
 from registration.form import RegisterForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
-from django.http import HttpResponse
+from django.contrib.auth import login, logout
+from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate
-
 
 
 # Create your views here.
@@ -66,12 +65,16 @@ def login1(request):
 
 def login12(request):
     if request.method == "POST":
-        a = request.POST['email']
-        b = request.POST['password']
-        user = authenticate(username=a, password=b)
-        print(user, a, b)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        print("User is " + request.user.username)
+        print(user, username, password)
         if user is not None:
-            return render(request, 'registration/profile.html')
+            login(request, user)
+            type = Type.objects.get(user=user)
+            if type.ref_no == 1:
+                return redirect(reverse('userdashboard1:u_home', kwargs={'id1': user.id}))
         else:
             return render(request, 'registration/login.html')
 
@@ -88,10 +91,10 @@ def user_signup12(request):
             email=request.POST["email"],
         )
         user_details = UserDetails.objects.create(
-            user_id = new_user,
-            date_of_birth= request.POST["DOB"],
-            gender= request.POST["gender"],
-            phone_no= request.POST["phone_number"]
+            user_id=new_user,
+            date_of_birth=request.POST["DOB"],
+            gender=request.POST["gender"],
+            phone_no=request.POST["phone_number"]
         )
 
         user_type = Type.objects.create(
@@ -136,3 +139,10 @@ def orphanage_signup12(request):
         new_orphanage_user.save()
         user_type.save()
         return HttpResponse("<h1>New orphanage user created successfully</h1>")
+
+def signup1(request):
+    return render(request, 'registration/signup_page.html')
+
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect(request.path_info)
