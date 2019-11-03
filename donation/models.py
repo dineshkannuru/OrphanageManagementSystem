@@ -8,7 +8,7 @@ import uuid
 
 class donatemoney(models.Model):
     tid = models.AutoField(primary_key=True)                       
-    user_name = models.CharField(max_length=150,null=True)
+    user_name = models.OneToOneField(User, on_delete=models.CASCADE)
     transfer = models.CharField(max_length=264,default=0)
     amount = models.IntegerField(default=0)
     orphanage = models.CharField(max_length=264)
@@ -23,15 +23,15 @@ class donatevaluables(models.Model):
         ('E','Eletrical Appliances'),
         ('O','other'),
     )
-    tid = models.IntegerField()
-    user_name = models.CharField(max_length=150)
-    user_id = models.OneToOneField(User,on_delete=models.PROTECT)
+    tid = models.AutoField(primary_key=True)  
+    user_name = models.CharField(max_length=15)
     donation_type = models.CharField(max_length=1,choices=TYPE)
-    date_of_donation = models.DateTimeField(default = timezone.now)
+ #   date_of_donation = models.DateTimeField(default = timezone.now)
     weight = models.IntegerField()
     length = models.IntegerField()
     width = models.IntegerField()
     height = models.IntegerField()
+    breadth = models.IntegerField()
     description = models.CharField(default=None,max_length=100)
     status = models.IntegerField()
 

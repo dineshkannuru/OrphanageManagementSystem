@@ -6,29 +6,36 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from donation.models import donatemoney,donatevaluables
 from donation.forms import donatemoneyform,donatevaluablesform
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
-
 
 # Create your views here.
 
 def donatemoneyview(request):
     if request.method =='POST':
         print('a')
-        user_name = request.POST.get('name')
+        user_name = request.POST.get('user_name')
         transfer = request.POST.get('transfer')
         amount = request.POST.get('amount')
         orphanage=request.POST.get('orphanage')
         description= request.POST.get('description')
-        saveform = donatemoney.objects.create(user_name=user_name,transfer=transfer, amount=amount,orphanage=orphanage,description=description)
+        saveform = donatemoney.objects.create(user_name=user_name.username,transfer=transfer, amount=amount,orphanage=orphanage,description=description)
         saveform.save()
         print(orphanage)
         tid=donatemoney.objects.latest('tid')
         tidstring=tid.tid
         print(tidstring)
-        return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage)))
+        if orphanage==1:
+            orphanage="harshab"
+        if orphanage==2:
+            orphanage="harshab"
+        if orphanage==3:
+            orphanage="harshab"
+        if transfer=="paypal":
+            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage)))
     else:
         form = donatemoneyform()
     return render(request,'donation/money.html',{'form': form})
@@ -36,21 +43,21 @@ def donatemoneyview(request):
 def donation_completedview(request):
     return render(request,'donation/donation_completed.html')
 
+
 def donatevaluablesview(request):
     if request.method =='POST':
-        form=donatevaluablesform(request.POST)
-
-        if form.is_valid():
-            tid=request.POST.get('tid')
-            username=request.POST.get('username')
-            uid=request.POST.get('uid')
-            type=request.POST.get('type')
-            weight=request.POST.get('weight')
-            length=request.POST.get('length')
-            width =request.POST.get('width')
-            height =request.POST.get('height')
-            
-            return redirect('donation:completed')
+        user_name=request.POST.get('user_name')
+        type=request.POST.get('type')
+        weight=request.POST.get('weight')
+        length=request.POST.get('length')
+        width =request.POST.get('width')
+        height =request.POST.get('height')
+        breadth =request.POST.get('breadth')
+        description= request.POST.get('description')
+        status=request.POST.get('0')
+        saveform = donatevaluables.objects.create(user_name=user_name.username,donation_type=type,weight=weight,height=height,length=length,breadth=breadth,description=description,status=status)
+        saveform.save()
+        return HttpResponseRedirect(reverse('donation:completed'))
     else:
         form = donatevaluablesform()
         return render(request, 'donation/valuables.html',{'form': form})

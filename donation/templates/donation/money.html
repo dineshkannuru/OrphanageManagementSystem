@@ -1,14 +1,41 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-</head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Admin</title>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+<link href="admin-style.css" rel="stylesheet">
+<link href="form.css" rel="stylesheet">
+
+  <!-- JQuery -->
+  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="admin-script.js"></script>
+<style>
+.card label{
+    font-size: 1rem;
+}
+</style>
+<script>
+    var selected_options = document.querySelector('#drop').selectedOptions;
+
+for(var i=0; i<selected_options.length; i++) {
+	// echoes the text of the option
+	console.log(selected_options[i].text);
+	
+	// echoes the value of the option
+	console.log(selected_options[i].value);
+}
+</script>
 <body>
     <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=790224518079845&autoLogAppEvents=1"></script>
@@ -17,37 +44,72 @@
         <div class="form-group">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm">
-                        <input type="text" class="form-control" placeholder="User name" name="user_name">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-8">
+                        <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center text-heading title">Donate money</h5>
+                </div>
+                            
+                            <div class="md-form mt-3 ">
+                            <label for="user_name">Name</label>
+                            <input type="text" id="user_name" name="user_name" class="form-control" />   
+                        </div>
                        
-                        <label for="exampleFormControlSelect1">Type of money transfer</label>
-                        <select class="form-control" id="exampleFormControlSelect1" name="transfer">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
+                        <div class="form-group">
+                            <!-- <span>Subject</span> -->
+                            <label for="drop">Orphanage</label>
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage" id="drop">
+                                <option value="" selected>Choose option</option>
+                                <option value="1">Hyderabad child care</option>
+                                <option value="2">Kukatpally health organ</option>
+                                <option value="3">Pragathi orphanage</option>
+                            </select>
+                        </div>
+                        <!--Message-->
+                        <div class="md-form">
+                            <textarea id="Message" name="description" class="form-control md-textarea" rows="2"></textarea>
+                            <label for="Message">Message</label>
+                        </div>
+                         <div class="form-group">
+                            <span class="mr-3">Payment gateway</span>
+                            <!-- Default inline 1-->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="defaultInline1" value="paypal" name="transfer">
+                                <label class="custom-control-label" for="defaultInline1">Paypal</label>
+                            </div>
 
-                        <input type="text" class="form-control" placeholder="Amount" name="amount">
+                            <!-- Default inline 2-->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="defaultInline2" value="gpay" name="transfer">
+                                <label class="custom-control-label" for="defaultInline2">Don't click</label>
+                            </div>
+
+                            <!-- Default inline 3-->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="defaultInline3" value="credit" name="transfer">
+                                <label class="custom-control-label" for="defaultInline3">Don't click</label>
+                            </div>
+                        </div> 
+                            <div class="md-form mt-3 ">
+                            <label for="amount">Amount</label>
+                            <input type="text" id="amount" name="amount" class="form-control" />   
+                        </div>
                     </div>
 
-
+                <div class="col-sm-8">
+                <div class="md-form">
+                           <button value="submit" type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
+                        </div>
+                    </div>
                 </div>
-                <label for="exampleFormControlSelect1">Orphanage</label>
-                <select class="form-control" id="exampleFormControlSelect1" name="orphanage">
-                    <option value="harshab">1</option>
-                    <option value="harshab">2</option>
-                    <option value="harshab">3</option>
-                    <option value="harshab">4</option>
-                    <option value="harshab">5</option>
-                </select>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="description"></textarea>
-                <input type="submit" value="Submit" />
+            <div class="col-sm-3"></div>     
+            </div>
+                </div>
             </div>
 
-                                </div>
+                                
 </form>
-    <div class="fb-share-button" data-href="http://127.0.0.1:8000" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+    
 </body>
 </html>

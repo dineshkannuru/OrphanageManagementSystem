@@ -86,6 +86,8 @@
     <Content Include="donation\templates\donation\money.html" />
     <Content Include="donation\templates\donation\paypalcancel.html" />
     <Content Include="donation\templates\donation\paypalreturn.html" />
+    <Content Include="donation\templates\donation\requestplaced.html" />
+    <Content Include="donation\templates\donation\valuables.html" />
     <Content Include="media\orphanage_image\4\Screenshot_1.png" />
     <Content Include="media\orphanage_image\5\Screenshot_10.png" />
     <Content Include="media\orphanage_image\None\Screenshot_1.png" />
@@ -102,6 +104,9 @@
     <Content Include="media\orphanage_image\None\Screenshot_3.png" />
     <Content Include="media\orphanage_image\None\Screenshot_4.png" />
     <Content Include="media\orphanage_image\None\Screenshot_8.png" />
+    <Content Include="static\donation\css\admin-style.css" />
+    <Content Include="static\donation\css\form.css" />
+    <Content Include="static\donation\js\admin-script.js" />
     <Content Include="static\homepage\css\bootstrap.css" />
     <Content Include="static\homepage\css\bootstrap.min.css" />
     <Content Include="static\homepage\css\breadcrumb.css" />
@@ -389,6 +394,8 @@
     <Folder Include="registration" />
     <Folder Include="registration\migrations" />
     <Folder Include="static\" />
+    <Folder Include="static\donation\css\" />
+    <Folder Include="static\donation\js\" />
     <Folder Include="static\homepage\" />
     <Folder Include="static\homepage\css" />
     <Folder Include="static\homepage\images" />
@@ -435,6 +442,7 @@
     <Folder Include="static\homepage\vendors\nice-select\js" />
     <Folder Include="static\homepage\vendors\owl-carousel" />
     <Folder Include="static\homepage\vendors\owl-carousel\assets" />
+    <Folder Include="static\donation\" />
     <Folder Include="static\orphanageadmin" />
     <Folder Include="static\registration\" />
     <Folder Include="static\registration\css" />

@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Admin</title>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+<link href="admin-style.css" rel="stylesheet">
+<link href="form.css" rel="stylesheet">
+
+  <!-- JQuery -->
+  
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="admin-script.js"></script>
+<style>
+.card label{
+    font-size: 1rem;
+}
+</style>
+<body>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=790224518079845&autoLogAppEvents=1"></script>
+    <form method="post" >
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-8">
+                        <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center text-heading title">Donate Valuables</h5>
+                </div>
+                            
+                            <div class="md-form mt-3 ">
+                            <label for="user_name">Name</label>
+                            <input type="text" id="user_name" class="form-control">
+                            
+                        </div>
+                       
+                        <div class="form-group">
+                            <!-- <span>Subject</span> -->
+                            <label for="drop">Donation type</label>
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" id="drop" >
+                                <option value="" selected>Choose option</option>
+                                <option value="F">Food</option>
+                                <option value="C">Clothes</option>
+                                <option value="B">Books</option>
+                                <option value="E">Electronic appliances</option>
+                                <option value="O">Other</option>
+                            </select>
+                        </div>
+                        <div class="md-form mt-3 ">
+                            <label for="user_name">Object name:</label>
+                            <input type="text" id="user_name" class="form-control">
+                            
+                        </div>
+                        <!--Message-->
+                        <div class="md-form">
+                            <textarea id="Message" class="form-control md-textarea" rows="2"></textarea>
+                            <label for="Message">Message</label>
+                        </div>
+                        <div class="form-group">
+                            <label for="customRange1">Weight: <span id="range1"></span></label>
+                            <input type="range" class="custom-range" id="customRange1" min="0.5" max="100" >
+                        </div>
+                        <script>
+                            var slider = document.getElementById("customRange1");
+                            var output = document.getElementById("range1");
+                            output.innerHTML = slider.value;
+
+                            slider.oninput = function() {
+                              output.innerHTML = this.value;
+                            }
+                        </script>
+                            <div class="form-group">
+                            <label for="customRange2">Length: <span id="range2"></span></label>
+                            <input type="range" class="custom-range" id="customRange2" min="1" max="10">
+                        </div>
+                        <script>
+                            var slider = document.getElementById("customRange2");
+                            var output = document.getElementById("range2");
+                            output.innerHTML = slider.value;
+
+                            slider.oninput = function() {
+                              output.innerHTML = this.value;
+                            }
+                        </script>
+                        <div class="form-group">
+                            <label for="customRange3">Breadth: <span id="range3"></span></label>
+                            <input type="range" class="custom-range" id="customRange3" min="1" max="10">
+                        </div>
+                          <script>
+                            var slider = document.getElementById("customRange3");
+                            var output = document.getElementById("range3");
+                            output.innerHTML = slider.value;
+
+                            slider.oninput = function() {
+                              output.innerHTML = this.value;
+                            }
+                        </script>
+                        <div class="form-group">
+                            <label for="customRange4">Height: <span id="range4"></span></label>
+                            <input type="range" class="custom-range" id="customRange4" min="1" max="10">
+                        </div>
+                        <script>
+                            var slider = document.getElementById("customRange4");
+                            var output = document.getElementById("range4");
+                            output.innerHTML = slider.value;
+
+                            slider.oninput = function() {
+                              output.innerHTML = this.value;
+                            }
+                        </div>
+                            </script>
+                <div class="col-sm-8">
+                <div class="md-form">
+                     <button value="submit" type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            <div class="col-sm-3"></div>     
+            </div>
+                </div>
+            </div>
+
+                                
+</form>
+    
+</body>
+</html>
+</html>
