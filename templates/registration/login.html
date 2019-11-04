@@ -26,6 +26,8 @@
         <div class="col col-5 mx-auto">
             <!-- Default form login -->
             <form class="text-center border border-light p-5 hoverable" action="#!">
+            {% load widget_tweaks %}
+            {% csrf_token %}
 
             <p class="h4 mb-4">Log in as Admin</p>
 
@@ -58,17 +60,26 @@
             </form>
 
         </div>
+
+
+
+
         <div class="col col-5 mx-auto">
             <!-- Default form login -->
-            <form method="post" class="text-center border border-light p-5 hoverable" action="login12">
+            <form method="post" class="text-center border border-light p-5 hoverable" ">
              {% csrf_token %}
+             {% load widget_tweaks %}
             <p class="h4 mb-4">Log in as User</p>
 
             <!-- Email -->
-            <input type="" name="email"  class="form-control mb-4" placeholder="E-mail">
+{#            <input type="" name="email"  class="form-control mb-4" placeholder="E-mail">#}
+            {{ form.username|add_class:"validate form-control mb-4" }}
+{#            <label for="{{ form.username.id_for_label }} " >Username</label><br>#}
 
             <!-- Password -->
-            <input type="password"  name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+{#            <input type="password"  name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">#}
+            {{ form.password|add_class:"validate form-control mb-4" }}
+{#            <label for="{{ form.password.id_for_label }}">Password</label><br>#}
 
             <!-- Sign in button -->
             <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>

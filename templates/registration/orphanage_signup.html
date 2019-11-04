@@ -27,9 +27,10 @@
     <div class="row my-5 ">
         <div class="col col-6 mx-auto">
 <!-- Default form register -->
-<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'orphanage_signup12' %}"
+<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'o_signup' %}"
       enctype="multipart/form-data" >
     {% csrf_token %}
+    {% load widget_tweaks %}
 
     <p class="h4 mb-4">Sign up</p>
 
@@ -39,16 +40,56 @@
             <input type="text" name="orphanage_name" id="defaultRegisterFormFirstName" class="form-control" placeholder="Orphanage name">
         </div>
     </div>
-    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">
+{#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
+    {{ signup_form.username|add_class:"validate form-control mb-4" }}
+
+    {% if signup_form.first_name.help_text %}
+        <span >{{ signup_form.username.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.username.errors %}
+        <span >{{ signup_form.username.errors }}</span>
+    {% endif %}
+    </span>
 
     <!-- E-mail -->
-    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+{#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+    {{ signup_form.email|add_class:"validate form-control mb-4" }}
+    {% if signup_form.email.help_text %}
+        <span >{{ signup_form.email.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.email.errors %}
+        <span >{{ signup_form.email.errors }}</span>
+    {% endif %}
+    </span>
 
     <!-- Password -->
-    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+{#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
+    {{ signup_form.password|add_class:"validate form-control" }}
+
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
     </small>
+
+    {% if signup_form.password.help_text %}
+        <span >{{ signup_form.password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.password.errors %}
+        <span >{{ signup_form.password.errors }}</span>
+    {% endif %}
+    </span>
+    {{ signup_form.confirm_password|add_class:"validate form-control" }}
+    {% if signup_form.confirm_password.help_text %}
+        <span >{{ signup_form.confirm_password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.confirm_password.errors %}
+        <span >{{ signup_form.confirm_password.errors }}</span>
+    {% endif %}
+    </span>
+    <br>
     <div class="form-row mb-4">
         <div class="col">
             <input type="number" name="year_of_establishment"  class="form-control mb-4" placeholder="Year of establishment">

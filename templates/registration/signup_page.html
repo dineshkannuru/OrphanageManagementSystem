@@ -19,66 +19,136 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/184905c180.js" crossorigin="anonymous"></script>
 
-
+<script>
+function myFunction() {
+    var x = document.getElementById("select_type_dropDown").value;
+    console.log(x)
+    switch (x) {
+        case "user":
+            document.getElementById('user_signup_div').style.display = 'block';
+            document.getElementById('orphanage_signup_div').style.display = 'none';
+            break;
+        case "orphanage":
+            document.getElementById('user_signup_div').style.display = 'none';
+            document.getElementById('orphanage_signup_div').style.display = 'block';
+            break;
+        default:
+            document.getElementById('user_signup_div').style.display = 'block';
+            document.getElementById('orphanage_signup_div').style.display = 'none';
+            break
+    }
+}
+</script>
 </head>
 
 <body >
 
-<p>   Register as </p>
-<select id = "'select_type_dropDown'">
-  <option value="">--Select an option--</option>
+
+<div style="text-align: center">
+    <p>   Register as </p>
+<select id = "select_type_dropDown" onchange="myFunction()">
+
   <option value="user" >User</option>
   <option value="orphanage">Orphanage</option>
 </select>
+</div>
 
 
-<script>
-    document.getElementById('select_type_dropDown')
-        .addEventListener('change', function () {
-
-            switch (this.value)
-        {
-            case "user":
-                document.getElementById('user_form_content').style.display = 'block';
-                document.getElementById('orphanage_form_content').style.display = 'none';
-                break;
-            case "orphanage":
-                document.getElementById('user_form_content').style.display = 'none';
-                document.getElementById('orphanage_form_content').style.display = 'block';
-                break;
-        }
-});
-</script>
 
 
-<div class="container" style="display: none" id = "user_form_content">
+
+<div class="container" id ="user_signup_div">
     <div class="row my-5 ">
         <div class="col col-5 mx-auto">
 <!-- Default form register -->
-<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'user_signup12' %}">{% csrf_token %}
-
-    <p class="h4 mb-4">Sign up</p>
+<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'signup' %}" id="register_form">
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <p class="h4 mb-4">Sign up as User</p>
 
     <div class="form-row mb-4">
         <div class="col">
             <!-- First name -->
-            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
+{#            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">#}
+            {{ signup_form.first_name|add_class:"validate form-control" }}
         </div>
+
+
+        {% if signup_form.first_name.help_text %}
+            <span >{{ signup_form.first_name.help_text }}</span>
+        {% endif %}
+        <span style="color: red ; font-size: 15px">
+        {% if signup_form.first_name.errors %}
+            <span >{{ signup_form.first_name.errors }}</span>
+        {% endif %}
+        </span>
+
         <div class="col">
             <!-- Last name -->
-            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
+{#            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">#}
+            {{ signup_form.last_name|add_class:"validate form-control" }}
+
+
+            {% if signup_form.last_name.help_text %}
+                <span >{{ signup_form.last_name.help_text }}</span>
+            {% endif %}
+            <span style="color: red ; font-size: 15px" >
+            {% if signup_form.last_name.errors %}
+                <span >{{ signup_form.first_name.errors }}</span>
+            {% endif %}
+            </span>
+
         </div>
     </div>
-    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">
+{#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
+    {{ signup_form.username|add_class:"validate form-control mb-4" }}
+
+    {% if signup_form.first_name.help_text %}
+        <span >{{ signup_form.username.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.username.errors %}
+        <span >{{ signup_form.username.errors }}</span>
+    {% endif %}
+    </span>
 
     <!-- E-mail -->
-    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
-
+{#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+    {{ signup_form.email|add_class:"validate form-control mb-4" }}
+    {% if signup_form.email.help_text %}
+        <span >{{ signup_form.email.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.email.errors %}
+        <span >{{ signup_form.email.errors }}</span>
+    {% endif %}
+    </span>
     <!-- Password -->
-    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+{#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
+    {{ signup_form.password|add_class:"validate form-control" }}
+
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
     </small>
+
+    {% if signup_form.password.help_text %}
+        <span >{{ signup_form.password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.password.errors %}
+        <span >{{ signup_form.password.errors }}</span>
+    {% endif %}
+    </span>
+    {{ signup_form.confirm_password|add_class:"validate form-control" }}
+    {% if signup_form.confirm_password.help_text %}
+        <span >{{ signup_form.confirm_password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.confirm_password.errors %}
+        <span >{{ signup_form.confirm_password.errors }}</span>
+    {% endif %}
+    </span>
+    <br>
     <div class="form-row mb-4">
         <div class="col">
             <input type="date" name="DOB"  class="form-control mb-4" placeholder="Username">
@@ -112,15 +182,16 @@
 
 
 
-<div class="container" style="display: none" id = "orphanage_form_content">
+<div class="container" id="orphanage_signup_div">
     <div class="row my-5 ">
         <div class="col col-6 mx-auto">
 <!-- Default form register -->
-<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'orphanage_signup12' %}"
+<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'signup' %}"
       enctype="multipart/form-data" >
     {% csrf_token %}
+    {% load widget_tweaks %}
 
-    <p class="h4 mb-4">Sign up</p>
+    <p class="h4 mb-4">Sign up as Orphanage</p>
 
     <div class="form-row mb-4">
         <div class="col">
@@ -128,16 +199,56 @@
             <input type="text" name="orphanage_name" id="defaultRegisterFormFirstName" class="form-control" placeholder="Orphanage name">
         </div>
     </div>
-    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">
+{#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
+    {{ signup_form.username|add_class:"validate form-control mb-4" }}
+
+    {% if signup_form.first_name.help_text %}
+        <span >{{ signup_form.username.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.username.errors %}
+        <span >{{ signup_form.username.errors }}</span>
+    {% endif %}
+    </span>
 
     <!-- E-mail -->
-    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+{#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+    {{ signup_form.email|add_class:"validate form-control mb-4" }}
+    {% if signup_form.email.help_text %}
+        <span >{{ signup_form.email.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.email.errors %}
+        <span >{{ signup_form.email.errors }}</span>
+    {% endif %}
+    </span>
 
     <!-- Password -->
-    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+{#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
+    {{ signup_form.password|add_class:"validate form-control" }}
+
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
     </small>
+
+    {% if signup_form.password.help_text %}
+        <span >{{ signup_form.password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.password.errors %}
+        <span >{{ signup_form.password.errors }}</span>
+    {% endif %}
+    </span>
+    {{ signup_form.confirm_password|add_class:"validate form-control" }}
+    {% if signup_form.confirm_password.help_text %}
+        <span >{{ signup_form.confirm_password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.confirm_password.errors %}
+        <span >{{ signup_form.confirm_password.errors }}</span>
+    {% endif %}
+    </span>
+    <br>
     <div class="form-row mb-4">
         <div class="col">
             <input type="number" name="year_of_establishment"  class="form-control mb-4" placeholder="Year of establishment">

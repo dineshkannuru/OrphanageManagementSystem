@@ -2,15 +2,28 @@ from django import forms
 from django.db import models
 from registration import models
 from django.core.validators import MinLengthValidator
+from django.contrib.auth.forms import AuthenticationForm
+from django.forms.widgets import PasswordInput, TextInput
+
+
+class CustomAuthForm(AuthenticationForm):
+    username = forms.CharField(widget=TextInput(attrs={'placeholder': 'Email'}))
+    password = forms.CharField(widget=PasswordInput(attrs={'placeholder': 'Password'}))
 
 
 class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput(), validators=[MinLengthValidator(8)])
-    confirm_password = forms.CharField(widget=forms.PasswordInput())
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), validators=[MinLengthValidator(8)])
+    confirm_password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}))
 
     class Meta:
         model = models.User
-        fields = ['first_name', 'last_name', 'username', 'email']
+        fields = ['first_name', 'last_name', 'username', 'email', 'password', 'confirm_password']
+        widgets = {
+            'username': forms.TextInput(attrs={'placeholder': 'Username'}),
+            'first_name' : forms.TextInput(attrs={'placeholder': 'First name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
+            'email' : forms.EmailInput(attrs={'placeholder': 'E-mail'})
+        }
 
     def clean(self):
         cleaned_data = super().clean()
@@ -23,8 +36,8 @@ class RegisterForm(forms.ModelForm):
         if models.User.objects.filter(username=username).exists():
             self.add_error("username", "This username already exists. Please choose another")
 
-        elif models.User.objects.filter(email=email).exists():
+        if models.User.objects.filter(email=email).exists():
             self.add_error("email", "A user with this email already exists. Please login to your account")
 
-        elif password != confirm_password:
-            self.add_error("confirm_password", "Both Passwords Do Not Match!")
+        if password != confirm_password:
+            self.add_error("confirm_password", "Both the Passwords Do Not Match!")
