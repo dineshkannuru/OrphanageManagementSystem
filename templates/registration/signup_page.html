@@ -19,26 +19,7 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://kit.fontawesome.com/184905c180.js" crossorigin="anonymous"></script>
 
-<script>
-function myFunction() {
-    var x = document.getElementById("select_type_dropDown").value;
-    console.log(x)
-    switch (x) {
-        case "user":
-            document.getElementById('user_signup_div').style.display = 'block';
-            document.getElementById('orphanage_signup_div').style.display = 'none';
-            break;
-        case "orphanage":
-            document.getElementById('user_signup_div').style.display = 'none';
-            document.getElementById('orphanage_signup_div').style.display = 'block';
-            break;
-        default:
-            document.getElementById('user_signup_div').style.display = 'block';
-            document.getElementById('orphanage_signup_div').style.display = 'none';
-            break
-    }
-}
-</script>
+
 </head>
 
 <body >
@@ -46,7 +27,7 @@ function myFunction() {
 
 <div style="text-align: center">
     <p>   Register as </p>
-<select id = "select_type_dropDown" onchange="myFunction()">
+<select id = "select_type_dropDown" onchange="myFunction('user')">
 
   <option value="user" >User</option>
   <option value="orphanage">Orphanage</option>
@@ -56,12 +37,48 @@ function myFunction() {
 
 
 
-
+<p id="demo"></p>
 <div class="container" id ="user_signup_div">
     <div class="row my-5 ">
         <div class="col col-5 mx-auto">
 <!-- Default form register -->
 <form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'signup' %}" id="register_form">
+    <input type='hidden' value='{{ signup_type}}' id='user_type' />
+
+    <script>
+
+    function myFunction(x) {
+        x = document.getElementById("select_type_dropDown").value;
+        document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
+        $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
+        document.getElementById("demo").innerHTML = 'getJSON block has been executed';
+        if (document.getElementById('user_type').value === 'orphanage') {
+            x = "orphanage";
+            document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+        }
+        switch (x) {
+            case "user":
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break;
+            case "orphanage":
+                document.getElementById('user_signup_div').style.display = 'none';
+                document.getElementById('orphanage_signup_div').style.display = 'block';
+                break;
+            default:
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break
+        }
+    }
+
+    if (document.getElementById('user_type').value === 'orphanage') {
+        document.getElementById("select_type_dropDown").value = "orphanage";
+        myFunction('orphanage');
+        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+    }
+    </script>
+
     {% csrf_token %}
     {% load widget_tweaks %}
     <p class="h4 mb-4">Sign up as User</p>
@@ -128,7 +145,7 @@ function myFunction() {
     {{ signup_form.password|add_class:"validate form-control" }}
 
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
+        At least 8 characters/digits are required
     </small>
 
     {% if signup_form.password.help_text %}
@@ -151,7 +168,8 @@ function myFunction() {
     <br>
     <div class="form-row mb-4">
         <div class="col">
-            <input type="date" name="DOB"  class="form-control mb-4" placeholder="Username">
+            <input type="date" name="DOB"  class="form-control mb-4" placeholder="Date of birth"
+                max="2001-12-31">
         </div>
         <div class="col">
             <select name="gender" class="form-control mb-4">
@@ -162,7 +180,9 @@ function myFunction() {
 
     </div>
     <!-- Phone number -->
-    <input type="number"  name="phone_number" id="defaultRegisterPhonePassword" class="form-control" placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock">
+    <input type="number"  name="phone_number" id="defaultRegisterPhonePassword" class="form-control"
+           placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
+            min="6000000000" max="9999999999">
 
 
     <!-- Sign up button -->
@@ -188,6 +208,40 @@ function myFunction() {
 <!-- Default form register -->
 <form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'signup' %}"
       enctype="multipart/form-data" >
+    <input type='hidden' value='{{ signup_type}}' id='user_type' />
+    <script>
+
+    function myFunction(x) {
+        x = document.getElementById("select_type_dropDown").value;
+        document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
+        $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
+        document.getElementById("demo").innerHTML = 'getJSON block has been executed';
+        if (document.getElementById('user_type').value === 'orphanage') {
+            x = "orphanage";
+            document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+        }
+        switch (x) {
+            case "user":
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break;
+            case "orphanage":
+                document.getElementById('user_signup_div').style.display = 'none';
+                document.getElementById('orphanage_signup_div').style.display = 'block';
+                break;
+            default:
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break
+        }
+    }
+
+    if (document.getElementById('user_type').value === 'orphanage') {
+        document.getElementById("select_type_dropDown").value = "orphanage";
+        myFunction('orphanage');
+        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+    }
+    </script>
     {% csrf_token %}
     {% load widget_tweaks %}
 
@@ -228,7 +282,7 @@ function myFunction() {
     {{ signup_form.password|add_class:"validate form-control" }}
 
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-        At least 8 characters and 1 digit
+        At least 8 characters/digits are required
     </small>
 
     {% if signup_form.password.help_text %}
@@ -251,11 +305,13 @@ function myFunction() {
     <br>
     <div class="form-row mb-4">
         <div class="col">
-            <input type="number" name="year_of_establishment"  class="form-control mb-4" placeholder="Year of establishment">
+            <input type="number" name="year_of_establishment"  class="form-control mb-4" placeholder="Year of establishment"
+                    min="1000" max="2019">
         </div>
 
         <div class="col">
-            <input type="number" name="phone_number"  class="form-control mb-4" placeholder="Phone Number">
+            <input type="number" name="phone_number"  class="form-control mb-4" placeholder="Phone Number"
+                   min="6000000000" max="9999999999">
         </div>
     </div>
     <!-- E-mail -->

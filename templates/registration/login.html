@@ -32,7 +32,8 @@
             <p class="h4 mb-4">Log in as Admin</p>
 
             <!-- Email -->
-            <input type="email" name="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+            <input type="text" name="username" id="defaultLoginFormUsername" class="form-control mb-4" placeholder="Username">
+
 
             <!-- Password -->
             <input type="password" name="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
@@ -54,7 +55,7 @@
             </div>
             <!-- Register -->
             <p>Not a member?
-{#                <a href="{% url 'signup1' %}">Register</a>#}
+                <a href="{% url 'user_signup' %}">Register</a>
             </p>
             <!-- Social login -->
             </form>
@@ -70,7 +71,9 @@
              {% csrf_token %}
              {% load widget_tweaks %}
             <p class="h4 mb-4">Log in as User</p>
-
+            {% if form.non_field_errors %}
+                <span class="red-text">{{ form.non_field_errors }}</span>
+            {% endif %}
             <!-- Email -->
 {#            <input type="" name="email"  class="form-control mb-4" placeholder="E-mail">#}
             {{ form.username|add_class:"validate form-control mb-4" }}
@@ -92,7 +95,7 @@
             </div>
             <!-- Register -->
             <p>Not a member?
-{#                <a href="{% url 'signup1' %}">Register</a>#}
+                <a href="{% url 'user_signup' %}">Register</a>
             </p>
             </form>
             <!-- Default form login -->
