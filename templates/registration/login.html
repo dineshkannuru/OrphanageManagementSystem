@@ -50,12 +50,12 @@
                 
                 <div>
                     <!-- Forgot password -->
-                    <a href="">Forgot password?</a>
+                    <a href="{% url 'password_reset' %}">Forgot password?</a>
                 </div>
             </div>
             <!-- Register -->
             <p>Not a member?
-                <a href="{% url 'user_signup' %}">Register</a>
+                <a href="{% url 'signup' %}">Register</a>
             </p>
             <!-- Social login -->
             </form>
@@ -90,12 +90,12 @@
                 
                 <div>
                     <!-- Forgot password -->
-                    <a href="">Forgot password?</a>
+                    <a href="{% url 'password_reset' %}">Forgot password?</a>
                 </div>
             </div>
             <!-- Register -->
             <p>Not a member?
-                <a href="{% url 'user_signup' %}">Register</a>
+                <a href="{% url 'signup' %}">Register</a>
             </p>
             </form>
             <!-- Default form login -->

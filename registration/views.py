@@ -6,6 +6,12 @@ from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate
+from django.contrib.sites.shortcuts import get_current_site
+from django.template.loader import render_to_string
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.utils.encoding import force_bytes, force_text
+from .tokens import account_activation_token
+from django.core.mail import EmailMessage
 
 
 # Create your views here.
@@ -54,7 +60,8 @@ def signup(request):
 
                 new_user.first_name = new_user_form.cleaned_data["first_name"]
                 new_user.last_name = new_user_form.cleaned_data["last_name"]
-
+                new_user.is_active = False
+                new_user.save()
                 user_details = UserDetails.objects.create(
                     user_id=new_user,
                     date_of_birth=request.POST["DOB"],
@@ -69,7 +76,23 @@ def signup(request):
                 user_details.save()
                 user_type.save()
                 print("Form is valid")
-                return HttpResponse("<h1>New user created successfully</h1>")
+
+                current_site = get_current_site(request)
+                mail_subject = 'Activate your OMS user account.'
+                message = render_to_string('registration/acc_active_email.html', {
+                    'user': new_user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(new_user.pk)).decode(),
+                    'token': account_activation_token.make_token(new_user),
+                })
+                to_email = new_user_form.cleaned_data.get('email')
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+                return HttpResponse(
+                    '<h1>New user created successfully</h1><br>Please confirm your email address to complete the registration')
+
             else:
                 print("User signup form Invalid")
                 return render(request, 'registration/signup_page.html',
@@ -115,6 +138,22 @@ def signup(request):
         new_form = RegisterForm()
         print("Invalid request")
         return render(request, 'registration/signup_page.html', {"signup_form": new_form})
+
+
+def activate(request, uidb64, token):
+    try:
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active = True
+        user.save()
+        login(request, user)
+        # return redirect('home')
+        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+    else:
+        return HttpResponse('Activation link is invalid!')
 
 
 # def user_signup(request):
