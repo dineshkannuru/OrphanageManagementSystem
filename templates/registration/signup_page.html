@@ -208,6 +208,8 @@
 <!-- Default form register -->
 <form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'signup' %}"
       enctype="multipart/form-data" >
+    {% csrf_token %}
+    {% load widget_tweaks %}
     <input type='hidden' value='{{ signup_type}}' id='user_type' />
     <script>
 
@@ -242,8 +244,7 @@
         document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
     }
     </script>
-    {% csrf_token %}
-    {% load widget_tweaks %}
+
 
     <p class="h4 mb-4">Sign up as Orphanage</p>
 

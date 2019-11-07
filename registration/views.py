@@ -121,10 +121,29 @@ def signup(request):
                     user=new_user,
                     ref_no=2
                 )
+                new_user.is_active = False
+
                 new_user.save()
                 new_orphanage_user.save()
                 user_type.save()
-                return HttpResponse("<h1>New orphanage user created successfully</h1>")
+
+                current_site = get_current_site(request)
+                mail_subject = 'Activate your OMS user account.'
+                message = render_to_string('registration/acc_active_email.html', {
+                    'user': new_user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(new_user.pk)).decode(),
+                    'token': account_activation_token.make_token(new_user),
+                })
+                to_email = new_user_form.cleaned_data.get('email')
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+                return HttpResponse(
+                    '<h1>New orphanage user created successfully</h1><br>'
+                    'Please confirm your email address to complete the registration')
+                # return HttpResponse("<h1>New orphanage user created successfully</h1>")
             else:
                 print("Orphanage signup form Invalid")
                 return render(request, 'registration/signup_page.html',
