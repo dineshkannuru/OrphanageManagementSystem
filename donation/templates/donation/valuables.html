@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -40,14 +40,14 @@
                             
                             <div class="md-form mt-3 ">
                             <label for="user_name">Name</label>
-                            <input type="text" id="user_name" class="form-control">
+                            <input type="text" id="user_name" class="form-control" name="user_name">
                             
                         </div>
                        
                         <div class="form-group">
                             <!-- <span>Subject</span> -->
                             <label for="drop">Donation type</label>
-                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" id="drop" >
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" id="drop" name="type" >
                                 <option value="" selected>Choose option</option>
                                 <option value="F">Food</option>
                                 <option value="C">Clothes</option>
@@ -58,17 +58,17 @@
                         </div>
                         <div class="md-form mt-3 ">
                             <label for="user_name">Object name:</label>
-                            <input type="text" id="user_name" class="form-control">
+                            <input type="text" id="user_name" class="form-control" name="object">
                             
                         </div>
                         <!--Message-->
                         <div class="md-form">
-                            <textarea id="Message" class="form-control md-textarea" rows="2"></textarea>
+                            <textarea id="Message" class="form-control md-textarea" rows="2" name="description"></textarea>
                             <label for="Message">Message</label>
                         </div>
                         <div class="form-group">
-                            <label for="customRange1">Weight: <span id="range1"></span></label>
-                            <input type="range" class="custom-range" id="customRange1" min="0.5" max="100" >
+                            <label for="customRange1">Weight: <span id="range1"></span>kg</label>
+                            <input type="range" class="custom-range" id="customRange1" min="0" max="100" name="weight" >
                         </div>
                         <script>
                             var slider = document.getElementById("customRange1");
@@ -80,8 +80,8 @@
                             }
                         </script>
                             <div class="form-group">
-                            <label for="customRange2">Length: <span id="range2"></span></label>
-                            <input type="range" class="custom-range" id="customRange2" min="1" max="10">
+                            <label for="customRange2">Length: <span id="range2"></span>m</label>
+                            <input type="range" class="custom-range" id="customRange2" min="1" max="10" name="length">
                         </div>
                         <script>
                             var slider = document.getElementById("customRange2");
@@ -93,8 +93,8 @@
                             }
                         </script>
                         <div class="form-group">
-                            <label for="customRange3">Breadth: <span id="range3"></span></label>
-                            <input type="range" class="custom-range" id="customRange3" min="1" max="10">
+                            <label for="customRange3">Breadth: <span id="range3"></span>m</label>
+                            <input type="range" class="custom-range" id="customRange3" min="1" max="10" name="breadth">
                         </div>
                           <script>
                             var slider = document.getElementById("customRange3");
@@ -106,8 +106,8 @@
                             }
                         </script>
                         <div class="form-group">
-                            <label for="customRange4">Height: <span id="range4"></span></label>
-                            <input type="range" class="custom-range" id="customRange4" min="1" max="10">
+                            <label for="customRange4">Height: <span id="range4"></span>m</label>
+                            <input type="range" class="custom-range" id="customRange4" min="1" max="10" name="height">
                         </div>
                         <script>
                             var slider = document.getElementById("customRange4");
@@ -117,8 +117,8 @@
                             slider.oninput = function() {
                               output.innerHTML = this.value;
                             }
-                        </div>
                             </script>
+                        </div>
                 <div class="col-sm-8">
                 <div class="md-form">
                      <button value="submit" type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
@@ -134,5 +134,4 @@
 </form>
     
 </body>
-</html>
 </html>

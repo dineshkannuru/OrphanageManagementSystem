@@ -22,20 +22,16 @@ def donatemoneyview(request):
         amount = request.POST.get('amount')
         orphanage=request.POST.get('orphanage')
         description= request.POST.get('description')
-        saveform = donatemoney.objects.create(user_name=user_name.username,transfer=transfer, amount=amount,orphanage=orphanage,description=description)
+        saveform = donatemoney.objects.create(user_name=user_name,transfer=transfer, amount=amount,orphanage=orphanage,description=description)
         saveform.save()
         print(orphanage)
         tid=donatemoney.objects.latest('tid')
         tidstring=tid.tid
         print(tidstring)
-        if orphanage==1:
-            orphanage="harshab"
-        if orphanage==2:
-            orphanage="harshab"
-        if orphanage==3:
-            orphanage="harshab"
+        user_name.replace(" ", "9")
         if transfer=="paypal":
-            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage)))
+            user_name.replace(" ", "9")
+            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,user_name,orphanage)))
     else:
         form = donatemoneyform()
     return render(request,'donation/money.html',{'form': form})
@@ -54,15 +50,24 @@ def donatevaluablesview(request):
         height =request.POST.get('height')
         breadth =request.POST.get('breadth')
         description= request.POST.get('description')
-        status=request.POST.get('0')
-        saveform = donatevaluables.objects.create(user_name=user_name.username,donation_type=type,weight=weight,height=height,length=length,breadth=breadth,description=description,status=status)
+        status='0'
+        saveform = donatevaluables.objects.create(user_name=user_name,donation_type=type,weight=weight,height=height,length=length,breadth=breadth,description=description,status=status)
         saveform.save()
         return HttpResponseRedirect(reverse('donation:completed'))
     else:
         form = donatevaluablesform()
         return render(request, 'donation/valuables.html',{'form': form})
 
-def paypal_home(request,tid,amount,account): 
+def paypal_home(request,tid,amount,user_name,orphanage): 
+    account=""
+    if orphanage=='Hyderabad child care':
+        account="harshab"
+    elif orphanage=='Kukatpally health organ':
+        account="harshab"
+    elif orphanage=='Pragathi orphanage':
+        account="harshab"
+    else:
+        account="test"
     account=account+str("@harsha.com")
     print(account)
     paypal_dict = {
@@ -77,7 +82,7 @@ def paypal_home(request,tid,amount,account):
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     data=donatemoney.objects.latest()
-    context = {"form": form,"data":data}
+    context = {"form": form,"data":data,"user_name":user_name,"orphanage":orphanage}
     return render(request, "donation/gatewaypage.html", context)
 
 def paypal_cancel(request):
