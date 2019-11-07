@@ -26,7 +26,8 @@ urlpatterns = [
     path('registration/',include('registration.urls')),
     path('orphanage_dashboard/', include('orphanageadmin.urls')),
     path('superuser/', include('superuser.urls')),
-    path('userdashboard/',include('userdashboard.urls'))
+    path('userdashboard/',include('userdashboard.urls')),
+    path('donation/',include('donation.urls')),
 ]
 
 if settings.DEBUG:
