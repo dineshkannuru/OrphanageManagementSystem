@@ -22,7 +22,7 @@
 
 </head>
 
-<body >
+<body style="font-family: 'Muli', 'Helvetica', Arial, sans-serif;">
 
 
 <div style="text-align: center">
@@ -40,7 +40,7 @@
 <p id="demo"></p>
 <div class="container" id ="user_signup_div">
     <div class="row my-5 ">
-        <div class="col col-5 mx-auto">
+        <div class="col col-10 mx-auto">
 <!-- Default form register -->
 <form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'registration:signup' %}" id="register_form">
     <input type='hidden' value='{{ signup_type}}' id='user_type' />
@@ -204,7 +204,7 @@
 
 <div class="container" id="orphanage_signup_div" style="display: none">
     <div class="row my-5 ">
-        <div class="col col-6 mx-auto">
+        <div class="col col-10 mx-auto">
 <!-- Default form register -->
 <form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'registration:signup' %}"
       enctype="multipart/form-data" >

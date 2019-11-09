@@ -5,7 +5,7 @@ from registration.form import CustomAuthForm
 
 app_name = 'registration'
 urlpatterns = [
-    # path('', views.index, name='profile'),
+    path('', views.index, name='profile'),
     # path('donate_history', views.index1, name='donate_history'),
     # path('join_orphan', views.index2, name='join_orphan'),
     # path('near_you', views.index3, name='near_you'),
