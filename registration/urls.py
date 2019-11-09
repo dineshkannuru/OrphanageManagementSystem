@@ -3,12 +3,13 @@ from . import views
 from django.contrib.auth import views as auth_views
 from registration.form import CustomAuthForm
 
+app_name = 'registration'
 urlpatterns = [
-    path('', views.index, name='profile'),
-    path('donate_history', views.index1, name='donate_history'),
-    path('join_orphan', views.index2, name='join_orphan'),
-    path('near_you', views.index3, name='near_you'),
-    path('pending', views.index4, name='pending'),
+    # path('', views.index, name='profile'),
+    # path('donate_history', views.index1, name='donate_history'),
+    # path('join_orphan', views.index2, name='join_orphan'),
+    # path('near_you', views.index3, name='near_you'),
+    # path('pending', views.index4, name='pending'),
 
     path('login',
          auth_views.LoginView.as_view(template_name="registration/login.html", authentication_form=CustomAuthForm), name='login'),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('reset/done/',
          auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
          name='password_reset_complete'),
+    path('logout/', views.logout_view, name= 'logout')
 
 
     # path(r'password_reset/', auth_views.PasswordResetView.as_view() , name= 'password_reset'),

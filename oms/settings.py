@@ -32,7 +32,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/registration'
+LOGIN_REDIRECT_URL = '/homepage'
 # Application definition
 
 INSTALLED_APPS = [

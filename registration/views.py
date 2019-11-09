@@ -16,7 +16,7 @@ from django.core.mail import EmailMessage
 
 # Create your views here.
 def index(request):
-    return render(request, 'registration/profile.html')
+    return render(request, 'registration/../../templates/userdashboard/userdashboard.html')
 
 
 def index1(request):
