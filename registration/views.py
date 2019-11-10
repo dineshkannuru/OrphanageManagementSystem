@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 
 from homepage.models import Orphanage, Type, UserDetails
-from registration.form import RegisterForm
+from registration.form import RegisterForm, CustomAuthForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
 from django.http import HttpResponse, HttpResponseRedirect
@@ -216,24 +216,29 @@ def activate(request, uidb64, token):
 #     return render(request, 'registration/login_success.html')
 #
 #
-# def login1(request):
-#     return render(request, 'registration/login.html')
+def login_view(request):
+    if request.method == "POST":
+        form = CustomAuthForm(request.POST)
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        print("User is " + request.user.username)
+        print(user, username, password)
+        if user is not None:
+            login(request, user)
+            type = Type.objects.get(user=user)
+            if type.ref_no == 1:
+                return redirect(reverse('userdashboard:u_home', kwargs={'id1': user.id}))
+            else:
+                return HttpResponse("Not a regular user")
+        else:
+            error_message = "Please enter a correct username and password. Note that both fields may be case-sensitive."
+            return render(request, 'registration/login.html', {'form': form, 'error': error_message})
+    else:
+        new_form = CustomAuthForm()
+        return render(request, 'registration/login.html', {'form': new_form})
 
-#
-# def login12(request):
-#     if request.method == "POST":
-#         username = request.POST['username']
-#         password = request.POST['password']
-#         user = authenticate(request, username=username, password=password)
-#         print("User is " + request.user.username)
-#         print(user, username, password)
-#         if user is not None:
-#             login(request, user)
-#             type = Type.objects.get(user=user)
-#             if type.ref_no == 1:
-#                 return redirect(reverse('userdashboard1:u_home', kwargs={'id1': user.id}))
-#         else:
-#             return render(request, 'registration/login.html')
+
 
 
 # def login12_django_form(request):
@@ -313,6 +318,7 @@ def activate(request, uidb64, token):
 #
 # def signup1(request):
 #     return render(request, 'registration/signup_page.html')
+
 
 
 def logout_view(request):

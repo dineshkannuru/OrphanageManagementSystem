@@ -10,6 +10,12 @@ class CustomAuthForm(AuthenticationForm):
     username = forms.CharField(widget=TextInput(attrs={'placeholder': 'Username'}))
     password = forms.CharField(widget=PasswordInput(attrs={'placeholder': 'Password'}))
 
+    # def clean(self):
+    #     username = self.cleaned_data.get('username')
+    #     if models.User.objects.filter(username=username).exists():
+    #
+    #         self.add_error(None, "Hey, Please enter a correct username and password. Note that both fields may be case-sensitive.")
+
 
 class RegisterForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), validators=[MinLengthValidator(8)])

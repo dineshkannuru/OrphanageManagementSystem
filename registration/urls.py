@@ -11,8 +11,7 @@ urlpatterns = [
     # path('near_you', views.index3, name='near_you'),
     # path('pending', views.index4, name='pending'),
 
-    path('login',
-         auth_views.LoginView.as_view(template_name="registration/login.html", authentication_form=CustomAuthForm), name='login'),
+    path('login', views.login_view, name='login'),
     path('register', views.signup, name='signup'),
     path(r'getData/<slug:user_type>/', views.get_data, name='get_data'),
     path(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate,
@@ -26,7 +25,7 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/',auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html'),
          name='password_reset_complete'),
-    path('logout/', views.logout_view, name= 'logout')
+    path('logout/', views.logout_view, name= 'logout'),
 
 
     # path(r'password_reset/', auth_views.PasswordResetView.as_view() , name= 'password_reset'),
