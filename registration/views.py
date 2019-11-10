@@ -105,6 +105,9 @@ def signup(request):
                     password=new_user_form.cleaned_data["password"],
                     email=new_user_form.cleaned_data["email"]
                 )
+                print(request.POST["current_latitude"])
+                print(request.POST["current_longitude"])
+
                 new_orphanage_user = Orphanage.objects.create(
                     orphanage_name=request.POST["orphanage_name"],
                     year_of_establishment=request.POST["year_of_establishment"],
@@ -115,8 +118,7 @@ def signup(request):
                     lat=float(request.POST["current_latitude"]),
                     lon=float(request.POST["current_longitude"]),
                 )
-                print(request.POST["current_latitude"])
-                print(request.POST["current_longitude"])
+
                 user_type = Type.objects.create(
                     user=new_user,
                     ref_no=2
@@ -229,6 +231,10 @@ def login_view(request):
             type = Type.objects.get(user=user)
             if type.ref_no == 1:
                 return redirect(reverse('userdashboard:u_home', kwargs={'id1': user.id}))
+            elif type.ref_no == 2:
+                return HttpResponse("<h1>Please wait to get into the dashboard, until your orphanage gets verified</h1>")
+            elif type.ref_no == 3:
+                return redirect('orphanageadmin:o_profile')
             else:
                 return HttpResponse("Not a regular user")
         else:

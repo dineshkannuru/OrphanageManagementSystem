@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Type,UserDetails,Orphanage,Orphan,AddOrphan,MoneyDonation,Donation,Emergency,Transport
+from .models import Type,UserDetails,Orphanage,Orphan,AddOrphan,MoneyDonation,Donation,Emergency,Transport,Events
 
 admin.site.register(Type)
 admin.site.register(UserDetails)
@@ -18,5 +18,6 @@ admin.site.register(MoneyDonation)
 admin.site.register(Donation)
 admin.site.register(Emergency)
 admin.site.register(Transport)
+admin.site.register(Events)
 
 # Register your models here.

@@ -37,7 +37,7 @@
 
 
 
-<p id="demo"></p>
+<p id="demo" style="display: none"></p>
 <div class="container" id ="user_signup_div">
     <div class="row my-5 ">
         <div class="col col-10 mx-auto">
@@ -330,11 +330,13 @@
                alt="Submit" width="40" height="40" onclick="getLocation(); return false;">
 
         <div class="col">
-            <input name="current_latitude" id="current_latitude"  class="form-control mb-4" placeholder="Current latitude" readonly>
+            <input name="current_latitude" id="current_latitude"  class="form-control mb-4"
+                   step=".00001" placeholder="Current latitude" >
         </div>
 
         <div class="col">
-            <input name="current_longitude" id="current_longitude"  class="form-control mb-4" placeholder="Current longitude" readonly>
+            <input name="current_longitude" id="current_longitude"  class="form-control mb-4"
+                   step=".00001" placeholder="Current longitude" >
         </div>
         <p id="error"></p>
 
