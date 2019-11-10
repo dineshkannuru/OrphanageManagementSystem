@@ -1,0 +1,72 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-orphans")
+</script>
+            <!-- content starts here-->
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br>
+            <div class="content my-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-center text-heading title">Add Orphan</h5>
+                            </div>
+                            <div class="card-body px-5">
+                                <div class="container">
+                                <form class="from-horizontal" method="post" action="{% url 'orphanageadmin:o_insertorphan' %}" autocomplete="off" onsubmit="myButton.disabled = true;">
+                                        {% csrf_token %}
+                                    <!-- Name -->
+                                    <div class="md-form mt-3 ">
+                                        <input type="text" name = "name" id = "user_name" class="form-control"  maxlength='30' required>
+                                        <label for="user_name"> Orphan Name </label>
+                                    </div>
+                                    <!-- date picker -->
+                                    <br>
+                                    <div class="md-form">
+                                        <input type="date" id="inputMDEx" class="form-control" name="date" required>
+                                        <label for="inputMDEx"> Date of Birth (Approximately)</label>
+                                    </div>
+                                <!-- inline radio buttons -->
+                                <div class="form-group">
+                                    <span class="mr-3">Gender</span>
+                                    <!-- Default inline 1-->
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" id="defaultInline1" name="gender" value="M" required>
+                                        <label class="custom-control-label" for="defaultInline1">Male</label>
+                                    </div>
+
+                                    <!-- Default inline 2-->
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input type="radio" class="custom-control-input" id="defaultInline2" name="gender" value="F" required>
+                                        <label class="custom-control-label" for="defaultInline2">Female</label>
+                                    </div>
+                                </div>
+                                    <!-- Name -->
+                                    <div class="md-form mt-3 ">
+                                        <input type="text" name = "spskills" id = "spsks" class="form-control"  maxlength='50' required>
+                                        <label for="spsks"> Special Skills </label>
+                                    </div>
+                                    <div class="md-form">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                        
+                        <!-- content ends here-->
+{% endblock content %}

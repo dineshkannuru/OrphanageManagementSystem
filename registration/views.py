@@ -1,5 +1,4 @@
-from django.shortcuts import render
-
+from django.shortcuts import render,redirect,reverse
 from homepage.models import Orphanage, Type, UserDetails
 from registration.form import RegisterForm
 from django.contrib.auth.models import User
@@ -69,9 +68,11 @@ def login12(request):
         a = request.POST['email']
         b = request.POST['password']
         user = authenticate(username=a, password=b)
-        print(user, a, b)
         if user is not None:
-            return render(request, 'registration/profile.html')
+            login(request,user)
+            type = Type.objects.get(user = user)
+            if(type.ref_no == 3):
+                return redirect('orphanageadmin:o_profile')
         else:
             return render(request, 'registration/login.html')
 
