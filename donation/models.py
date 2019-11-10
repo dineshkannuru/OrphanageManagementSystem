@@ -3,7 +3,9 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 import uuid
 
-
+#store oid
+#Orphanage.Objects.all()
+#Orphanage.orpahanage_name
 # Create your models here.
 
 class donatemoney(models.Model):

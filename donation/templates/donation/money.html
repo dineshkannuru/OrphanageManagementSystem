@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿{% load static %}
+<!DOCTYPE html>
 
 <html lang="en">
 
@@ -13,13 +14,13 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Material Design Bootstrap -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
-<link href="admin-style.css" rel="stylesheet">
-<link href="form.css" rel="stylesheet">
+ <link rel="stylesheet" type="text/css" href="{% static 'donation/css/admin-style.css' %}">
+ <link rel="stylesheet" type="text/css" href="{% static 'donation/css/form.css' %}">
 
   <!-- JQuery -->
   
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script type="text/javascript" src="admin-script.js"></script>
+<script type="text/javascript" href="{% static 'donation/js/admin-script.js' %}"></script>
 <style>
 .card label{
     font-size: 1rem;
@@ -59,11 +60,11 @@ for(var i=0; i<selected_options.length; i++) {
                         <div class="form-group">
                             <!-- <span>Subject</span> -->
                             <label for="drop">Orphanage</label>
-                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage" id="drop">
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage_id" id="drop">
                                 <option value="" selected>Choose option</option>
-                                <option value="Hyderabad child care">Hyderabad child care</option>
-                                <option value="Kukatpally health organ">Kukatpally health organ</option>
-                                <option value="Pragathi orphanage">Pragathi orphanage</option>
+                                {% for orphanage in orphanages %}
+                                <option value="{{ orphanage.pk }}">{{ orphanage.orphanage_name }}</option>
+                                {% endfor %}
                             </select>
                         </div>
                         <!--Message-->

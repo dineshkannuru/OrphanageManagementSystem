@@ -7,7 +7,7 @@ from django.urls import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-from donation.models import donatemoney,donatevaluables
+from homepage.models import donatemoney,donatevaluables,Orphanage
 from donation.forms import donatemoneyform,donatevaluablesform
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
@@ -15,60 +15,58 @@ from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def donatemoneyview(request):
+    Orphanages = Orphanage.objects.all()
     if request.method =='POST':
-        print('a')
-        user_name = request.POST.get('user_name')
-        transfer = request.POST.get('transfer')
-        amount = request.POST.get('amount')
-        orphanage=request.POST.get('orphanage')
-        description= request.POST.get('description')
-        saveform = donatemoney.objects.create(user_name=user_name,transfer=transfer, amount=amount,orphanage=orphanage,description=description)
+        user_id = request.user
+        transfer = request.POST['transfer']
+        amount = request.POST['amount']
+        orphanage_id1 = request.POST['orphanage_id']
+        orphanage = Orphanage.objects.get(pk = orphanage_id1)
+        print(orphanage_id1)
+        description= request.POST['description']
+        status = "0"
+        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,description=description,status=status)
         saveform.save()
-        print(orphanage)
         tid=donatemoney.objects.latest('tid')
         tidstring=tid.tid
-        print(tidstring)
-        user_name.replace(" ", "9")
         if transfer=="paypal":
-            user_name.replace(" ", "9")
-            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,user_name,orphanage)))
+            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage_id1)))
     else:
-        form = donatemoneyform()
-    return render(request,'donation/money.html',{'form': form})
+        context = {
+            'orphanages': Orphanages
+        }
+    return render(request,'donation/money.html',context)
 
 def donation_completedview(request):
     return render(request,'donation/donation_completed.html')
 
 
 def donatevaluablesview(request):
+    Orphanages = Orphanage.objects.all()
+    Orphanages = Orphanage.objects.all()
     if request.method =='POST':
-        user_name=request.POST.get('user_name')
+        user_id = request.user
         type=request.POST.get('type')
-        weight=request.POST.get('weight')
-        length=request.POST.get('length')
-        width =request.POST.get('width')
-        height =request.POST.get('height')
-        breadth =request.POST.get('breadth')
+        quantity=request.POST.get('quantity')
+        orphanage_id1 = request.POST['orphanage_id']
+        orphanage = Orphanage.objects.get(pk = orphanage_id1)
         description= request.POST.get('description')
+        print(quantity)
         status='0'
-        saveform = donatevaluables.objects.create(user_name=user_name,donation_type=type,weight=weight,height=height,length=length,breadth=breadth,description=description,status=status)
+        saveform = donatevaluables.objects.create(user_id=user_id,donation_type=type,orphanage_id=orphanage,quantity=quantity,description=description,status=status)
         saveform.save()
         return HttpResponseRedirect(reverse('donation:completed'))
     else:
-        form = donatevaluablesform()
-        return render(request, 'donation/valuables.html',{'form': form})
+        context = {
+            'orphanages': Orphanages
+        }
+        return render(request, 'donation/valuables.html',context)
 
-def paypal_home(request,tid,amount,user_name,orphanage): 
-    account=""
-    if orphanage=='Hyderabad child care':
-        account="harshab"
-    elif orphanage=='Kukatpally health organ':
-        account="harshab"
-    elif orphanage=='Pragathi orphanage':
-        account="harshab"
-    else:
-        account="test"
-    account=account+str("@harsha.com")
+def paypal_home(request,tid,amount,orphanage_id1): 
+    selected_orphanage=Orphanage.objects.get(pk = orphanage_id1)
+    orphanage=selected_orphanage.orphanage_name
+    user_name=request.user.get_full_name()
+    account=selected_orphanage.account
     print(account)
     paypal_dict = {
         "business": account,
@@ -90,6 +88,9 @@ def paypal_cancel(request):
 
 @csrf_exempt
 def paypal_return(request):
+   
+   #Code to change status to 1 for money 
+    
    # consumer_key=''
    # consumer_secret=''
    # access_token=''

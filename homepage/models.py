@@ -11,7 +11,7 @@ def image_upload_url(instance, filename):
 
 
 class Type(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     ref_no = models.IntegerField()
 
 
@@ -20,14 +20,14 @@ class UserDetails(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    user_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER)
     phone_no = models.IntegerField()
 
 
 class Orphanage(models.Model):
-    #orphanage_id = models.OneToOneField(User, on_delete=models.CASCADE)
+    orphanage_id = models.ForeignKey(User, on_delete=models.CASCADE)
     orphanage_name = models.CharField(max_length=30)
     year_of_establishment = models.IntegerField()
     lon = models.FloatField(null=True)
@@ -36,6 +36,7 @@ class Orphanage(models.Model):
     phone_no = models.IntegerField(null=True)
     image = models.ImageField(upload_to=image_upload_url, blank=True, null=True)
     description = models.CharField(max_length=300)
+    account = models.CharField(max_length=300)
 
 
 class Orphan(models.Model):
@@ -43,7 +44,7 @@ class Orphan(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    orphanage_id = models.OneToOneField(Orphanage, on_delete=models.CASCADE)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.CASCADE)
     orphan_name = models.CharField(max_length=30)
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER)
@@ -55,8 +56,8 @@ class AddOrphan(models.Model):
         ('M', 'Male'),
         ('F', 'Female'),
     )
-    user_id = models.OneToOneField(User, on_delete=models.PROTECT)
-    orphanage_id = models.OneToOneField(Orphanage, on_delete=models.PROTECT)
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
     name = models.CharField(max_length=30)
     gender = models.CharField(max_length=1, choices=GENDER)
     find_place = models.CharField(max_length=100)
@@ -65,8 +66,8 @@ class AddOrphan(models.Model):
 
 
 class MoneyDonation(models.Model):
-    user_id = models.OneToOneField(User, on_delete=models.PROTECT)
-    orphanage_id = models.OneToOneField(Orphanage, on_delete=models.PROTECT)
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
     date_of_donation = models.DateTimeField(default=timezone.now)
     description = models.CharField(max_length=50)
     amount = models.IntegerField()
@@ -80,8 +81,8 @@ class Donation(models.Model):
         ('E', 'Eletrical Appliances'),
         ('O', 'other'),
     )
-    user_id = models.OneToOneField(User, on_delete=models.PROTECT)
-    orphanage_id = models.OneToOneField(Orphanage, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.CASCADE)
     date_of_donation = models.DateTimeField(default=timezone.now)
     status = models.IntegerField()
     donation_type = models.CharField(max_length=1, choices=TYPE)
@@ -90,7 +91,7 @@ class Donation(models.Model):
 
 
 class Emergency(models.Model):
-    orphanage_id = models.OneToOneField(Orphanage, on_delete=models.CASCADE)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.CASCADE)
     requirement = models.CharField(max_length=100)
     situation = models.CharField(max_length=500)
     date_of_post = models.DateTimeField(default=timezone.now)
@@ -98,6 +99,39 @@ class Emergency(models.Model):
 
 
 class Transport(models.Model):
-    danation_id = models.OneToOneField(Donation, on_delete=models.CASCADE)
+    danation_id = models.ForeignKey(Donation, on_delete=models.CASCADE)
     company_name = models.CharField(max_length=50)
     cost = models.IntegerField()
+
+class donatemoney(models.Model):
+    tid = models.AutoField(primary_key=True) 
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
+    transfer = models.CharField(max_length=264,default=0)
+    amount = models.IntegerField(default=0)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
+    status = models.IntegerField()
+ #   date_of_donation = models.DateTimeField(default = timezone.now)
+    description = models.CharField(default=None,max_length=50)
+    
+    class Meta:
+        get_latest_by = ['tid']
+
+class donatevaluables(models.Model):
+    TYPE = (
+        ('F','Food'),
+        ('C','Clothes'),
+        ('B','Book'),
+        ('E','Eletrical Appliances'),
+        ('O','other'),
+    )
+    tid = models.AutoField(primary_key=True)  
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
+    donation_type = models.CharField(max_length=1,choices=TYPE)
+    date_of_donation = models.DateTimeField(default=timezone.now)
+    quantity = models.IntegerField()
+    description = models.CharField(default=None,max_length=100)
+    status = models.IntegerField()
+
+    class Meta:
+        get_latest_by = ['tid']
