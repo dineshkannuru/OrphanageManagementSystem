@@ -107,8 +107,9 @@ def signup(request):
                 )
                 print(request.POST["current_latitude"])
                 print(request.POST["current_longitude"])
-
+                new_user.save()
                 new_orphanage_user = Orphanage.objects.create(
+                    orphanage_id=User.objects.get(username=new_user_form.cleaned_data["username"]),
                     orphanage_name=request.POST["orphanage_name"],
                     year_of_establishment=request.POST["year_of_establishment"],
                     address=request.POST["address"],
