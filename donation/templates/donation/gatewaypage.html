@@ -14,10 +14,11 @@
     <div class="container">
   <div class="row">
     <div class="col-sm">
+        <div style="text-align:center;">
       <h3>Mode of payment:</h3>
     <h1>Paypal</h1>
     {{ form.render }}
-
+        </div>
     </div>
     <div class="col-sm">
       <div class="p-3 mb-2 bg-light text-dark">
@@ -39,7 +40,9 @@
   </tbody>
 </table>
   </div>
-        Amount:{{data.amount}}
+        <div style="text-align:center;font-size:30px">
+       <b>Amount:{{data.amount}} $</b> 
+        </div>
 </div>
         </div>
     </body>

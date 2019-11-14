@@ -114,7 +114,7 @@ class donatemoney(models.Model):
     description = models.CharField(default=None,max_length=50)
     
     class Meta:
-        get_latest_by = ['tid']
+        get_latest_by = ['tid','status']
 
 class donatevaluables(models.Model):
     TYPE = (
@@ -134,4 +134,4 @@ class donatevaluables(models.Model):
     status = models.IntegerField()
 
     class Meta:
-        get_latest_by = ['tid']
+        get_latest_by = ['tid','status']

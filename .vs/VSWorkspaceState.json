@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\donation"
+    "\\donation",
+    "\\donation\\templates",
+    "\\donation\\templates\\donation"
   ],
-  "SelectedNode": "\\donation\\views.py",
+  "SelectedNode": "\\donation\\templates\\donation\\money.html",
   "PreviewInSolutionExplorer": false
 }

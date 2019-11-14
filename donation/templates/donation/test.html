@@ -1,0 +1,20 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h1></h1>
+    Accepted:
+    {% for accept in accepted %}
+    Your request with {{accept.tid}} tid has been accepted
+    {% endfor %}
+    
+    Rejected:
+    {% for reject in rejected %}
+    Your request with {{reject.tid}} tid has been rejected
+    {% endfor %}
+</body>
+</html>

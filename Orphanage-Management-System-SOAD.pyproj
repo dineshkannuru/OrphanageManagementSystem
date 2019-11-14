@@ -25,6 +25,9 @@
   <ItemGroup>
     <Compile Include="donation\admin.py" />
     <Compile Include="donation\apps.py" />
+    <Compile Include="donation\face.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="donation\form.py" />
     <Compile Include="donation\forms.py" />
     <Compile Include="donation\migrations\0001_initial.py" />
@@ -81,12 +84,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="donation\templates\donation\donation_completed.html" />
-    <Content Include="donation\templates\donation\facebook.html" />
+    <Content Include="donation\templates\donation\test.html" />
     <Content Include="donation\templates\donation\gatewaypage.html" />
     <Content Include="donation\templates\donation\money.html" />
-    <Content Include="donation\templates\donation\paypalcancel.html" />
-    <Content Include="donation\templates\donation\paypalreturn.html" />
+    <Content Include="donation\templates\donation\paypal_cancel.html" />
+    <Content Include="donation\templates\donation\paypal_return.html" />
     <Content Include="donation\templates\donation\requestplaced.html" />
+    <Content Include="donation\templates\donation\social.html" />
     <Content Include="donation\templates\donation\valuables.html" />
     <Content Include="media\orphanage_image\4\Screenshot_1.png" />
     <Content Include="media\orphanage_image\5\Screenshot_10.png" />
