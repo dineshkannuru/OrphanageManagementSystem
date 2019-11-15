@@ -29,14 +29,14 @@
 <div class="container-fluid p-0 d-flex wrapper">
 
 	<!-- Sidebar  -->
-	
+
         <nav id="sidebar">
             <div class="sidebar-header  p-3.5">
-            <a href="{% url 'h_index' %}">
-                    <h3>Logo</h3>
+            <a href="{% url 'h_index' %}" class="mx-4">
+              <img src="{% static 'homepage/img/logo.png' %}" class="nav-logo">
             </a>
             </div>
-			
+
             <ul class="list-unstyled components">
               <li class="sidebar-active">
                   <a href="{% url 'profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
@@ -63,8 +63,8 @@
               </li>
             </ul>
         </nav>
-		
-		
+
+
 		<!-- side bar ends here -->
 		<!-- Page Content Holder -->
         <div id="content">
@@ -77,9 +77,9 @@
                         <span></span>
                         <span></span>
                     </button>
-                    
+
                     <ul class="nav navbar-nav ml-auto">
-                        
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -94,98 +94,75 @@
                             </div>
                         </li>
                     </ul>
-                    
+
                 </div>
             </nav>
+
+
+
             <!-- content starts here-->
             <div class="content my-3">
                 <div class="row">
                     <div class="col">
                             <div class="card">
                                     <div class="card-header">
-                                      <h5 class="title">Edit Profile</h5>
+                                      <h5 class="title">Profile</h5>
                                     </div>
                                     <div class="card-body">
-                                      <form>
-                                        <div class="row">
-                                          <div class="col-md-5 pr-1">
-                                            <div class="form-group">
-                                              <label>Company (disabled)</label>
-                                              <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
-                                            </div>
+                                      <div class="row">
+                                        <div class="col col-4 pt-4">
+                                          <img src="{% static 'homepage/img/photo.jpg' %}" class="profile-img">
+                                        </div>
+                                        <div class="col col-6">
+                                          <div class="row my-2">
+                                            <div class="col ">Name</div>
+                                            <div class="col">:</div>
+                                            <div class="col ">{{ qs.username }}</div>
                                           </div>
-                                          <div class="col-md-3 px-1">
-                                            <div class="form-group">
-                                              <label>Username</label>
-                                              <input type="text" class="form-control" placeholder="Username" value="michael23">
-                                            </div>
+                                          <div class="row my-5">
+                                            <div class="col">phone number</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs1.phone_no }}</div>
                                           </div>
-                                          <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                              <label for="exampleInputEmail1">Email address</label>
-                                              <input type="email" class="form-control" placeholder="Email">
-                                            </div>
+                                          <div class="row my-5">
+                                            <div class="col">firstname</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.first_name}}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">lastname</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.last_name }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col col-4">Email</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.email}}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">Gender</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs1.gender}}</div>
                                           </div>
                                         </div>
-                                        <div class="row">
-                                          <div class="col-md-6 pr-1">
-                                            <div class="form-group">
-                                              <label>First Name</label>
-                                              <input type="text" class="form-control" placeholder="Company" value="Mike">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-6 pl-1">
-                                            <div class="form-group">
-                                              <label>Last Name</label>
-                                              <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-12">
-                                            <div class="form-group">
-                                              <label>Address</label>
-                                              <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-4 pr-1">
-                                            <div class="form-group">
-                                              <label>City</label>
-                                              <input type="text" class="form-control" placeholder="City" value="Mike">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4 px-1">
-                                            <div class="form-group">
-                                              <label>Country</label>
-                                              <input type="text" class="form-control" placeholder="Country" value="Andrew">
-                                            </div>
-                                          </div>
-                                          <div class="col-md-4 pl-1">
-                                            <div class="form-group">
-                                              <label>Postal Code</label>
-                                              <input type="number" class="form-control" placeholder="ZIP Code">
-                                            </div>
-                                          </div>
-                                        </div>
-                                        <div class="row">
-                                          <div class="col-md-12">
-                                            <div class="form-group">
-                                              <label>About Me</label>
-                                              <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </form>
                                     </div>
+
+                                  <form action="result1" method="post" class="text-center">
+                                    {% csrf_token %}
+
+                                  <button class="btn btn-primary "  >Edit Profile</button>
+
+                                  </form>
+                                    </div>
+
                                   </div>
+
                     </div>
                 </div>
             </div>
             <!-- content ends here-->
         </div>
-        
+
 
 </div>
 
