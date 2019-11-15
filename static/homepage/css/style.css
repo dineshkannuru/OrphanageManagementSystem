@@ -235,7 +235,7 @@ a {
         .header_area .navbar .nav .nav-item .nav-link:after {
           display: none; }
       .header_area .navbar .nav .nav-item:hover .nav-link, .header_area .navbar .nav .nav-item.active .nav-link {
-        color: #c7b198; }
+        color: #c7b198 !important; }
       .header_area .navbar .nav .nav-item.submenu {
         position: relative; }
         .header_area .navbar .nav .nav-item.submenu ul {
@@ -290,7 +290,7 @@ a {
             .header_area .navbar .nav .nav-item.submenu ul .nav-item:last-child {
               border-bottom: none; }
             .header_area .navbar .nav .nav-item.submenu ul .nav-item:hover .nav-link {
-              background: #c7b198;
+              background: #c7b198 !important;
               color: #fff; }
         @media (min-width: 992px) {
           .header_area .navbar .nav .nav-item.submenu:hover ul {
@@ -694,7 +694,7 @@ a {
 /* Support Campaign Area css
 ============================================================================================ */
 .experience_donation {
-  background: #e8e8e8;
+  background: #f9f9ff;
   text-align: center; }
   .experience_donation h1 {
     margin-bottom: 20px; }
@@ -3523,10 +3523,21 @@ margin-top: 30px;}
   background: transparent;
   color: #c7b198;
 }
+
+
+.change {
+  background-color: transparent !important;
+}
+
+
+
 #googleMap{
   width: 100%;
   height:500px;
 }
+
+
+
 /*----------------------------------------*/
 
 /*# sourceMappingURL=style.css.map */

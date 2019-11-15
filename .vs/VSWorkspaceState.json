@@ -3,8 +3,9 @@
     "",
     "\\donation",
     "\\donation\\templates",
-    "\\donation\\templates\\donation"
+    "\\donation\\templates\\donation",
+    "\\templates",
+    "\\templates\\donation"
   ],
-  "SelectedNode": "\\donation\\templates\\donation\\money.html",
   "PreviewInSolutionExplorer": false
 }

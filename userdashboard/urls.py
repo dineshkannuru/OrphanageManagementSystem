@@ -1,9 +1,10 @@
 
 from django.urls import path
 from . import views
-app_name = 'userdashboard1'
+app_name = 'userdashboard'
 
 urlpatterns = [
-    path('<int:id1>/', views.home, name = 'u_home'),
-
+path('Profile',views.Profile,name='u_Profile'),
+path('result1',views.profileupdate,name='u_result11'),
+path('result12', views.editprofile, name='u_result12'),
 ]

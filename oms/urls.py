@@ -18,6 +18,7 @@ from django.urls import path,include
 from homepage.views import index
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -28,6 +29,9 @@ urlpatterns = [
     path('superuser/', include('superuser.urls')),
     path('userdashboard/',include('userdashboard.urls')),
     path('donation/',include('donation.urls')),
+    path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html') ,
+            name='password_reset_complete'),
 ]
 
 if settings.DEBUG:

@@ -63,18 +63,22 @@
                         </div>
                         <div class="md-form mt-3 ">
                             <label for="user_name">Object name:</label>
-                            <input type="text" id="user_name" class="form-control" name="object">
+                            <input type="text" id="user_name" class="form-control" name="object_name">
                             
                         </div>
                         <!--Message-->
                         <div class="md-form">
-                            <textarea id="Message" class="form-control md-textarea" rows="2" name="description"></textarea>
-                            <label for="Message">Description</label>
+                            <textarea id="description" class="form-control md-textarea" rows="2" name="description"></textarea>
+                            <label for="description">Description</label>
                         </div>
+                        <div class="md-form">
+                        <textarea id="address" class="form-control md-textarea" rows="2" name="address"></textarea>
+                        <label for="address">Address</label>
+                    </div>
                         <div class="form-group">
-                            <label for="customRange1">Quantity: <span id="range1"></span></label>
-                            <input type="range" class="custom-range" id="customRange1" min="0" max="100" name="quantity" >
-                        </div>
+                        <label for="customRange1">Quantity: <span id="range1"></span></label>
+                        <input type="range" class="custom-range" id="customRange1" min="0" max="100" name="quantity" >
+                    </div>
                         <script>
                             var slider = document.getElementById("customRange1");
                             var output = document.getElementById("range1");
