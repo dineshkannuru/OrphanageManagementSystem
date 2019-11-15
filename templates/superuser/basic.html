@@ -1,0 +1,53 @@
+
+<html>
+<head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+
+
+</head> 
+<body>
+    <a href="{% url 'superuser:freshlyapplied' %}" class="btn btn-outline-primary"   style="margin-left: 30px;margin-top: 30px">Freshly Applied</a>
+    <a href="{% url 'superuser:accepted' %}" class="btn btn-outline-primary"   style="margin-left: 30px;;margin-top: 30px">Accepted</a>
+    <a href="{% url 'superuser:rejected' %}" class="btn btn-outline-primary"   style="margin-left: 30px;;margin-top: 30px">Rejected</a>
+    {% if t %}
+    <h4 style="margin-left: 30px;margin-top:30px">List Of Orphanages</h4>
+    
+
+    {% for orphanage in t %}
+    <form action="{% url 'superuser:check' %}"  method="POST">
+            {% csrf_token %}
+    
+        <div class="card" style="width: 80rem;margin-left: 30px">
+                <div class="card-body">
+                    
+                  <input type="text"  name="orphanage_name" value="{{ orphanage.orphanage_name }}" style="border:none;font-weight: bold" readonly>
+                  
+                  <p class="card-text">{{orphanage.description}}</p>
+                  <h6>Year of establishment: {{orphanage.year_of_establishment}}</h6>
+                  <h6>Address: {{orphanage.address}}</h6>
+                  <h6>Phone Number: {{orphanage.phone_no}}</h6>
+                  <h6>Status: {{orphanage.status}}</h6>
+
+
+                  {% if orphanage.status == "Freshly Applied" %}
+                    <button type="submit" class="btn btn-primary" name="ACCEPT" value="ACEEPT">ACCEPT</button>
+                    <button type="submit" class="btn btn-primary" name="REJECT" value="REJECT">REJECT</button>
+                  {% endif %}
+                    
+                  {% if orphanage.status == "Accepted" %}
+                  <button type="submit" class="btn btn-primary" name="REJECT">REJECT</button>
+
+                  {% endif %}
+                </div>
+              </div>
+    </form>          
+    {% endfor %}
+    {% else %}
+
+
+    <p><h1>No Orphanages to show</h1></p>       
+    {% endif %}   
+    
+    
+</body>       
+</html>

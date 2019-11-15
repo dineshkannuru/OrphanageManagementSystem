@@ -1,0 +1,73 @@
+<!DOCTYPE>
+<html>
+<head>
+  <style>
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
+    border-radius: 5px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+
+  .btnsuccess {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #4CAF50;
+  color: green;
+  }
+
+  .btnsuccess:hover {
+  background-color: #4CAF50;
+  color: white;
+  }
+
+
+  .btndanger{
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #f44336;
+  color: red
+  }
+
+  .btndanger:hover {
+  background: #f44336;
+  color: white;
+  }
+
+
+
+  </style>
+</head>
+<body>
+  {% for q in data1 %}
+<div class="card">
+<form action="{% url 'r_result1'%}" method="post">{% csrf_token %}
+
+<h3> {{ q.company_name}}</h3>
+<input type="hidden" name="name" value="{{ q.pk }}" >
+<button class="btnsuccess"   value="accept" name="accept" >accept</button>
+</form>
+</div>
+{% endfor %}
+</body>
+
+
+
+
+
+</html>
