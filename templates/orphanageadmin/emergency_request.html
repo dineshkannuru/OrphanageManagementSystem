@@ -1,0 +1,50 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-emergency")
+</script>
+            <!-- content starts here-->
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <br>
+            <div class="content my-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-center text-heading title">Emergency Post</h5>
+                            </div>
+                            <div class="card-body px-5">
+                                <div class="container">
+                                <form class="from-horizontal" method="post" action= "{% url 'orphanageadmin:o_postemergencyrequest' %}" autocomplete="off" onsubmit="myButton.disabled = true;">
+                                        {% csrf_token %}
+                                    <!--Message-->
+                                    <div class="md-form">
+                                        <textarea id="Message" name="problem" class="form-control md-textarea" rows="2" maxlength='500'  required></textarea>
+                                        <label for="Message">Problem</label>
+                                    </div>
+                                    <!-- Name -->
+                                    <div class="md-form mt-3 ">
+                                        <textarea id="require" name="requirement" class="form-control md-textarea" rows="1" maxlength='100'  required></textarea>
+                                        <label for="require"> Requirement </label>
+                                    </div>
+                                    <div class="md-form">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light form-button">Post</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+            <!-- content ends here-->
+{% endblock content %}

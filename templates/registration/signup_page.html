@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Registration</title>
+  <!-- Font Awesome -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+<!-- Bootstrap core CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+
+
+  <!-- JQuery -->
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://kit.fontawesome.com/184905c180.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body style="font-family: 'Muli', 'Helvetica', Arial, sans-serif;   ">
+
+
+<div style="text-align: center">
+    <p>   Register as </p>
+<select id = "select_type_dropDown" onchange="myFunction('user')">
+
+  <option value="user" >User</option>
+  <option value="orphanage">Orphanage</option>
+</select>
+</div>
+
+
+
+
+<p id="demo" style="display: none"></p>
+<div class="container" id ="user_signup_div">
+    <div class="row my-5 ">
+        <div class="col col-10 mx-auto">
+<!-- Default form register -->
+<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'registration:signup' %}" id="register_form">
+    <input type='hidden' value='{{ signup_type}}' id='user_type' />
+
+    <script>
+
+    function myFunction(x) {
+        x = document.getElementById("select_type_dropDown").value;
+        document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
+        $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
+        document.getElementById("demo").innerHTML = 'getJSON block has been executed';
+        if (document.getElementById('user_type').value === 'orphanage') {
+            x = "orphanage";
+            document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+        }
+        switch (x) {
+            case "user":
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break;
+            case "orphanage":
+                document.getElementById('user_signup_div').style.display = 'none';
+                document.getElementById('orphanage_signup_div').style.display = 'block';
+                break;
+            default:
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break
+        }
+    }
+
+    if (document.getElementById('user_type').value === 'orphanage') {
+        document.getElementById("select_type_dropDown").value = "orphanage";
+        myFunction('orphanage');
+        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+    }
+    </script>
+
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <p class="h4 mb-4">Sign up as User</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+{#            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">#}
+            {{ signup_form.first_name|add_class:"validate form-control" }}
+        </div>
+
+
+        {% if signup_form.first_name.help_text %}
+            <span >{{ signup_form.first_name.help_text }}</span>
+        {% endif %}
+        <span style="color: red ; font-size: 15px">
+        {% if signup_form.first_name.errors %}
+            <span >{{ signup_form.first_name.errors }}</span>
+        {% endif %}
+        </span>
+
+        <div class="col">
+            <!-- Last name -->
+{#            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">#}
+            {{ signup_form.last_name|add_class:"validate form-control" }}
+
+
+            {% if signup_form.last_name.help_text %}
+                <span >{{ signup_form.last_name.help_text }}</span>
+            {% endif %}
+            <span style="color: red ; font-size: 15px" >
+            {% if signup_form.last_name.errors %}
+                <span >{{ signup_form.first_name.errors }}</span>
+            {% endif %}
+            </span>
+
+        </div>
+    </div>
+{#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
+    {{ signup_form.username|add_class:"validate form-control mb-4" }}
+
+    {% if signup_form.first_name.help_text %}
+        <span >{{ signup_form.username.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.username.errors %}
+        <span >{{ signup_form.username.errors }}</span>
+    {% endif %}
+    </span>
+
+    <!-- E-mail -->
+{#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+    {{ signup_form.email|add_class:"validate form-control mb-4" }}
+    {% if signup_form.email.help_text %}
+        <span >{{ signup_form.email.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.email.errors %}
+        <span >{{ signup_form.email.errors }}</span>
+    {% endif %}
+    </span>
+    <!-- Password -->
+{#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
+    {{ signup_form.password|add_class:"validate form-control" }}
+
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters/digits are required
+    </small>
+
+    {% if signup_form.password.help_text %}
+        <span >{{ signup_form.password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.password.errors %}
+        <span >{{ signup_form.password.errors }}</span>
+    {% endif %}
+    </span>
+    {{ signup_form.confirm_password|add_class:"validate form-control" }}
+    {% if signup_form.confirm_password.help_text %}
+        <span >{{ signup_form.confirm_password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.confirm_password.errors %}
+        <span >{{ signup_form.confirm_password.errors }}</span>
+    {% endif %}
+    </span>
+    <br>
+    <div class="form-row mb-4">
+        <div class="col">
+            <input type="date" name="DOB"  class="form-control mb-4" placeholder="Date of birth"
+                max="2001-12-31">
+        </div>
+        <div class="col">
+            <select name="gender" class="form-control mb-4">
+              <option value="M">Male</option>
+              <option value="F">Female</option>
+            </select>
+        </div>
+
+    </div>
+    <!-- Phone number -->
+    <input type="number"  name="phone_number" id="defaultRegisterPhonePassword" class="form-control"
+           placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
+            min="6000000000" max="9999999999">
+
+
+    <!-- Sign up button -->
+    <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+</form>
+<!-- Default form register -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="container" id="orphanage_signup_div" style="display: none">
+    <div class="row my-5 ">
+        <div class="col col-10 mx-auto">
+<!-- Default form register -->
+<form method="post" class="text-center border border-light p-5 z-depth-3" action="{% url 'registration:signup' %}"
+      enctype="multipart/form-data" >
+    {% csrf_token %}
+    {% load widget_tweaks %}
+    <input type='hidden' value='{{ signup_type}}' id='user_type' />
+    <script>
+
+    function myFunction(x) {
+        x = document.getElementById("select_type_dropDown").value;
+        document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
+        $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
+        document.getElementById("demo").innerHTML = 'getJSON block has been executed';
+        if (document.getElementById('user_type').value === 'orphanage') {
+            x = "orphanage";
+            document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+        }
+        switch (x) {
+            case "user":
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break;
+            case "orphanage":
+                document.getElementById('user_signup_div').style.display = 'none';
+                document.getElementById('orphanage_signup_div').style.display = 'block';
+                break;
+            default:
+                document.getElementById('user_signup_div').style.display = 'block';
+                document.getElementById('orphanage_signup_div').style.display = 'none';
+                break
+        }
+    }
+
+    if (document.getElementById('user_type').value === 'orphanage') {
+        document.getElementById("select_type_dropDown").value = "orphanage";
+        myFunction('orphanage');
+        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+    }
+    </script>
+
+
+    <p class="h4 mb-4">Sign up as Orphanage</p>
+
+    <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+            <input type="text" name="orphanage_name" id="defaultRegisterFormFirstName" class="form-control" placeholder="Orphanage name">
+        </div>
+    </div>
+{#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
+    {{ signup_form.username|add_class:"validate form-control mb-4" }}
+
+    {% if signup_form.first_name.help_text %}
+        <span >{{ signup_form.username.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.username.errors %}
+        <span >{{ signup_form.username.errors }}</span>
+    {% endif %}
+    </span>
+
+    <!-- E-mail -->
+{#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+    {{ signup_form.email|add_class:"validate form-control mb-4" }}
+    {% if signup_form.email.help_text %}
+        <span >{{ signup_form.email.help_text }}</span>
+    {% endif %}
+    <span style="color: red ; font-size: 15px">
+    {% if signup_form.email.errors %}
+        <span >{{ signup_form.email.errors }}</span>
+    {% endif %}
+    </span>
+
+    <!-- Password -->
+{#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
+    {{ signup_form.password|add_class:"validate form-control" }}
+
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters/digits are required
+    </small>
+
+    {% if signup_form.password.help_text %}
+        <span >{{ signup_form.password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.password.errors %}
+        <span >{{ signup_form.password.errors }}</span>
+    {% endif %}
+    </span>
+    {{ signup_form.confirm_password|add_class:"validate form-control" }}
+    {% if signup_form.confirm_password.help_text %}
+        <span >{{ signup_form.confirm_password.help_text }}</span>
+    {% endif %}
+    <span style="color: red; font-size: 15px">
+    {% if signup_form.confirm_password.errors %}
+        <span >{{ signup_form.confirm_password.errors }}</span>
+    {% endif %}
+    </span>
+    <br>
+    <div class="form-row mb-4">
+        <div class="col">
+            <input type="number" name="year_of_establishment"  class="form-control mb-4" placeholder="Year of establishment"
+                    min="1000" max="2019">
+        </div>
+
+        <div class="col">
+            <input type="number" name="phone_number"  class="form-control mb-4" placeholder="Phone Number"
+                   min="6000000000" max="9999999999">
+        </div>
+    </div>
+    <!-- E-mail -->
+    <input type="file" name="orphanage_image" accept="image/*" class="form-control mb-4" >
+
+    <textarea name="address" class="form-control mb-4" placeholder="Address"></textarea>
+    <!-- Phone number -->
+    <textarea name="description" class="form-control mb-4" placeholder="Description"></textarea>
+
+    <!-- Sign up button -->
+
+    <div class="form-row mb-4">
+
+        <input type="image" src="https://icon-library.net/images/google-maps-current-location-icon/google-maps-current-location-icon-14.jpg"
+               alt="Submit" width="40" height="40" onclick="getLocation(); return false;">
+
+        <div class="col">
+            <input name="current_latitude" id="current_latitude"  class="form-control mb-4"
+                   step=".00001" placeholder="Current latitude" >
+        </div>
+
+        <div class="col">
+            <input name="current_longitude" id="current_longitude"  class="form-control mb-4"
+                   step=".00001" placeholder="Current longitude" >
+        </div>
+        <p id="error"></p>
+
+        <script>
+            var x = document.getElementById("error");
+            function getLocation()
+            {
+              if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition)
+              }
+              else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+              }
+              return false;
+            }
+            function showPosition(position) {
+          document.getElementById("current_latitude").value =  position.coords.latitude;
+          document.getElementById("current_longitude").value = position.coords.longitude;
+        </script>
+
+    </div>
+    <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+</form>
+
+
+<!-- Default form register -->
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- SCRIPTS -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+<script>
+
+</script>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+          document.getElementById("current_latitude").value =  position.coords.latitude;
+          document.getElementById("current_longitude").value = position.coords.longitude;
+}
+</script>
+
+</body>
+
+</html>

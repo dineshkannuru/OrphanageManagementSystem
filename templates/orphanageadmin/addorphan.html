@@ -1,0 +1,39 @@
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title> Orphanage Dashboard </title>
+        <link rel="stylesheet" type="text/css" href="{% static 'orphanageadmin/addorphan.css' %}">
+    </head>
+    <body>
+        <br><br>
+        <div class="container">
+            <div class="card">
+                <div class="card-body"><br>
+                        <div class="font2"> &nbsp;&nbsp;&nbsp;&nbsp; ADD ORPHAN</div>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <hr class = 'accent-2 mb-4 mt-0 d-inline-block mx-auto' style="background-color:#1059FF;width:38%;height:1px">
+                        <form method="post" action="{% url 'insert_orphan' %}" autocomplete="off" onsubmit="myButton.disabled = true;"><br>
+                            {% csrf_token %}
+                                    <div class="font1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Orphan Name </div>
+                                    <center><input type="text" spellcheck="false" class="font1" name="name" maxlength='30' required></center> <br>
+                                    <div class="font1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date Of Birth (Approximately)</div>
+                                    <div> <center><input type="date" class="font1" name="date"  min="1995-01-01" required></center>  </div><br>
+                                    <div class="font1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gender </div>
+                                    <div class="font1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio"  name="gender" value="M" required> Male &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="gender" value="F" required> Female
+                                    </div><br>
+                                    <div class="font1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Special Skills </div>
+                                    <center><textarea rows="2" class="font1" spellcheck="false" cols="23" maxlength='50' name="spskills"> </textarea></center>
+                            <br><br>
+                         <center><button type="submit"> Add Oraphan </button></center>
+                        </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

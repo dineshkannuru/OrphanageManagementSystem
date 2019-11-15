@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <style>
+            .btn {
+            display: inline-block;
+            background: blue;
+            padding: 3px 18px;
+            color: #ccccff;
+            font-size: 12px;
+            font-weight: 500;
+            line-height: 48px;
+            border: 1px solid blue;
+            border-radius: 0px;
+            outline: none;
+            box-shadow: none ;
+            text-align: center;
+            cursor: pointer;
+            transition: all 300ms linear 0s;
+            border-radius: 5px;
+            text-transform: capitalize; 
+            }
+            .btn:hover {
+            background:#ccccff;
+            color: blue; 
+            }
+        
+        </style>
+        <title> Orphanage Dashboard </title>
+    </head>
+    <body>
+        <br>
+        <center>
+            <div style="width:75%"'>
+                {% if messages %}
+                {% for message in messages %}
+                <div class='alert alert-{{ message.tags }}'>
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </center>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="btn" href="{% url 'add_orphan' %}"> ADD ORPHAN </a>
+    </body>
+</html>

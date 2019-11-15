@@ -1,0 +1,914 @@
+
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'homepage/img/favicon.png' %}" type="image/png">
+	<title>OMS</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'homepage/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/css/font-awesome.min.css'%}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/lightbox/simpleLightbox.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/nice-select/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/animate-css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/jquery-ui/jquery-ui.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/css/responsive.css' %}">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+	<!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html">
+						<img src="{% static 'homepage/img/logo.png' %}" >
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row ml-0 w-100">
+							<div class="col-lg-12 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									<li class="nav-item active">
+										<a class="nav-link   change"   href="{% url 'h_index' %}">home</a>
+									</li>
+									<li class="nav-item ">
+										<a class="nav-link   change"  href="#">Donate</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link   change" href="{% url 'contact_us' %}">Contact</a>
+									</li>
+									<li class="nav-item">
+										<a class="main_btn" href="{% url 'registration:login' %}">Login</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--================Header Menu Area =================-->
+
+	<!--================ Home Banner Area =================-->
+	<section class="home_banner_area">
+		<div class="overlay"></div>
+		<div class="banner_inner d-flex align-items-center">
+			<div class="container">
+				<div class="banner_content row">
+					<div class="offset-lg-2 col-lg-8">
+						<img class="img-fluid" src="{% static 'homepage/img/banner/text-img.png' %}">
+						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price You may see some
+							for as low as each.</p>
+						<a class="main_btn mr-10" href="#">donate now</a>
+						<a class="white_bg_btn" href="#">view activity</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ End Home Banner Area =================-->
+
+
+	<!--================ Start important-points section =================
+	<section class="donation_details pad_top">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="img/icons/home1.png" alt="">
+					<h4>Total Donation</h4>
+					<p>
+						The French Revolutioncons tituted for the conscience of the dominant.
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="img/icons/home2.png" alt="">
+					<h4>Fund Raised</h4>
+					<p>
+						The French Revolutioncons tituted for the conscience of the dominant.
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="img/icons/home3.png" alt="">
+					<h4>Highest Donation</h4>
+					<p>
+						The French Revolutioncons tituted for the conscience of the dominant.
+					</p>
+				</div>
+				<div class="col-lg-3 col-md-6 single_donation_box">
+					<img src="img/icons/home4.png" alt="">
+					<h4>Total Donation</h4>
+					<p>
+						The French Revolutioncons tituted for the conscience of the dominant.
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+	================ End important-points section =================-->
+	<section class="causes_area">
+	<div class="container">
+		<div class="main_title">
+			<h2>How Could You Help</h2>
+			<p>Creepeth called face upon face yielding midst is after moveth </p>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<div class="single_causes">
+					<h4>Give Donation</h4>
+					<img src="{% static 'homepage/img/causes/c1.png' %}" >
+					<p>
+						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="single_causes">
+					<h4>Give Inspiration</h4>
+					<img src="{% static 'homepage/img/causes/c2.png' %}" style="margin-bottom: 42px;">
+					<p>
+						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="single_causes">
+					<h4>Become volunteer</h4>
+					<img src="{% static 'homepage/img/causes/c3.png' %}" >
+					<p>
+						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+	<!--================ Start Our Major Cause section =================-->
+	<section class="our_major_cause section_gap">
+		<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Our Major Causes</h1>
+					<p>
+						The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence the natural
+						chain of events.
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div id="our-major-cause" class="owl-carousel">
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d1.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+								<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc">donate here</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+								<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc">donate here</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d3.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+							<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc"    >donate here</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+				<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc">donate here</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d3.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+					<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc">donate here</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d1.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+						<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc">donate here</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="card">
+						<div class="card-body">
+							<figure>
+								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
+							</figure>
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+									<span>Funded 76%</span>
+								</div>
+							</div>
+							<div class="card_inner_body">
+						<div class="card-body-top">
+									<span>Raised: RS 7,689</span> / RS 10,000
+								</div>
+								<h4 class="card-title">Did not find your Package</h4>
+								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
+									in the workplace that’s why it’s crucial.
+								</p>
+								<a href="#" class="main_btnc">donate here</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--================ Ens Our Major Cause section =================-->
+
+	<!--================ Start Make Donation Area =================-->
+	<section class="make_donation section_gap">
+		<div class="container">
+			<div class="row justify-content-start section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Make a Donation Today</h1>c					<p>
+						Las Vegas has more than 100,000 hotel rooms to choose from. There is something for every budget, and enough.
+					</p>
+				</div>
+			</div>
+
+			<div class="donate_now_wrapper">
+				<form>
+					<div class="row">
+						<div class="col-lg-4">
+							<div class="donate_box mb-30">
+								<div class="form-check">
+									<input type="radio" class="form-check-input" name="donation" id="ten_doller">
+									<label class="form-check-label d-flex justify-content-between" for="ten_doller">
+										<div class="label_text">
+											RS 10.00
+										</div>
+										<div class="label_text">
+											RS
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="donate_box mb-30">
+								<div class="form-check">
+									<input type="radio" class="form-check-input" name="donation" id="fifty_doller">
+									<label class="form-check-label d-flex justify-content-between" for="fifty_doller">
+										<div class="label_text">
+											RS 50.00
+										</div>
+										<div class="label_text">
+											RS
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="donate_box mb-30">
+								<div class="form-check">
+									<input type="radio" class="form-check-input" name="donation" id="hundred_doller">
+									<label class="form-check-label d-flex justify-content-between" for="hundred_doller">
+										<div class="label_text">
+											RS 100.00
+										</div>
+										<div class="label_text">
+											RS
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="donate_box">
+								<div class="form-check">
+									<input type="radio" class="form-check-input" name="donation" id="two_fifty__doller">
+									<label class="form-check-label d-flex justify-content-between" for="two_fifty__doller">
+										<div class="label_text">
+											RS 250.00
+										</div>
+										<div class="label_text">
+											RS
+										</div>
+									</label>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="donate_box">
+								<div class="form-group">
+									<input type="text" placeholder="Others" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Others'" class="form-control">
+									<span class="fs-14">RS</span>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="donate_box">
+								<button type="submit" class="main_btn w-100">donate now</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</section>
+	<!--================ End Make Donation Area =================-->
+
+	<!--================ Start TOP Donars  Area =================-->
+	<section class="causes_area">
+	<div class="container">
+		<div class="main_title">
+			<h2>Top Donars</h2>
+			<p>Creepeth called face upon face yielding midst is after moveth </p>
+		</div>
+		<div class="row">
+			<div class="col-lg-4 col-md-6">
+				<div class="single_cause">
+					<img src="{% static 'homepage/img/banner/v1.jpg' %}"  class="rounded-circle">
+					<h4>Alea Mirslava
+</h4>
+					<p>
+						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="single_cause">
+					<img src="{% static 'homepage/img/banner/v4.jpg' %}"  class="rounded-circle">
+					<h4>Adam Virland
+</h4>
+					<p>
+						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
+					</p>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6">
+				<div class="single_cause">
+					<img src="{% static 'homepage/img/banner/v3.jpg' %}"  class="rounded-circle">
+					<h4>Adam Virland
+</h4>
+					<p>
+						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+
+
+
+
+
+		<!--================ End TOP Donars Area =================-->
+
+
+
+
+	<!--================ Start Clients Logo Area =================
+	<section class="clients_logo_area section_gap">
+		<div class="container">
+			<div class="clients_slider owl-carousel">
+				<div class="item">
+					<img src="img/clients-logo/c-logo-1.png" alt="">
+				</div>
+				<div class="item">
+					<img src="img/clients-logo/c-logo-2.png" alt="">
+				</div>
+				<div class="item">
+					<img src="img/clients-logo/c-logo-3.png" alt="">
+				</div>
+				<div class="item">
+					<img src="img/clients-logo/c-logo-4.png" alt="">
+				</div>
+				<div class="item">
+					<img src="img/clients-logo/c-logo-5.png" alt="">
+				</div>
+			</div>
+		</div>
+	</section>
+	================ End Clients Logo Area =================-->
+
+	<!--================ Support Campaign Area =================
+	<section class="support_campaign pad_bottom">
+		<div class="container">
+			<div class="row justify-content-center section-title-wrap">
+				<div class="col-lg-12">
+					<h1>Support a campaign or fundraiser</h1>
+					<p>
+						The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence the natural
+						chain of events.
+					</p>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-6 mb-30">
+					<div class="campaign_box">
+						<div class="camppaign d-flex">
+							<div class="img-box">
+								<img class="img-fluid" src="img/donation/sc1.jpg" alt="">
+							</div>
+
+							<div>
+								<h4>Help for cancer victims</h4>
+								<h4>USD 22,563</h4>
+							</div>
+						</div>
+
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<span>Funded 76%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6 mb-30">
+					<div class="campaign_box">
+						<div class="camppaign d-flex">
+							<div class="img-box">
+								<img class="img-fluid" src="img/donation/sc1.jpg" alt="">
+							</div>
+
+							<div>
+								<h4>Help for cancer victims</h4>
+								<h4>USD 22,563</h4>
+							</div>
+						</div>
+
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<span>Funded 76%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6 mb-30">
+					<div class="campaign_box">
+						<div class="camppaign d-flex">
+							<div class="img-box">
+								<img class="img-fluid" src="img/donation/sc1.jpg" alt="">
+							</div>
+
+							<div>
+								<h4>Help for cancer victims</h4>
+								<h4>USD 22,563</h4>
+							</div>
+						</div>
+
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<span>Funded 76%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6 mb-30">
+					<div class="campaign_box">
+						<div class="camppaign d-flex">
+							<div class="img-box">
+								<img class="img-fluid" src="img/donation/sc1.jpg" alt="">
+							</div>
+
+							<div>
+								<h4>Help for cancer victims</h4>
+								<h4>USD 22,563</h4>
+							</div>
+						</div>
+
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<span>Funded 76%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="campaign_box">
+						<div class="camppaign d-flex">
+							<div class="img-box">
+								<img class="img-fluid" src="img/donation/sc1.jpg" alt="">
+							</div>
+
+							<div>
+								<h4>Help for cancer victims</h4>
+								<h4>USD 22,563</h4>
+							</div>
+						</div>
+
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<span>Funded 76%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="campaign_box">
+						<div class="camppaign d-flex">
+							<div class="img-box">
+								<img class="img-fluid" src="img/donation/sc1.jpg" alt="">
+							</div>
+
+							<div>
+								<h4>Help for cancer victims</h4>
+								<h4>USD 22,563</h4>
+							</div>
+						</div>
+
+						<div class="progress">
+							<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
+								<span>Funded 76%</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	================ End Support Campaing Area =================-->
+
+	<!--================ Start Experience Area =================-->
+
+	<section class="experience_donation "     style="padding: 100px;"
+>
+		<div class="container">
+			<div class="row align-items-center justify-content-center">
+				<div class="col-lg-12">
+					<h1>Join An Orphan</h1>
+					<p>he French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence, and upturning
+						of the natural chain of events that resounded.</p>
+					<a href="#" class="main_btnc mr-10">Join Now!</a>
+					<!--<a href="#" class="main_btn2">Create Orphanage</a>-->
+				</div>
+			</div>
+		</div>
+
+	</section>
+	<!--================ End Experience Area =================-->
+
+	<footer class="page-footer font-small unique-color-dark">
+
+		<div style="background-color: #c7b198;">
+			<div class="container">
+
+				<!-- Grid row-->
+				<div class="row py-4 d-flex align-items-center ">
+
+					<!-- Grid column -->
+					<div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0 ">
+						<h6 class="mb-0 text-white">Get connected with us on social networks!</h6>
+					</div>
+					<!-- Grid column -->
+
+					<!-- Grid column -->
+					<div class="col-md-6 col-lg-7 text-center text-md-right">
+
+						<!-- Facebook -->
+						<a  href="" class="fb-ic">
+							<i class="fab fa-facebook-f white-text mr-4"> </i>
+						</a>
+						<!-- Twitter -->
+						<a href="" class="tw-ic">
+							<i class="fab fa-twitter white-text mr-4"> </i>
+						</a>
+						<!-- Google +-->
+						<a href=""class="gplus-ic">
+							<i class="fab fa-google-plus-g white-text mr-4"> </i>
+						</a>
+						<!--Linkedin -->
+						<a href="" class="li-ic">
+							<i class="fab fa-linkedin-in white-text mr-4"> </i>
+						</a>
+						<!--Instagram-->
+						<a href="" class="ins-ic">
+							<i class="fab fa-instagram white-text"> </i>
+						</a>
+
+					</div>
+					<!-- Grid column -->
+
+				</div>
+				<!-- Grid row-->
+
+			</div>
+		</div>
+
+		<!-- Footer Links -->
+		<div class="container text-center text-md-left mt-5">
+
+			<!-- Grid row -->
+			<div class="row mt-3">
+
+				<!-- Grid column -->
+				<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+					<!-- Content -->
+					<h6 class="text-uppercase font-weight-bold text-white">Kare</h6>
+					<hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+					<p>We provide a service to connect potential donors to orphanages.You can donate any products,
+						money
+						or clothes.</p>
+
+				</div>
+				<!-- Grid column -->
+
+				<!-- Grid column -->
+				<div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+					<!-- Links -->
+					<h6 class="text-uppercase font-weight-bold text-white">Products</h6>
+					<hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+					<p>
+						<a href="">MDBootstrap</a>
+					</p>
+					<p>
+						<a href="">MDWordPress</a>
+					</p>
+					<p>
+						<a href="">BrandFlow</a>
+					</p>
+					<p>
+						<a href="">Bootstrap Angular</a>
+					</p>
+
+				</div>
+				<!-- Grid column -->
+
+				<!-- Grid column -->
+				<div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+					<!-- Links -->
+					<h6 class="text-uppercase font-weight-bold text-white">Useful links</h6>
+					<hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+					<p>
+						<a href="{% url 'h_index' %}">Home</a>
+					</p>
+					<p>
+						<a href="">Donate Now</a>
+					</p>
+					<p>
+						<a href="{% url 'contact_us' %}">Contact Us</a>
+					</p>
+					<p>
+						<a href="">About Us</a>
+					</p>
+
+				</div>
+				<!-- Grid column -->
+
+				<!-- Grid column -->
+				<div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+					<!-- Links -->
+					<h6 class="text-uppercase font-weight-bold text-white">Contact</h6>
+					<hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+					<p>
+						<i class="fas fa-home mr-3"></i> IIIT SriCity, AP, India</p>
+					<p>
+						<i class="fas fa-envelope mr-3"></i> info@example.com</p>
+					<p>
+						<i class="fas fa-phone mr-3"></i> + 0123456789</p>
+					<p>
+						<i class="fas fa-print mr-3"></i> + 0123456789</p>
+
+				</div>
+				<!-- Grid column -->
+
+			</div>
+			<!-- Grid row -->
+
+		</div>
+		<!-- Footer Links -->
+
+
+
+	</footer>
+
+	<!--================ Start Footer Area  =================
+
+	<footer class="footer-area section_gap">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-5  col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6 class="footer_title">About Me</h6>
+						<p>
+							Do you want to be even more successful? Learn to love learning and growth. The more effort you put into improving your skills,
+						</p>
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-6 col-sm-6">
+					<div class="single-footer-widget">
+						<h6 class="footer_title">Newsletter</h6>
+						<p>Stay updated with our latest trends</p>
+						<div id="mc_embed_signup">
+							<form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+							 method="get" class="subscribe_form relative">
+								<div class="input-group d-flex flex-row">
+									<input name="EMAIL" placeholder="Enter Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address '"
+									 required="" type="email">
+									<button class="btn sub-btn">
+										<span class="lnr lnr-arrow-right"></span>
+									</button>
+								</div>
+								<div class="mt-10 info"></div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-2 col-md-6 col-sm-6">
+					<div class="single-footer-widget f_social_wd">
+						<h6 class="footer_title">Follow Us</h6>
+						<p>Let us be social</p>
+						<div class="f_social">
+							<a href="#">
+								<i class="fa fa-facebook"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-twitter"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-dribbble"></i>
+							</a>
+							<a href="#">
+								<i class="fa fa-behance"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<p class="copyright">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+ Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
+					</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	================ End Footer Area  =================-->
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="{% static 'homepage/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'homepage/js/popper.js' %}"></script>
+	<script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+	<!-- <script src="{% static 'homepage/vendors/lightbox/simpleLightbox.min.js' %}"></script> -->
+	<script src="{% static 'homepage/vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+	<!-- <script src="{% static 'homepage/vendors/isotope/imagesloaded.pkgd.min.js' %}"></script> -->
+	<script src="{% static 'homepage/vendors/isotope/isotope-min.js' %}"></script>
+	<script src="{% static 'homepage/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'homepage/js/jquery.ajaxchimp.min.js' %}"></script>
+	<!-- <script src="vendors/counter-up/jquery.waypoints.min.js"></script> -->
+	<!-- <script src="vendors/flipclock/timer.js"></script> -->
+	<!-- <script src="vendors/counter-up/jquery.counterup.js"></script> -->
+	<script src="{% static 'homepage/js/mail-script.js' %}"></script>
+	<script src="{% static 'homepage/js/custom.js' %}"></script>
+</body>
+
+</html>

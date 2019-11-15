@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Successful login</title>
+</head>
+<body>
+    {% if user.is_authenticated %}
+        Welcome <b>{{ user.username }} </b> <br>
+        Your email-address is <b>{{ user.email }}</b>
+    {% else %}
+        <h2>Not logged in. Login using this link</h2>
+    <a href="{% url 'login' %}">Login</a>
+    {% endif %}
+</body>
+</html>
