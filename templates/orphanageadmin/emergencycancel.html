@@ -29,17 +29,17 @@
                                 <table class="table table-hover table-striped" >
                                     {% if  donation_request %}
                                     <thead><tr>
-                                        <th  class= 'cnt' width="45%"> Problem </th>
-                                        <th  class= 'cnt' width="25%"> Requirement </th>
-                                        <th  class= 'cnt' width="15%"> Date </th>
-                                        <th  class= 'cnt' width="15%"> Remove Post </th>
+                                        <th  class= 'cnt'> Problem </th>
+                                        <th  class= 'cnt'> Requirement </th>
+                                        <th  class= 'cnt'> Date </th>
+                                        <th  class= 'cnt'> Remove Post </th>
                                     </tr></thead>
                                     {% for content in donation_request %}
                                     <tr>
                                         <td class= 'cnt'>{{ content.situation }}</td>
                                         <td class= 'cnt'>{{ content.requirement }}</td>
                                         <td class= 'cnt'>{{ content.date_of_post.date }}</td>
-                                        <td>
+                                        <td class= 'cnt'>
                                         <form method="post" action= "{% url 'orphanageadmin:o_emergencypostremove' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
                                             {% csrf_token %}
                                             <input type="hidden" name="id1" value={{ content.id }}>

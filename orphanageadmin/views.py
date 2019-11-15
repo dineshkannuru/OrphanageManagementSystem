@@ -4,21 +4,78 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from homepage.models import Orphan,Orphanage,Donation,MoneyDonation,Emergency,Events,Orphan
+from homepage.models import Orphan,Orphanage,donatevaluables,donatemoney,Emergency,Events,Orphan
 import datetime
 import json
+
+
 @login_required
 def Profile(request):
     user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    content = {'orphanage_name':orphanage.orphanage_name}
-    return render(request,'orphanageadmin/profile.html',content)
+    print(user)
+    qs = Orphanage.objects.get(orphanage_id = user)
+    #content = {'orphanage_name':orphanage.orphanage_name}
+    print(qs.image,'###')
+    return render(request,'orphanageadmin/profile.html',{"qs":qs})
+
+@login_required
+def result1(request):
+    user = request.user
+    print(user)
+    qs = Orphanage.objects.get(orphanage_id = user)
+    #content = {'orphanage_name':orphanage.orphanage_name}
+    print(qs.orphanage_name)
+    return render(request,'orphanageadmin/edit_profile.html',{"qs":qs})
+
+@login_required
+def result(request):
+    if request.method == 'POST':
+        user = request.user
+        print(user)
+        empty=''
+        qs = Orphanage.objects.get(orphanage_id = user)
+        orphanage_name=request.POST.get('orphanage_name')
+        phone_no=request.POST.get('phone_no')
+        year_of_establishment=request.POST.get('year_of_establishment')
+        description=request.POST.get('description')
+        address=request.POST.get('address')
+        print(orphanage_name)
+        print(phone_no)
+        print(year_of_establishment)
+        print(description)
+        print(address)
+        if phone_no==empty:
+            pass
+        else:
+            qs.phone_no = phone_no
+
+        if year_of_establishment == empty:
+            pass
+        else:
+            qs.year_of_establishment = year_of_establishment
+        if description == empty:
+            pass
+        else:
+            qs.description = description
+
+        if address == empty:
+            pass
+        else:
+            qs.address = address
+
+
+
+
+        qs.save()
+
+        qs = Orphanage.objects.get(orphanage_id=user)
+        return render(request,'orphanageadmin/profile.html',{"qs":qs})
 
 @login_required
 def RequestedDonations(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Donation.objects.filter(orphanage_id = orphanage , status = 0)
+    donation_request = donatevaluables.objects.filter(orphanage_id = orphanage , status = 0)
     content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/requested_donations.html',content)
 
@@ -27,7 +84,7 @@ def RequestedDonationsAccRej(request):
     if request.method == 'POST':
         val = int(request.POST["val"])
         id1 = request.POST["id1"]
-        Donation.objects.filter( id = id1).update(status = val)
+        donatevaluables.objects.filter( tid = id1).update(status = val)
         print(val)
         if val == 1:
             messages.success(request,'Successfully accepted the request')
@@ -40,7 +97,7 @@ def RequestedDonationsAccRej(request):
 def AcceptedDonations(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Donation.objects.filter(orphanage_id = orphanage , status = 1)
+    donation_request = donatevaluables.objects.filter(orphanage_id = orphanage , status = 1)
     content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/accepted_donations.html',content)
 
@@ -49,7 +106,7 @@ def AcceptedDonationsRecCan(request):
     if request.method == 'POST':
         val = int(request.POST["val"])
         id1 = request.POST["id1"]
-        Donation.objects.filter( id = id1).update(status = val)
+        donatevaluables.objects.filter( tid = id1).update(status = val)
         if val == 2:
             messages.success(request,'Successfully received the donation')
             return redirect('orphanageadmin:o_accepteddonations')
@@ -61,108 +118,17 @@ def AcceptedDonationsRecCan(request):
 def ReceivedDonations(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Donation.objects.filter(orphanage_id = orphanage , status = 2)
+    donation_request = donatevaluables.objects.filter(orphanage_id = orphanage , status = 2)
     content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/received_donations.html',content)
-
-@login_required
-def EmergencyRequest(request):
-    user = request.user
-    return render(request,'orphanageadmin/emergency_request.html')
-
-def PostEmergencyRequest(request):
-    user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    if request.method == 'POST':
-        problem = request.POST["problem"]
-        requirement = request.POST["requirement"]
-        p = Emergency(orphanage_id = orphanage, situation = problem , requirement = requirement,status=1)
-        p.save()
-        messages.success(request,'Successfully Posted')
-        return redirect('orphanageadmin:o_emergencyrequest')
-
-
-@login_required
-def JoinOrphan(request):
-    user = request.user
-    return render(request,'orphanageadmin/joinorphan.html')
-
-
-@login_required
-def Insertorphan(request):
-    user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    if request.method == 'POST':
-        date = str(datetime.datetime.now())
-        date = date.split(' ')
-        date1 = date[0].split('-')
-        orphan_name = request.POST['name']
-        date_of_birth = request.POST['date']
-        gender = request.POST['gender']
-        special_skills = request.POST['spskills']
-        date2 = str(date_of_birth)
-        date2 = date2.split('-')
-        if int(date1[0]) < int(date2[0]) or (int(date1[0]) == int(date2[0]) and int(date1[1]) < int(date2[1])) or (int(date1[0]) == int(date2[0]) and int(date1[1]) == int(date2[1]) and int(date1[2]) < int(date2[2])):
-            messages.warning(request,'Error in date, Fail to add')
-            return redirect('orphanageadmin:o_joinorphan')
-        else:
-            p = Orphan.objects.create(orphanage_id=orphanage,orphan_name=orphan_name,date_of_birth=date_of_birth,gender=gender,special_skills=special_skills)
-            p.save()
-            messages.success(request,'Added orphan successfully')
-            return redirect('orphanageadmin:o_joinorphan')
-
-@login_required
-def logout_view(request):
-    logout(request)
-    return redirect('h_index')
 
 @login_required
 def MoneyDonations(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = MoneyDonation.objects.filter(orphanage_id = orphanage)
+    donation_request = donatemoney.objects.filter(orphanage_id = orphanage)
     content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/moneydonations.html',content)
-
-@login_required
-def EmergencyCancel(request):
-    user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Emergency.objects.filter(orphanage_id = orphanage,status = 1)
-    content = {'donation_request':donation_request}
-    return render(request,'orphanageadmin/emergencycancel.html',content)
-
-@login_required
-def EmergencyPostRemove(request):
-    if request.method == 'POST':
-        id1 = request.POST["id1"]
-        Emergency.objects.filter(id = id1).update(status = 0)
-        messages.success(request,'Post removed successfully')
-        return redirect('orphanageadmin:o_emergencycancel')
-
-@login_required
-def HistoryOfPosts(request):
-    user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Emergency.objects.filter(orphanage_id = orphanage,status = 1)
-    content = {'donation_request':donation_request}
-    return render(request,'orphanageadmin/historyofposts.html',content)
-
-@login_required
-def OrphanDetails(request):
-    user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Orphan.objects.filter(orphanage_id = orphanage)
-    content = {'donation_request':donation_request}
-    return render(request,'orphanageadmin/orphans.html',content)
-
-@login_required
-def OrphanDetailsDel(request):
-    user = request.user
-    orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Orphan.objects.filter(orphanage_id = orphanage)
-    content = {'donation_request':donation_request}
-    return redirect('orphanageadmin:o_orphandetails')
 
 
 @login_required
@@ -172,7 +138,6 @@ def RequestedEvents(request):
     donation_request = Events.objects.filter(orphanage_id = orphanage,status = 0)  
     content = {'donation_request':donation_request}          
     return render(request,'orphanageadmin/requestedevents.html',content)
-
 
 @login_required
 def AcceptedEvents_ChangeStatus(request):
@@ -210,14 +175,102 @@ def AcceptedEvents(request):
     
     return render(request,'orphanageadmin/acceptedevents.html',context={'t':b})
 
-    
-
 def showevent(request,id):
     a=Events.objects.get(pk=id)
-    
     return render(request,'orphanageadmin/showevent.html',context={'t':a,'b':1})
+
 def deleteevent(request,id):
     a=Events.objects.get(pk=id)
     a.delete()
     messages.warning(request,'Successfully Deleted the event')
     return render(request,'orphanageadmin/showevent.html',context={'b':0})
+
+
+@login_required
+def JoinOrphan(request):
+    user = request.user
+    return render(request,'orphanageadmin/joinorphan.html')
+
+@login_required
+def Insertorphan(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    if request.method == 'POST':
+        date = str(datetime.datetime.now())
+        date = date.split(' ')
+        date1 = date[0].split('-')
+        orphan_name = request.POST['name']
+        date_of_birth = request.POST['date']
+        gender = request.POST['gender']
+        special_skills = request.POST['spskills']
+        date2 = str(date_of_birth)
+        date2 = date2.split('-')
+        if int(date1[0]) < int(date2[0]) or (int(date1[0]) == int(date2[0]) and int(date1[1]) < int(date2[1])) or (int(date1[0]) == int(date2[0]) and int(date1[1]) == int(date2[1]) and int(date1[2]) < int(date2[2])):
+            messages.warning(request,'Error in date, Fail to add')
+            return redirect('orphanageadmin:o_joinorphan')
+        else:
+            p = Orphan.objects.create(orphanage_id=orphanage,orphan_name=orphan_name,date_of_birth=date_of_birth,gender=gender,special_skills=special_skills)
+            p.save()
+            messages.success(request,'Added orphan successfully')
+            return redirect('orphanageadmin:o_joinorphan')
+
+@login_required
+def OrphanDetails(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    donation_request = Orphan.objects.filter(orphanage_id = orphanage)
+    content = {'donation_request':donation_request}
+    return render(request,'orphanageadmin/orphans.html',content)
+
+@login_required
+def OrphanDetailsDel(request):
+    if request.method == 'POST':
+        id1 = request.POST["id1"]
+        Orphan.objects.filter(id = id1).delete()
+    return redirect('orphanageadmin:o_orphandetails')
+
+
+@login_required
+def EmergencyRequest(request):
+    user = request.user
+    return render(request,'orphanageadmin/emergency_request.html')
+
+def PostEmergencyRequest(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    if request.method == 'POST':
+        problem = request.POST["problem"]
+        requirement = request.POST["requirement"]
+        p = Emergency(orphanage_id = orphanage, situation = problem , requirement = requirement,status=1)
+        p.save()
+        messages.success(request,'Successfully Posted')
+        return redirect('orphanageadmin:o_emergencyrequest')
+
+@login_required
+def EmergencyCancel(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    donation_request = Emergency.objects.filter(orphanage_id = orphanage,status = 1)
+    content = {'donation_request':donation_request}
+    return render(request,'orphanageadmin/emergencycancel.html',content)
+
+@login_required
+def EmergencyPostRemove(request):
+    if request.method == 'POST':
+        id1 = request.POST["id1"]
+        Emergency.objects.filter(id = id1).update(status = 0)
+        messages.success(request,'Post removed successfully')
+        return redirect('orphanageadmin:o_emergencycancel')
+
+@login_required
+def HistoryOfPosts(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    donation_request = Emergency.objects.filter(orphanage_id = orphanage,status = 1)
+    content = {'donation_request':donation_request}
+    return render(request,'orphanageadmin/historyofposts.html',content)
+
+@login_required
+def logout_view(request):
+    logout(request)
+    return redirect('h_index')

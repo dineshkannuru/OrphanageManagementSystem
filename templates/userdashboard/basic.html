@@ -26,66 +26,66 @@
   <div class="container-fluid p-0 d-flex wrapper">
   
   <nav id="sidebar">
-
-      <div class="sidebar-header p-3.5">
-        <a href="{% url 'h_index' %}" class="mx-4">
-              <img src="{% static 'homepage/img/logo.png' %}" class="nav-logo">
-            </a>
+    <div class="sidebar-header p-3.5">
+        <a href="#">
+        <h3>Kare</h3>
+        </a>
     </div>
-
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
-            <a href="{% url 'orphanageadmin:o_profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
+            <a href="#"><i class="fas fa-user mr-3"></i>Profile</a>
+        </li>
+        <li >
+            <a href="#donations" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-donate"><i class="fas fa-donate mr-3"></i>Money Donations</a>
+            <ul class="collapse list-unstyled" id="donations">
+                <li>
+                    <a href="#">Donate</a>
+                </li>                        
+                <li>
+                    <a href="#">History</a>
+                </li>
+            </ul>
         </li>
         <li>
-            <a href="#user-donate" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-donations"><i class="fas fa-donate mr-3"></i>Donations</a>
-            <ul class="collapse list-unstyled" id="user-donate">
+            <a href="#Valuable" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-valuable"><i class="fas fa-hamburger mr-3"></i>Valuable Donations</a>
+            <ul class="collapse list-unstyled" id="Valuable">
                 <li>
-                    <a href="{% url 'orphanageadmin:o_requesteddonations' %}" >Requested Donations</a>
-                </li>
+                    <a href="#">Donate</a>
+                </li>    
                 <li>
-                    <a href="{% url 'orphanageadmin:o_accepteddonations' %}">Accepted Donations</a>
-                </li>
+                    <a href="#">Accepted Donations</a>
+                </li>                        
                 <li>
-                    <a href="{% url 'orphanageadmin:o_receiveddonations' %}">Received Donations</a>
-                </li>
-                <li>
-                    <a href="{% url 'orphanageadmin:o_moneydonations' %}">Money Donations</a>
+                    <a href="#">Rejected Donations</a>
                 </li>
             </ul>
         </li>
         <li>
             <a href="#Events" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-events"><i class="fas fa-hands-helping mr-3"></i>Events</a>
             <ul class="collapse list-unstyled" id="Events">
+
                 <li>
-                    <a href="{% url 'orphanageadmin:o_requestedevents' %}">Requested Events</a>
+                    <a href="{% url 'superuser:addevent' %}">Add an event</a>
+                </li>
+                <li>
+                    <a href="#">Request Events</a>
                 </li>                        
                 <li>
-                    <a href="{% url 'orphanageadmin:o_acceptedevents' %}">Accepted Events</a>
+                    <a href="#">Accepted Events</a>
+                </li>
+                <li>
+                    <a href="#">Rejected Events</a>
                 </li>
             </ul>
         </li>
-        <li >
-            <a href="#orphan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-orphans"><i class="fas fa-user-friends mr-3"></i>Orphans</a>
-            <ul class="collapse list-unstyled" id="orphan">
-                <li>
-                    <a href="{% url 'orphanageadmin:o_joinorphan' %}">Add Orphans</a>
-                </li>                        
-                <li>
-                    <a href="{% url 'orphanageadmin:o_orphandetails' %}">Orphans</a>
-                </li>
-            </ul>
+        <li class="sidebar-onearyou">
+            <a href="#"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
         </li>
-        <li>
-            <a href="#emergency" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-emergency"><i class="fas fa-bullhorn mr-3"></i>Emergency Post</a>
-            <ul class="collapse list-unstyled" id="emergency">
-                <li>
-                    <a href="{% url 'orphanageadmin:o_emergencyrequest' %}">Post your request</a>
-                </li>                        
-                <li>
-                    <a href="{% url 'orphanageadmin:o_emergencycancel' %}">Remove Emergency Posts</a>
-                </li>
-            </ul>
+        <li class="sidebar-join orphan">
+            <a href="#"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
+        </li>
+        <li class="sidebar-join orphan">
+            <a href="#"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>
         </li>
     </ul>
 </nav>	
@@ -112,9 +112,9 @@
                         </a>
                         <div class="dropdown-menu dropdown-menu-right dropdown-default"
                             aria-labelledby="navbarDropdownMenuLink-333">
-                            <a class="dropdown-item" href="{% url 'orphanageadmin:o_profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
+                            <a class="dropdown-item" href="{% url 'userdashboard:u_Profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
                             <hr class="m-0 p-0">
-                            <a class="dropdown-item" href="{% url 'orphanageadmin:o_logout' %}"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>                            </div>
+                            <a class="dropdown-item" href="{% url 'registration:logout' %}"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>                            </div>
                     </li>
                 </ul>
             </div>
