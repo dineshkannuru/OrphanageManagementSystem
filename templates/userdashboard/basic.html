@@ -39,7 +39,7 @@
             <a href="#donations" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-donate"><i class="fas fa-donate mr-3"></i>Money Donations</a>
             <ul class="collapse list-unstyled" id="donations">
                 <li>
-                    <a href="#">Donate</a>
+                    <a href="{% url 'donation:donatemoney' %}">Donate</a>
                 </li>                        
                 <li>
                     <a href="#">History</a>
@@ -50,13 +50,13 @@
             <a href="#Valuable" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-valuable"><i class="fas fa-hamburger mr-3"></i>Valuable Donations</a>
             <ul class="collapse list-unstyled" id="Valuable">
                 <li>
-                    <a href="#">Donate</a>
+                    <a href="{% url 'donation:donate_valuables' %}">Donate</a>
                 </li>    
                 <li>
-                    <a href="#">Accepted Donations</a>
+                    <a href="{% url 'donation:accepted' %}">Accepted Donations</a>
                 </li>                        
                 <li>
-                    <a href="#">Rejected Donations</a>
+                    <a href="{% url 'donation:rejected' %}">Rejected Donations</a>
                 </li>
             </ul>
         </li>

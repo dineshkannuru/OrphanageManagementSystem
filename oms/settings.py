@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -143,6 +144,11 @@ EMAIL_HOST_USER = 'oms.email.confirmation@gmail.com'
 EMAIL_HOST_PASSWORD = 'iiits@123'
 EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'OMS Team <oms.email.confirmation@gmail.com>'
+
+
+PAYPAL_RECEIVER_EMAIL='harshab@harsha.com'
+PAYPAL_TEST = True
+
 
 
 
