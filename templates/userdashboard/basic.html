@@ -33,7 +33,7 @@
     </div>
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
-            <a href="#"><i class="fas fa-user mr-3"></i>Profile</a>
+            <a href="{% url 'userdashboard:u_Profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
         </li>
         <li >
             <a href="#donations" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-donate"><i class="fas fa-donate mr-3"></i>Money Donations</a>
@@ -78,12 +78,10 @@
                 </li>
             </ul>
         </li>
-        <li class="sidebar-onearyou">
-            <a href="#"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
-        </li>
-        <li class="sidebar-joinorphan">
+
+        <li>
 {#            <a href="#"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>#}
-            <a href="#joinorphan_toggle" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-valuable"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>
+            <a href="#joinorphan_toggle" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-joinorphan"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>
             <ul class="collapse list-unstyled" id="joinorphan_toggle">
                 <li>
                     <a href="{% url 'userdashboard:request_joinorphan' %}">Request</a>
@@ -94,7 +92,13 @@
                 <li>
                     <a href="{% url 'userdashboard:rejected_joinorphan' %}">Rejected</a>
                 </li>
+                <li>
+                    <a href="{% url 'userdashboard:pending_joinorphan' %}">Pending</a>
+                </li>
             </ul>
+        </li>
+        <li class="sidebar-onearyou">
+            <a href="#"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
         </li>
         <li class="sidebar-join orphan">
             <a href="#"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>

@@ -4,64 +4,75 @@
 <script>
         sidebar_shift("sidebar-joinorphan")
 </script>
-        <br>
             <!-- content starts here-->
             <div class="content my-3">
                 <div class="row">
                     <div class="col">
-                            <div class="card">
-                                    <div class="card-header">
-                                      <h5 class="title">Profile</h5>
-                                    </div>
-                                    <div class="card-body">
-                                      <div class="row">
-                                        <div class="col col-4 pt-4">
-                                          <img src="{% static 'homepage/img/photo.jpg' %}" class="profile-img">
-                                        </div>
-                                        <div class="col col-6">
-                                          <div class="row my-2">
-                                            <div class="col ">Name</div>
-                                            <div class="col">:</div>
-                                            <div class="col ">{{ qs.username }}</div>
-                                          </div>
-                                          <div class="row my-5">
-                                            <div class="col">phone number</div>
-                                            <div class="col">:</div>
-                                            <div class="col">{{ qs1.phone_no }}</div>
-                                          </div>
-                                          <div class="row my-5">
-                                            <div class="col">firstname</div>
-                                            <div class="col">:</div>
-                                            <div class="col">{{ qs.first_name}}</div>
-                                          </div>
-                                          <div class="row my-5">
-                                            <div class="col">lastname</div>
-                                            <div class="col">:</div>
-                                            <div class="col">{{ qs.last_name }}</div>
-                                          </div>
-                                          <div class="row my-5">
-                                            <div class="col col-4">Email</div>
-                                            <div class="col">:</div>
-                                            <div class="col">{{ qs.email}}</div>
-                                          </div>
-                                          <div class="row my-5">
-                                            <div class="col">Gender</div>
-                                            <div class="col">:</div>
-                                            <div class="col">{{ qs1.gender}}</div>
-                                          </div>
-                                        </div>
-                                    </div>
-
-                                  <form action="{%url 'userdashboard:u_result11' %}" method="post" class="text-center">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-center text-heading title">Join Orphan request</h5>
+                            </div>
+                            {% if messages %}
+                                {% for message in messages %}
+                                <div class='alert alert-{{ message.tags }} col-lg-10 col-lg-offset-1'>
+                                    {{ message }}
+                                </div>
+                                {% endfor %}
+                            {% endif %}
+                            <div class="card-body px-5">
+                                <div class="container">
+                                <form class="from-horizontal" method="post" autocomplete="off">
                                     {% csrf_token %}
+                                    <div class="md-form mt-3 ">
+                                        <label for="orphanage">Orphanage</label>
+                                        <br>
+                                        <br>
 
-                                  <button class="btn btn-primary "  >Edit Profile</button>
-
-                                  </form>
+                                        <select style="margin-left: 0%" class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage" id="orphanage">
+                                            {% for orphanage in orphanages %}
+                                                <option value="{{ orphanage }}">{{ orphanage }}</option>
+                                            {% endfor %}
+                                        </select>
                                     </div>
+                                    <!-- Name -->
+                                    <div class="md-form mt-3 ">
+                                        <input type="text" name = "name" id = "name" class="form-control"  maxlength='30' required>
+                                        <label for="name"> Orphan Name </label>
+                                    </div>
+                                    <!-- date picker -->
+                                    <br>
 
-                                  </div>
+                                    <!-- inline radio buttons -->
+                                    <div class="form-group">
+                                        <span class="mr-3">Gender</span>
+                                        <!-- Default inline 1-->
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline1" name="gender" value="M" required>
+                                            <label class="custom-control-label" for="defaultInline1">Male</label>
+                                        </div>
 
+                                        <!-- Default inline 2-->
+                                        <div class="custom-control custom-radio custom-control-inline">
+                                            <input type="radio" class="custom-control-input" id="defaultInline2" name="gender" value="F" required>
+                                            <label class="custom-control-label" for="defaultInline2">Female</label>
+                                        </div>
+                                    </div>
+                                    <div class="md-form mt-3 ">
+                                        <input type="text" name = "find_place" id = "find_place" class="form-control"  maxlength='50' required>
+                                        <label for="name"> Find place </label>
+                                    </div>
+                                    <br>
+                                    <div class="md-form">
+                                        <input type="date" id="DOB" class="form-control" name="DOB" required>
+                                        <label for="DOB"> Date of Birth (Approximately)</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
