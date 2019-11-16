@@ -17,6 +17,7 @@ urlpatterns = [
     path('Profile/',views.Profile,name='o_profile'),
     path('result/',views.result,name='o_result'),
     path('result1',views.result1,name='o_result1'),
+    path('Logout/',views.logout_view,name='o_logout'),
     path('MoneyDonations/',views.MoneyDonations,name='o_moneydonations'),
     path('OrphanDetails/',views.OrphanDetails,name='o_orphandetails'),
     path('RequestedEvents/',views.RequestedEvents,name='o_requestedevents'),
@@ -27,7 +28,4 @@ urlpatterns = [
     path('OrphanDetailsDel/',views.OrphanDetailsDel,name='o_orphandetailsdel'),
     path('showevent/<int:id>',views.showevent,name='showevent'),
     path('deleteevent/<int:id>',views.deleteevent,name='deleteevent'),
-    path('Requested_orphan',views.Requested_orphan,name='o_requestedorphan'),
-    path('AccReq_orphan',views.AccReq_orphan,name='o_accreqorphan'),
-    path('Accepted_orphan',views.Accepted_orphan,name='o_acceptedorphan'),
 ]

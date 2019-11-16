@@ -9,10 +9,16 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.http import HttpResponse,HttpResponseRedirect
 from django.conf import settings
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from homepage.models import donatemoney,donatevaluables,Orphanage
+from homepage.models import donatemoney,donatevaluables,Orphanage,test,program
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import status,viewsets
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.decorators import api_view
+from .serializers import MoneySerializer,testdonatemoneyserializer,testorphanageserializer,CurrentUserSerializer
 
 # Create your views here.
 
@@ -33,7 +39,8 @@ def donatemoneyview(request):
         status = "0"
         saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status)
         saveform.save()
-        tid=donatemoney.objects.latest('tid')
+        tid=donatemoney.objects.latest('pk')
+        print(tid)
         tidstring=tid.tid
         if transfer=="paypal":
             return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage_id1))) 
@@ -44,7 +51,17 @@ def donatemoneyview(request):
     return render(request,'donation/money.html',context)
 
 def donation_completedview(request):
+    data=donatemoney.objects.latest()
+    data.status='1'
+    data.save()
     return render(request,'donation/donation_done.html')
+
+
+def donation_interruptview(request):
+    data=donatemoney.objects.latest()
+    data.status='-1'
+    data.save()
+    return render(request,'donation/donation_interrupt.html')
 
 @login_required(login_url='registration:login')
 def donatevaluablesview(request):
@@ -86,15 +103,19 @@ def paypal_home(request,tid,amount,orphanage_id1):
         "invoice": tid,
         "notify_url": "http://57e8e544.ngrok.io/donation/HaSHinGLinKK/",
         "return": "http://127.0.0.1:8000/donation/donation_done/",
-        "cancel_return": "http://127.0.0.1:8000/donation/money/",
+        "cancel_return": "http://127.0.0.1:8000/donation/donation_interrupt/",
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     data=donatemoney.objects.latest()
     context = {"form": form,"data":data,"user_name":user_name,"orphanage":orphanage}
     return render(request, "donation/gatewaypage.html", context)
 
+@csrf_exempt
 def paypal_cancel(request):
-     return render(request,'donation/paypal_cancel.html')
+    data=donatemoney.objects.latest()
+    data.status='-1'
+    data.save()
+    return render(request,'donation/paypal_cancel.html')
 
 
 #return url is mistake
@@ -111,6 +132,13 @@ def rejectedview(request):
     
     context = {"rejected":rejected}
     return render(request, "donation/Rejected.html", context)
+
+
+def receivedview(request):
+    user = request.user
+    received = donatevaluables.objects.filter(user_id=user,status=0)
+    context = {"received": received}
+    return render(request, "donation/received.html", context)
 
 
 def acceptedview(request):
@@ -176,6 +204,33 @@ def socialview(request):
     return render(request, "donation/social.html", context)
     
    
+@api_view(['GET',])
+def rest_moneyview(request):
+
+    try:
+        print("1")
+        donations = donatemoney.objects.all()
+    except donatemoney.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    
+    serializer = MoneySerializer(donations)
+    print(serializer)
+    print(serializer.data)
+    return Response(serializer.data)
+#
+    #queryset = donatemoney.objects.all()
+    #serializer_class = MoneySerializer
+
+class testdonatemoney(viewsets.ModelViewSet):
+    queryset = donatemoney.objects.all()
+    serializer_class= testdonatemoneyserializer
 
 
+class CurrentUserViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = CurrentUserSerializer
+    
+class testorphanage(viewsets.ModelViewSet):
+    queryset = Orphanage.objects.all()
+    serializer_class = testorphanageserializer
 

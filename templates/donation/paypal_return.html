@@ -1,35 +1,13 @@
-﻿<!DOCTYPE html>
-
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title>You have donated. </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-   </head>
-    <body>
-        <div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=790224518079845&autoLogAppEvents=1"></script>
-    <div class="container">
-  <h2>Centered Modal Example</h2>
-  <p>Center the modal vertically and horizontally within the page, with the .modal-dialog-centered class.</p>
-  <!-- Button to Open the Modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-    Open modal
-  </button>
-   
-  <!-- The Modal -->
+﻿{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
   <div class="modal fade" id="myModal">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
       
         <!-- Modal Header -->
         <div class="modal-header">
-          <h3>You have successfully donated</h3>
+          <h3 style="text-align:center">Donation successful</h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
        </div>
 <!-- Modal body -->
@@ -38,8 +16,10 @@
       
           
         </div>
-          <center><div class="fb-share-button" data-href="http://127.0.0.1:8000/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share us with your friends</a></div>
-        </center>
+        <div>
+        <a href="{% url 'userdashboard:u_Profile' %}">Go to home</a>
+          <div class="fb-share-button" data-href="http://127.0.0.1:8000/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share us with your friends</a>
+        </div>
         </div>
       </div>
     </div>
@@ -60,5 +40,4 @@ $(document).ready(function(){
 });
 </script>
 
-</body>
-</html>
+{% endblock content %}

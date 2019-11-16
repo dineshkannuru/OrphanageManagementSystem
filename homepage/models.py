@@ -5,7 +5,7 @@ from datetime import date
 import os
 
 def image_upload_url(instance, filename):
-    return os.path.join("orphanage_image", str(instance.orphanage_name), instance.orphanage_name)
+    return os.path.join("orphanage_image", str(instance.orphanage_name), filename)
 
 class Type(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -65,7 +65,7 @@ class donatemoney(models.Model):
     amount = models.IntegerField(default=0)
     orphanage_name = models.CharField(default=None,max_length=100)
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
-    status = models.IntegerField()
+    status = models.IntegerField(default=0)
     date_of_donation = models.DateTimeField(default = timezone.now)
     description = models.CharField(default=None,max_length=50)
 
@@ -128,3 +128,4 @@ class verification(models.Model):
     companyname=models.CharField(max_length=20)
     password=models.CharField(max_length=20)
     token=models.CharField(max_length=40)
+

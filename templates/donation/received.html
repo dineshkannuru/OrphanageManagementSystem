@@ -1,13 +1,10 @@
-﻿{% extends 'userdashboard/basic.html' %}
+{% extends 'userdashboard/basic.html' %}
 {% load static %}
 {% block content %}
 <script>
     sidebar_shift("sidebar-valuable")
 </script>
-
-
-
-            <h3>Rejected Transactions:</h3>
+            <h3>Yet to be confirmed Transactions:</h3>
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
@@ -19,13 +16,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for reject in rejected %}
+                    {% for receive in received %}
                     <tr>
-                        <th scope="row">{{reject.tid}}</th>
-                        <td>{{reject.orphanage_name}}</td>
-                        <td>{{reject.donation_type}}</td>
-                        <td>{{reject.object_name}}</td>
-                        <td>{{reject.date_of_donation}}</td>
+                        <th scope="row">{{receive.tid}}</th>
+                        <td>{{receive.orphanage_name}}</td>
+                        <td>{{receive.donation_type}}</td>
+                        <td>{{receive.object_name}}</td>
+                        <td>{{receive.date_of_donation}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>

@@ -4,12 +4,8 @@
 <script>
         sidebar_shift("sidebar-donate")
 </script>
-        <div style="text-align:center;">
-      <h3>Mode of payment:</h3>
-    <h1>Paypal</h1>
-    {{ form.render }}
-        </div>
-    
+      
+      
     <div class="col-sm">
       <div class="p-3 mb-2 bg-light text-dark">
         <h4>Your order details:</h4>
@@ -27,12 +23,26 @@
       <th scope="row">Orphanage&emsp;&nbsp;:</th>
       <td>{{orphanage}}</td>
     </tr>
+    <tr>
+      <td><div style="font-size:25px;padding:50px;"><table>
+        <tr>
+          
+        </tr>
+      </table>
+        <h3>Mode of payment:</h3>
+  <h2>Paypal</h2>
+  {{ form.render }}</td>
+  <td> <div style="font-size:25px;padding:50px;">Amount:{{data.amount}} $</div> </td>  
+  </tr>
+  
+  </div>
   </tbody>
 </table>
   </div>
-        <div style="text-align:center;font-size:30px">
-       <b>Amount:{{data.amount}} $</b> 
-        </div>
+    </div>
+          
+      </div>
+      </div>
 </div>
         
             <!-- content ends here-->
