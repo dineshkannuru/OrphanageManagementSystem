@@ -1,0 +1,2 @@
+C:\Users\Acer\source\repos\SOAD\bin\Microsoft.PythonTools.WebRole.dll
+C:\Users\Acer\source\repos\SOAD\bin\wfastcgi.py

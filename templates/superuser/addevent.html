@@ -54,7 +54,7 @@
                                             <label for="event"> Event </label>
                                         </div>
                                 <!-- inline radio buttons -->
-                                
+
                                     <!-- Name -->
                                     <div class="md-form mt-3 ">
                                         <input type="text" name = "description" id = "description" class="form-control"  maxlength='50' required>
@@ -83,19 +83,19 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
 <script type="text/javascript" src="{% static 'superuser/js/admin-script.js' %}"></script>
 <script type="text/javascript">
-                                    
-                                    
-                                    
+
+
+
     function see(element) {
         var date = document.getElementById(element).value;
         var orphanage = document.getElementById('orphanage').value;
         console.log(date)
         console.log(orphanage)
-        
-        
+
+
         $.ajax({
-            
-            
+
+
             url: "{% url 'superuser:checkdate' %}",
             data: {
                 date:date,
@@ -104,7 +104,7 @@
             },
             method: 'GET',
             dataType:"json",
-            
+
             success: function (data) {
                 console.log('hiitojson');
                 console.log(data);
@@ -114,13 +114,13 @@
                     alert('Date not available')
                     document.getElementById('datecheck').innerText='Date not available'
                     $('#datecheck').css("color","red");
-                    
+
                     $('#submitbutton').attr("disabled", true);
                     document.getElementById('error').innerText='Please satisfy all the conditions';
                     $('#error').css("color","red");
 
 
-                    
+
                   }
                   else{
                     document.getElementById('datecheck').innerText='Date available'
@@ -128,15 +128,15 @@
                     $('#submitbutton').attr("disabled",false);
                     document.getElementById('error').innerText=''
 
-                    
+
                   }
                 }
             }
         });
     }
-    
+
     </script>
 
-                        
+
                         <!-- content ends here-->
 {% endblock content %}

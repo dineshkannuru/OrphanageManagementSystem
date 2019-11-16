@@ -15,6 +15,6 @@ urlpatterns = [
     path('requestedevents/<int:pk>',views.requestedevents,name='requestedevents'),
     path('acceptedevents/',views.acceptedevents,name='acceptedevents'),
     path('rejectedevents/',views.rejectedevents,name='rejectedevents')
-    
+
 
 ]

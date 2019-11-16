@@ -135,8 +135,8 @@ def MoneyDonations(request):
 def RequestedEvents(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Events.objects.filter(orphanage_id = orphanage,status = 'Freshly Applied')  
-    content = {'donation_request':donation_request}          
+    donation_request = Events.objects.filter(orphanage_id = orphanage,status = 'Freshly Applied')
+    content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/requestedevents.html',content)
 
 @login_required

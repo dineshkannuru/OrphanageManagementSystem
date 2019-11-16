@@ -10,7 +10,7 @@
   <title> Orphanage </title>
   <link rel="stylesheet" href="{% static 'orphanageadmin/theme2.css' %}">
         <script src="{% static 'orphanageadmin/caleandar.js' %}"></script>
-        <script src="{% static 'orphanageadmin/admin-script.js' %}"></script>            
+        <script src="{% static 'orphanageadmin/admin-script.js' %}"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
@@ -24,12 +24,12 @@
 
 <body>
   <div class="container-fluid p-0 d-flex wrapper">
-  
+
   <nav id="sidebar">
     <div class="sidebar-header p-3.5">
-        <a href="#">
-        <h3>Kare</h3>
-        </a>
+        <a href="#" class="mx-4">
+              <img src="{% static 'homepage/img/logo.png' %}" class="nav-logo">
+            </a>
     </div>
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
@@ -40,7 +40,7 @@
             <ul class="collapse list-unstyled" id="donations">
                 <li>
                     <a href="{% url 'donation:donatemoney' %}">Donate</a>
-                </li>                        
+                </li>
                 <li>
                     <a href="#">History</a>
                 </li>
@@ -51,10 +51,10 @@
             <ul class="collapse list-unstyled" id="Valuable">
                 <li>
                     <a href="{% url 'donation:donate_valuables' %}">Donate</a>
-                </li>    
+                </li>
                 <li>
                     <a href="{% url 'donation:accepted' %}">Accepted Donations</a>
-                </li>                        
+                </li>
                 <li>
                     <a href="{% url 'donation:rejected' %}">Rejected Donations</a>
                 </li>
@@ -68,27 +68,40 @@
                     <a href="{% url 'superuser:addevent' %}">Add an event</a>
                 </li>
                 <li>
-                    <a href="{% url 'superuser:requestedevents' pk=0 %}">Requested Events</a>
-                </li>                        
+<a href="{% url 'superuser:requestedevents' pk=0 %}">Requested Events</a>
+</li>
+<li>
+<a href="{% url 'superuser:acceptedevents' %}">Accepted Events</a>
+</li>
+<li>
+<a href="{% url 'superuser:rejectedevents' %}">Rejected Events</a>
+</li>
+</ul>
+</li>
+
+        <li>
+{#            <a href="#"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>#}
+            <a href="#joinorphan_toggle" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-joinorphan"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>
+            <ul class="collapse list-unstyled" id="joinorphan_toggle">
                 <li>
-                    <a href="{% url 'superuser:acceptedevents' %}">Accepted Events</a>
+                    <a href="{% url 'userdashboard:request_joinorphan' %}">Request</a>
                 </li>
                 <li>
-                    <a href="{% url 'superuser:rejectedevents' %}">Rejected Events</a>
+                    <a href="{% url 'userdashboard:accepted_joinorphan' %}">Accepted</a>
+                </li>
+                <li>
+                    <a href="{% url 'userdashboard:rejected_joinorphan' %}">Rejected</a>
+                </li>
+                <li>
+                    <a href="{% url 'userdashboard:pending_joinorphan' %}">Pending</a>
                 </li>
             </ul>
-        </li>
-        <li class="sidebar-join orphan">
-            <a href="#"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
-        </li>
-        <li class="sidebar-onearyou">
-            <a  href="{% url 'userdashboard:u_maps' %}"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
         </li>
         <li class="sidebar-about orphan">
             <a href="#"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>
         </li>
     </ul>
-</nav>	
+</nav>
 
 <!-- side bar ends here -->
 <!-- Page Content Holder -->
@@ -102,9 +115,9 @@
                     <span></span>
                     <span></span>
                 </button>
-                
+
                 <ul class="nav navbar-nav ml-auto">
-                    
+
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false">

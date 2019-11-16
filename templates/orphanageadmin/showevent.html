@@ -16,7 +16,7 @@
                 </div>
             <br>
 </center>
-<!-- Start Here --> 
+<!-- Start Here -->
 {% if b == 1 %}
     <div style="margin-left: 33%"><h3>Event Details</h3></div>
     <form method="POST" action="{% url 'orphanageadmin:deleteevent' t.pk %}">
@@ -51,11 +51,11 @@
           <input type="text" style="border: none;" class="form-control" name="orphanage" id="inputorphanage" value={{ t.event }} placeholder="orphanage">
         </div>
       </div>
-    
-    
-    <input type="submit" value="DELETE" class="btn btn-danger"></div>    
-     
-</form>   
-    {% endif %}    
+
+
+    <input type="submit" value="DELETE" class="btn btn-danger"></div>
+
+</form>
+    {% endif %}
     <!--End Here-->
 {% endblock %}

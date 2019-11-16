@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'api12/(?P<id>[0-9]+)/(?P<company_name>[A-Z a-z 0-9]+)$', views.transportid.as_view(), name='api12'),
     url(r'api123/(?P<company_name>[A-Z a-z 0-9]+)$', views.transport1.as_view(), name='api123'),
     url(r'api1234/(?P<company_name>[A-Z a-z 0-9]+)$', views.transport2.as_view(), name='api1234'),
+    url(r'api12345/(?P<id>[0-9]+)/(?P<company_name>[A-Z a-z 0-9]+)$', views.transport3.as_view(), name='api12345'),
 ]
