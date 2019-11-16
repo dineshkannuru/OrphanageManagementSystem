@@ -5,7 +5,7 @@ from datetime import date
 import os
 
 def image_upload_url(instance, filename):
-    return os.path.join("orphanage_image", str(instance.orphanage_name), instance.orphanage_name)
+    return os.path.join("orphanage_image", str(instance.orphanage_name), filename)
 
 class Type(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

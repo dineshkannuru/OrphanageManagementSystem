@@ -1,0 +1,59 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-orphans")
+</script>
+            <!-- content starts here-->
+            
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                    <h4 class="card-title text-center"> Rejected Events </h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-striped"  id = "customers">
+                                        {% if  t %}
+                                        <thead><tr>
+                                            <th class='cnt'> Event </th>
+                                            
+                                            <th class='cnt'> Orphanage </th>
+                                            <th class='cnt'> Date </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        {% for i in t %}
+                                        <tr>
+                                            <td class= 'cnt'>{{ i.event }}</td>
+                                            <td class= 'cnt'>{{ i.orphanage_id.orphanage_name }}</td>
+                                            <td class= 'cnt'>{{ i.date_of_event }}</td>
+                                            
+                                            
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    {% else %}
+                                    <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No Rejected Events Available </h5>
+                                    {% endif %}
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+                        <!-- content ends here-->
+{% endblock content %}

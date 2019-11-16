@@ -16,7 +16,7 @@
                 </div>
             <br>
 </center>
-<!-- Start Here --> 
+<!-- Start Here -->
 {% if b == 1 %}
     <div style="margin-left: 33%"><h3>Event Details</h3></div>
     <form method="POST" action="{% url 'orphanageadmin:deleteevent' t.pk %}">
@@ -36,26 +36,26 @@
 <div class="form-group row">
         <label for="inputphone" class="col-sm-2 col-form-label">phone</label>
         <div class="col-sm-10">
-          <input type="text" style="border: none;" class="form-control" name="phone_no" value={{ t.date_of_event }} id="inputphone" placeholder="phone">
+          <input type="text" style="border: none;" class="form-control" name="phone_no" value="{{ t.date_of_event }}" id="inputphone" placeholder="phone">
         </div>
 </div>
 <div class="form-group row">
-        <label for="inputoccasion" class="col-sm-2 col-form-label">occasion</label>
+        <label for="inputoccasion" class="col-sm-2 col-form-label">Event</label>
         <div class="col-sm-10">
           <input type="text" style="border: none;" class="form-control" name="occasion" value={{ t.description }} id="inputoccasion" placeholder="occasion">
         </div>
 </div>
 <div class="form-group row">
-        <label for="inputorphanage" class="col-sm-2 col-form-label">orphanage</label>
+        <label for="inputorphanage" class="col-sm-2 col-form-label">Orphanage</label>
         <div class="col-sm-10">
           <input type="text" style="border: none;" class="form-control" name="orphanage" id="inputorphanage" value={{ t.event }} placeholder="orphanage">
         </div>
       </div>
-    
-    
-    <input type="submit" value="DELETE" class="btn btn-danger"></div>    
-     
-</form>   
-    {% endif %}    
+
+
+    <input type="submit" value="DELETE" class="btn btn-danger"></div>
+
+</form>
+    {% endif %}
     <!--End Here-->
 {% endblock %}

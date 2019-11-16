@@ -1,19 +1,4 @@
 
-<!--
-
-=========================================================
-* Argon Dashboard - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
@@ -186,12 +171,14 @@
                     {{ form.password|add_class:"validate form-control " }}
                   </div>
                 </div>
+
 {#                <div class="custom-control custom-control-alternative custom-checkbox">#}
 {#                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">#}
 {#                  <label class="custom-control-label" for=" customCheckLogin">#}
 {#                    <span class="text-muted">Remember me</span>#}
 {#                  </label>#}
 {#                </div>#}
+
                 <div class="text-center">
                   <button type="submit" class="btn btn-primary my-4">Sign in</button>
                 </div>
@@ -202,6 +189,7 @@
             <div class="col-6">
               <a href="{% url 'registration:password_reset' %}" class="text-light"><small>Forgot password?</small></a>
             </div>
+
             <div class="col-6 text-right">
               <a href="{% url 'registration:signup' %}" class="text-light"><small>Create new account</small></a>
             </div>
@@ -279,6 +267,7 @@
     try {
       fbq('init', '111649226022273');
       fbq('track', "PageView");
+
 
     } catch (err) {
       console.log('Facebook Track Error:', err);

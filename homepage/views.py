@@ -86,7 +86,7 @@ class followview1(APIView):
                 print(a.username)
                 b=Type.objects.get(user=a)
                 print('cametorequired')
-                
+
 
                 if status1=='Accepted':
                     b.ref_no=3
@@ -96,12 +96,12 @@ class followview1(APIView):
                     print('deletecame')
                     b.ref_no=2
                     orp.status='Rejected'
-                    orp.save()   
-                
-        
-            
+                    orp.save()
+
+
+
             print('orpcompl')
-            
+
             print('cametoend')
         else:
             list1=[]
@@ -243,8 +243,33 @@ class transport1(APIView):
             list.append(var)
             return Response(list)
 
+class transport3(APIView):
+    def get(self,request,id,company_name):
+        k=verification.objects.filter(token=company_name)
+        list = []
+        if len(k) != 0:
+            company_name=k[0].companyname
+            data=Transport.objects.filter(danation_id=id)
 
+            status="Not Checked "
+            for each in data:
+                print(each.status)
+                if each.status=='1': #1 means Accepted
+                    status="Accepted"
+                elif each.status=='2':#2 means Rejected
+                    status="Rejected"
+                var={
+                'donation_id':each.danation_id,
+                'status':status
+                }
+                print(each.company_name)
+                if each.company_name==company_name:
+                    list.append(var)
+        else:
+            var={"detail": "Authentication credentials were not provided."}
+            list.append(var)
 
+        return Response(list)
 
 
 #

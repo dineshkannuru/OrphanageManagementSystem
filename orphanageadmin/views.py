@@ -135,8 +135,8 @@ def MoneyDonations(request):
 def RequestedEvents(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = Events.objects.filter(orphanage_id = orphanage,status = 0)  
-    content = {'donation_request':donation_request}          
+    donation_request = Events.objects.filter(orphanage_id = orphanage,status = 'Freshly Applied')
+    content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/requestedevents.html',content)
 
 @login_required
@@ -144,20 +144,20 @@ def AcceptedEvents_ChangeStatus(request):
     if request.method == 'POST':
         val = int(request.POST["val"])
         id1 = request.POST["id1"]
-        Events.objects.filter( id = id1).update(status = val)
-        print(val)
         if val == 1:
+            Events.objects.filter( id = id1).update(status = 'Accepted')
             messages.success(request,'Successfully accepted the request')
             return redirect('orphanageadmin:o_requestedevents')
         else:
+            Events.objects.filter( id = id1).update(status = 'Rejected')
             messages.warning(request,'Successfully rejected the request')
             return redirect('orphanageadmin:o_requestedevents')
 
 @login_required
 def AcceptedEvents(request):
-    b=request.user
-    print(b)
-    a=Events.objects.all()
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    a=Events.objects.filter(orphanage_id = orphanage,status = 'Accepted')
     l=[]
     for i in a:
         print(i.date_of_event)
@@ -170,9 +170,7 @@ def AcceptedEvents(request):
         q[4]=i.pk
         print(i.date_of_event)
         l.append(q)
-    b=json.dumps(l)    
-    #return HttpResponse('hii')    
-    
+    b=json.dumps(l)
     return render(request,'orphanageadmin/acceptedevents.html',context={'t':b})
 
 def showevent(request,id):
