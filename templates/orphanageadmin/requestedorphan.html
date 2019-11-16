@@ -1,0 +1,73 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-join")
+</script>
+        <center>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class='alert alert-{{ message.tags }}'>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+        </center>
+        <br>
+        <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                    <h4 class="card-title text-center"> Requests for join Orphan </h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-hover table-striped" >
+                                        {% if  donation_request %}
+                                        <thead><tr>
+                                                    <th class='cnt'> Name </th>
+                                                    <th class='cnt'> Date Of Birth </th>
+                                                    <th class='cnt'>Gender</th>
+                                                    <th class='cnt'>Find Place</th>
+                                                    <th class='cnt' colspan = '2' > Accept/Reject </th>
+                                                </tr></thead>
+                                                <tbody>
+                                    {% for content in donation_request %}
+                                    <tr>
+                                            <td class= 'cnt'>{{ content.name }}</td>
+                                            <td class= 'cnt'>{{ content.date_of_birth }}</td>
+                                            <td class= 'cnt'>{{ content.gender }}</td>
+                                            <td class= 'cnt'>{{ content.find_place }}</td>
+                                            <td class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'orphanageadmin:o_accreqorphan' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id1" value={{ content.id }}>
+                                                <input type="hidden" name="val" value= 1 >
+                                                <input class="acc btn" type="submit" value="Received" name ="myButton">
+                                            </form>
+                                            </td>
+                                            <td class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'orphanageadmin:o_accreqorphan' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id1" value={{ content.id }}>
+                                                    <input type="hidden" name="val" value= -1>
+                                                    <input class="rej btn" type="submit" value="cancel" name ="myButton">
+                                            </form>
+                                        </td>
+                                    </tr>    
+                                {% endfor %}
+                            </tbody>
+                        {% else %}
+                        <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No Requests for join Orphan </h5>
+                        {% endif %}
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

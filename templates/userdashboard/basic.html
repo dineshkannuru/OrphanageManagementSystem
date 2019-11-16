@@ -27,9 +27,9 @@
   
   <nav id="sidebar">
     <div class="sidebar-header p-3.5">
-        <a href="#">
-        <h3>Kare</h3>
-        </a>
+        <a href="{% url 'h_index' %}" class="mx-4">
+              <img src="{% static 'homepage/img/logo.png' %}" class="nav-logo">
+            </a>
     </div>
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
@@ -81,8 +81,20 @@
         <li class="sidebar-onearyou">
             <a href="#"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
         </li>
-        <li class="sidebar-join orphan">
-            <a href="#"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
+        <li class="sidebar-joinorphan">
+{#            <a href="#"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>#}
+            <a href="#joinorphan_toggle" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-valuable"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>
+            <ul class="collapse list-unstyled" id="joinorphan_toggle">
+                <li>
+                    <a href="{% url 'userdashboard:request_joinorphan' %}">Request</a>
+                </li>
+                <li>
+                    <a href="{% url 'userdashboard:accepted_joinorphan' %}">Accepted</a>
+                </li>
+                <li>
+                    <a href="{% url 'userdashboard:rejected_joinorphan' %}">Rejected</a>
+                </li>
+            </ul>
         </li>
         <li class="sidebar-join orphan">
             <a href="#"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>

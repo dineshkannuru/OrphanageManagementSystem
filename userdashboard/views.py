@@ -64,3 +64,13 @@ def editprofile(request):
         # content = {'orphanage_name':orphanage.orphanage_name}
         # print(qs.first_name,qs.last_name,qs.email)
         return render(request, 'userdashboard/profile.html', {"qs": qs, "qs1": qs1})
+
+def requestJoinOrphan(request):
+    return render(request, 'userdashboard/request_joinorphan.html')
+
+def acceptedJoinOrphan_requests(request):
+    return render(request, 'userdashboard/accepted_joinorphan_request.html')
+
+def rejectedJoinOrphan_requests(request):
+    return render(request, 'userdashboard/rejected_joinorphan_request.html')
+

@@ -146,11 +146,6 @@ EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'OMS Team <oms.email.confirmation@gmail.com>'
 
 
-PAYPAL_RECEIVER_EMAIL='harshab@harsha.com'
-PAYPAL_TEST = True
-
-
-
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -158,6 +153,10 @@ REST_FRAMEWORK = {
     ],
 
 }
+
+PAYPAL_RECEIVER_EMAIL='harshab@harsha.com'
+PAYPAL_TEST = True
+
 
 
 
