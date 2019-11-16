@@ -1,0 +1,431 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    <link href="{% static 'registration/css/admin-style.css' %}" rel="stylesheet">
+      <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static 'registration/js/admin-script.js' %}"></script>
+</head>
+
+<body>
+
+
+<div class="container-fluid p-0 d-flex wrapper">
+
+
+	<!-- Sidebar  -->
+
+    <nav id="sidebar">
+        <div class="sidebar-header p-3.5">
+        <a href="{% url 'h_index' %}">
+                <h3>Kare</h3>
+        </a>
+        </div>
+
+        <ul class="list-unstyled components">
+          <li class="sidebar-active" >
+              <a href="#" onclick="sidenav_navigation(1)" id="profile_nav"><i class="fas fa-user mr-3"></i>Profile</a>
+          </li>
+          <li>
+              <a href="#user-donate" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Donations</a>
+              <ul class="collapse list-unstyled" id="user-donate" >
+                  <li>
+                      <a href="#" onclick="sidenav_navigation(2)" id="donate_page_nav" ><i class="fas fa-hand-holding-usd mr-3"></i>Donate</a>
+                  </li>
+                  <li>
+                      <a href="#" onclick="sidenav_navigation(3)" id="donate_history_nav"><i class="fas fa-history mr-3"></i>History</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#request-types" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Requests</a>
+{#              <a href="{% url 'pending' %}"><i class="far fa-envelope mr-3"></i>Requests</a>#}
+              <ul class="collapse list-unstyled" id="request-types">
+                  <li>
+                      <a href="#" id="accepted_donation_requests_nav" onclick="sidenav_navigation(4)"><i class="fas fa-hand-holding-usd mr-3"  ></i>Accepted</a>
+                  </li>
+                  <li>
+                      <a href="#" id="pending_donation_requests_nav" onclick="sidenav_navigation(5)"    ><i class="fas fa-history mr-3"  ></i>Pending</a>
+                  </li>
+                  <li>
+                      <a href="#" onclick="sidenav_navigation(6)" id="rejected_donation_requests_nav"><i class="fas fa-history mr-3" ></i>Rejected</a>
+                  </li>
+              </ul>
+          </li>
+
+          <li>
+              <a href="#event-types" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Events</a>
+{#              <a href="{% url 'pending' %}"><i class="far fa-envelope mr-3"></i>Requests</a>#}
+              <ul class="collapse list-unstyled" id="event-types">
+                  <li>
+                      <a href="#" onclick="sidenav_navigation(7)" id="request_event_nav"><i class="fas fa-history mr-3" ></i>Request event</a>
+                  </li>
+                  <li>
+                      <a href="#" onclick="sidenav_navigation(8)" id="accepted_events_nav"><i class="fas fa-history mr-3" ></i>Accepted events</a>
+                  </li>
+                  <li>
+                      <a href="#" onclick="sidenav_navigation(9)" id="rejected_events_nav"><i class="fas fa-history mr-3" ></i>Rejected events</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#" onclick="sidenav_navigation(10)" id="orphanages_nearby_nav"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
+          </li>
+          <li>
+              <a href="#" onclick="sidenav_navigation(11)" id="join_orphan_nav"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
+          </li>
+          <li>
+              <a href="#" onclick="sidenav_navigation(12)" id="emergency_posts_nav"><i class="far fa-plus-square mr-3"></i>Emergency posts</a>
+          </li>
+        </ul>
+    </nav>
+		<!-- side bar ends here -->
+		<!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light z-depth-0" id="loggedin_user_options">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="c-navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <ul class="nav navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                                aria-labelledby="navbarDropdownMenuLink-333">
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-3"></i>Profile</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd mr-3"></i>Donate</a>
+                                <hr class="m-0 p-0">
+                                <a class="dropdown-item" href="{% url 'registration:logout' %}"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+            <!-- content starts here-->
+
+
+            <div class="content my-3" id = "profile" style="display: block">
+                <div class="row">
+                    <div class="col">
+                            <div class="card">
+                                    <div class="card-header">
+                                      <h5 class="title">Edit Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                      <form>
+                                        <div class="row">
+                                          <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                              <label>Company (disabled)</label>
+                                              <input type="text" class="form-control" disabled="" placeholder="Company" value="Creative Code Inc.">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                              <label>Username</label>
+                                              <input type="text" class="form-control" placeholder="Username" value="michael23">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                              <label for="exampleInputEmail1">Email address</label>
+                                              <input type="email" class="form-control" placeholder="Email">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                              <label>First Name</label>
+                                              <input type="text" class="form-control" placeholder="Company" value="Mike">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                              <label>Last Name</label>
+                                              <input type="text" class="form-control" placeholder="Last Name" value="Andrew">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="form-group">
+                                              <label>Address</label>
+                                              <input type="text" class="form-control" placeholder="Home Address" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                              <label>City</label>
+                                              <input type="text" class="form-control" placeholder="City" value="Mike">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                              <label>Country</label>
+                                              <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                              <label>Postal Code</label>
+                                              <input type="number" class="form-control" placeholder="ZIP Code">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="form-group">
+                                              <label>About Me</label>
+                                              <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" value="Mike">Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </form>
+                                    </div>
+                                  </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content my-3" id = "donate_page" style="display: none">
+                This content belongs to donate_page ....!!!
+
+
+            </div>
+            <div class="content my-3" id = "donate_history" style="display: none">
+                This content belongs to donate_history ....!!!
+
+
+            </div>
+            <div class="content my-3" id = "accepted_donation_requests" style="display: none">
+                This content belongs to accepted_donation_requests
+
+
+            </div>
+            <div class="content my-3" id = "pending_donation_requests" style="display: none">
+                This content belongs to pending_donation_requests
+
+
+            </div>
+            <div class="content my-3" id = "rejected_donation_requests" style="display: none">
+                This content belongs to rejected_donation_requests
+
+
+            </div>
+            <div class="content my-3" id = "request_event" style="display: none">
+                This content belongs to request_event
+
+
+            </div>
+            <div class="content my-3" id = "accepted_events" style="display: none">
+                This content belongs to accepted_events
+
+
+            </div>
+            <div class="content my-3" id = "rejected_events" style="display: none">
+                This content belongs to rejected_events
+
+
+            </div>
+            <div class="content my-3" id = "orphanages_nearby" style="display: none">
+                This content belongs to orphanages_nearby
+
+
+            </div>
+            <div class="content my-3" id = "join_orphan" style="display: none">
+                This content belongs to join_orphan
+
+
+            </div>
+            <div class="content my-3" id = "emergency_posts" style="display: none">
+                This content belongs to emergency_posts
+
+
+            </div>
+            <!-- content ends here-->
+        </div>
+
+
+</div>
+
+<script>
+        var all_anchor_tags = ['profile_nav','donate_page_nav', 'donate_history_nav', 'accepted_donation_requests_nav',
+                                    'pending_donation_requests_nav', 'rejected_donation_requests_nav', 'request_event_nav',
+                                    'accepted_events_nav', 'rejected_events_nav', 'orphanages_nearby_nav' ,
+                                    'join_orphan_nav', 'emergency_posts_nav' ];
+        var all_sub_tabs_anchor_tags = ['donate_page_nav', 'donate_history_nav', 'accepted_donation_requests_nav',
+                                    'pending_donation_requests_nav', 'rejected_donation_requests_nav', 'request_event_nav',
+                                'accepted_events_nav', 'rejected_events_nav'];
+        var all_content_blocks = ['profile','donate_page', 'donate_history', 'accepted_donation_requests',
+                                'pending_donation_requests', 'rejected_donation_requests', 'request_event',
+                                'accepted_events', 'rejected_events', 'orphanages_nearby' ,
+                                'join_orphan', 'emergency_posts' ];
+        {#all_anchor_tags.forEach(make_remaining_inactive);#}
+        function make_remaining_inactive(value, index, array) {
+            document.getElementById(value).className = "sidebar-inactive";
+            document.getElementById(value).style = "background: #7386d5; color: white" ;
+        }
+
+        {#all_content_blocks.forEach(manage_remaining_content);#}
+        function manage_remaining_content(value, index, array) {
+            document.getElementById(value).style.display = 'none';
+        }
+
+        {#all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);#}
+        function manage_sub_tabs(value, index, array) {
+            document.getElementById(value).style = "background: #6d7fcc; color: white" ;
+            {#document.getElementById("errors").innerHTML += value + "<br>";#}
+        }
+        function sidenav_navigation(x) {
+            switch (x) {
+            case 1:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('profile').style.display = 'block';
+                document.getElementById('profile_nav').className = "sidebar-active";
+                document.getElementById('profile_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 2:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+
+                document.getElementById('donate_page').style.display = 'block';
+                document.getElementById('donate_page_nav').className = "sidebar-active";
+                document.getElementById('donate_page_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 3:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('donate_history').style.display = 'block';
+                document.getElementById('donate_history_nav').className = "sidebar-active";
+                document.getElementById('donate_history_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 4:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('accepted_donation_requests').style.display = 'block';
+                document.getElementById('accepted_donation_requests_nav').className = "sidebar-active";
+                document.getElementById('accepted_donation_requests_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 5:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('pending_donation_requests').style.display = 'block';
+                document.getElementById('pending_donation_requests_nav').className = "sidebar-active";
+                document.getElementById('pending_donation_requests_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 6:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('rejected_donation_requests').style.display = 'block';
+                document.getElementById('rejected_donation_requests_nav').className = "sidebar-active";
+                document.getElementById('rejected_donation_requests_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 7:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('request_event').style.display = 'block';
+                document.getElementById('request_event_nav').className = "sidebar-active";
+                document.getElementById('request_event_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 8:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('accepted_events').style.display = 'block';
+                document.getElementById('accepted_events_nav').className = "sidebar-active";
+                document.getElementById('accepted_events_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 9:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('rejected_events').style.display = 'block';
+                document.getElementById('rejected_events_nav').className = "sidebar-active";
+                document.getElementById('rejected_events_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 10:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('orphanages_nearby').style.display = 'block';
+                document.getElementById('orphanages_nearby_nav').className = "sidebar-active";
+                document.getElementById('orphanages_nearby_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 11:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('join_orphan').style.display = 'block';
+                document.getElementById('join_orphan_nav').className = "sidebar-active";
+                document.getElementById('join_orphan_nav').style = "background: white; color: #6d7fcc";
+                break;
+            case 12:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('emergency_posts').style.display = 'block';
+                document.getElementById('emergency_posts_nav').className = "sidebar-active";
+                document.getElementById('emergency_posts_nav').style = "background: white; color: #6d7fcc";
+                break;
+            default:
+                all_anchor_tags.forEach(make_remaining_inactive);
+                all_content_blocks.forEach(manage_remaining_content);
+                all_sub_tabs_anchor_tags.forEach(manage_sub_tabs);
+                document.getElementById('profile').style.display = 'block';
+                document.getElementById('profile_nav').className = "sidebar-active";
+                document.getElementById('profile_nav').style = "background: white; color: #6d7fcc";
+                break
+        }
+        }
+    </script>
+
+<!-- SCRIPTS -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+<script>
+
+</script>
+</body>
+
+</html>

@@ -17,6 +17,7 @@
 <link href="{% static 'orphanageadmin/admin-style.css' %}" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'orphanageadmin/form.css' %}">
 
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="{% static 'orphanageadmin/admin-script.js' %}"></script>
 </head>
@@ -25,11 +26,13 @@
   <div class="container-fluid p-0 d-flex wrapper">
   
   <nav id="sidebar">
-    <div class="sidebar-header p-3.5">
-        <a href="{% url 'h_index' %}">
-        <h3>Kare</h3>
-        </a>
+
+      <div class="sidebar-header p-3.5">
+        <a href="{% url 'h_index' %}" class="mx-4">
+              <img src="{% static 'homepage/img/logo.png' %}" class="nav-logo">
+            </a>
     </div>
+
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
             <a href="{% url 'orphanageadmin:o_profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
@@ -84,6 +87,17 @@
                 </li>
             </ul>
         </li>
+        <li>
+            <a href="#join_orphan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-join"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>
+            <ul class="collapse list-unstyled" id="join_orphan">
+                <li>
+                    <a href="{% url 'orphanageadmin:o_requestedorphan' %}">Request</a>
+                </li>                        
+                <li>
+                    <a href="{% url 'orphanageadmin:o_acceptedorphan' %}">Accepted</a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </nav>	
 
@@ -111,7 +125,7 @@
                             aria-labelledby="navbarDropdownMenuLink-333">
                             <a class="dropdown-item" href="{% url 'orphanageadmin:o_profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
                             <hr class="m-0 p-0">
-                            <a class="dropdown-item" href="{% url 'orphanageadmin:o_logout' %}"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>                            </div>
+                            <a class="dropdown-item" href="{% url 'registration:logout' %}"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>                            </div>
                     </li>
                 </ul>
             </div>

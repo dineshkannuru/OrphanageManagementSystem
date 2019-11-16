@@ -1,10 +1,11 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from datetime import date
 import os
 
 def image_upload_url(instance, filename):
-    return os.path.join("orphanage_image", str(instance.orphanage_name), filename)
+    return os.path.join("orphanage_image", str(instance.orphanage_name), instance.orphanage_name)
 
 class Type(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -30,6 +31,8 @@ class Orphanage(models.Model):
     phone_no = models.IntegerField(null=True)
     image = models.ImageField(upload_to=image_upload_url, blank=True, null=True)
     description = models.CharField(max_length=300)
+    account = models.CharField(max_length=300,default = None , null=True)
+    status=models.CharField(max_length=50,default='Freshly Applied')
 
 class Orphan(models.Model):
     GENDER = (
@@ -55,28 +58,42 @@ class AddOrphan(models.Model):
     ref_no = models.IntegerField()
     date_of_birth = models.DateField()
 
-class MoneyDonation(models.Model):
+class donatemoney(models.Model):
+    tid = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
+    transfer = models.CharField(max_length=264,default=0)
+    amount = models.IntegerField(default=0)
+    orphanage_name = models.CharField(default=None,max_length=100)
+    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
+    status = models.IntegerField()
+    date_of_donation = models.DateTimeField(default = timezone.now)
+    description = models.CharField(default=None,max_length=50)
+
+    class Meta:
+        get_latest_by = ['tid','status']
+
+class donatevaluables(models.Model):
+    TYPE = (
+        ('F','Food'),
+        ('C','Clothes'),
+        ('B','Book'),
+        ('E','Eletrical Appliances'),
+        ('O','other'),
+    )
+    tid = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
+    donation_type = models.CharField(max_length=1,choices=TYPE)
+    orphanage_name = models.CharField(default=None,max_length=100)
     date_of_donation = models.DateTimeField(default=timezone.now)
-    description = models.CharField(max_length=50)
-    amount = models.IntegerField()
-
-class Donation(models.Model):
-    TYPE = (
-        ('F', 'Food'),
-        ('C', 'Clothes'),
-        ('B', 'Book'),
-        ('E', 'Eletrical Appliances'),
-        ('O', 'other'),
-    )
-    user_id = models.ForeignKey(User, on_delete=models.PROTECT)
-    orphanage_id = models.ForeignKey(Orphanage, on_delete=models.CASCADE)
-    date_of_donation = models.DateTimeField(default=timezone.now)
-    status = models.IntegerField()
-    donation_type = models.CharField(max_length=1, choices=TYPE)
-    description = models.CharField(max_length=100)
     quantity = models.IntegerField()
+    object_name = models.CharField(default=None,max_length=100)
+    address = models.CharField(default=None,max_length=100)
+    description = models.CharField(default=None,max_length=100)
+    status = models.IntegerField()
+
+    class Meta:
+        get_latest_by = ['tid','status']
 
 class Emergency(models.Model):
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.CASCADE)
@@ -85,16 +102,29 @@ class Emergency(models.Model):
     date_of_post = models.DateTimeField(default=timezone.now)
     status = models.IntegerField()
 
-class Transport(models.Model):
-    danation_id = models.ForeignKey(Donation, on_delete=models.CASCADE)
-    company_name = models.CharField(max_length=50)
-    cost = models.IntegerField()
-
 class Events(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
-    date_of_event = models.CharField(max_length=50)
-    date_of_post = models.DateTimeField(default=timezone.now)
-    status = models.IntegerField()
+    date_of_event = models.DateField()
+    date_of_post = models.DateField(default=date.today())
+    status = models.CharField(max_length=50,default='Freshly Applied')
     description = models.CharField(max_length=200)
     event = models.CharField(max_length=30)
+
+class Transport(models.Model):
+    danation_id = models.IntegerField()
+    company_name = models.CharField(max_length=50)
+    cost = models.IntegerField()
+    type=models.CharField(max_length=20)
+    duration=models.CharField(max_length=20)
+    status=models.CharField(max_length=30,default='Not Accepted')
+
+class success(models.Model):
+    orphanage_id = models.OneToOneField(Orphanage,on_delete=models.CASCADE)
+    status= models.CharField(max_length=30,default='Freshly Applied')
+
+
+class verification(models.Model):
+    companyname=models.CharField(max_length=20)
+    password=models.CharField(max_length=20)
+    token=models.CharField(max_length=40)

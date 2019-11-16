@@ -1,0 +1,496 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0df1fa88-27f8-4a96-b95f-de6496b834fb}</ProjectGuid>
+    <ProjectHome />
+    <StartupFile>manage.py</StartupFile>
+    <SearchPath />
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <ProjectTypeGuids>{5F0BE9CA-D677-4A4D-8806-6076C0FAAD37};{349c5851-65df-11da-9384-00065b846f21};{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
+    <LaunchProvider>Django launcher</LaunchProvider>
+    <InterpreterId />
+    <WebBrowserUrl>http://localhost</WebBrowserUrl>
+    <DjangoSettingsModule>oms.settings</DjangoSettingsModule>
+    <WebBrowserPort>8000</WebBrowserPort>
+    <SuppressEnvironmentCreationPrompt>True</SuppressEnvironmentCreationPrompt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
+  <PropertyGroup>
+    <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="donation\admin.py" />
+    <Compile Include="donation\apps.py" />
+    <Compile Include="donation\face.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="donation\form.py" />
+    <Compile Include="donation\forms.py" />
+    <Compile Include="donation\migrations\0001_initial.py" />
+    <Compile Include="donation\migrations\__init__.py" />
+    <Compile Include="donation\models.py" />
+    <Compile Include="donation\tests.py" />
+    <Compile Include="donation\urls.py" />
+    <Compile Include="donation\views.py" />
+    <Compile Include="donation\__init__.py" />
+    <Compile Include="homepage\admin.py" />
+    <Compile Include="homepage\apps.py" />
+    <Compile Include="homepage\form.py" />
+    <Compile Include="homepage\migrations\0001_initial.py" />
+    <Compile Include="homepage\migrations\0002_auto_20191012_1314.py" />
+    <Compile Include="homepage\migrations\0003_auto_20191012_1932.py" />
+    <Compile Include="homepage\migrations\__init__.py" />
+    <Compile Include="homepage\models.py" />
+    <Compile Include="homepage\tests.py" />
+    <Compile Include="homepage\urls.py" />
+    <Compile Include="homepage\views.py" />
+    <Compile Include="homepage\__init__.py" />
+    <Compile Include="manage.py" />
+    <Compile Include="oms\settings.py" />
+    <Compile Include="oms\urls.py" />
+    <Compile Include="oms\wsgi.py" />
+    <Compile Include="oms\__init__.py" />
+    <Compile Include="orphanageadmin\admin.py" />
+    <Compile Include="orphanageadmin\apps.py" />
+    <Compile Include="orphanageadmin\form.py" />
+    <Compile Include="orphanageadmin\migrations\__init__.py" />
+    <Compile Include="orphanageadmin\models.py" />
+    <Compile Include="orphanageadmin\tests.py" />
+    <Compile Include="orphanageadmin\urls.py" />
+    <Compile Include="orphanageadmin\views.py" />
+    <Compile Include="orphanageadmin\__init__.py" />
+    <Compile Include="registration\admin.py" />
+    <Compile Include="registration\apps.py" />
+    <Compile Include="registration\form.py" />
+    <Compile Include="registration\migrations\__init__.py" />
+    <Compile Include="registration\models.py" />
+    <Compile Include="registration\tests.py" />
+    <Compile Include="registration\urls.py" />
+    <Compile Include="registration\views.py" />
+    <Compile Include="registration\__init__.py" />
+    <Compile Include="superuser\admin.py" />
+    <Compile Include="superuser\apps.py" />
+    <Compile Include="superuser\form.py" />
+    <Compile Include="superuser\migrations\__init__.py" />
+    <Compile Include="superuser\models.py" />
+    <Compile Include="superuser\tests.py" />
+    <Compile Include="superuser\urls.py" />
+    <Compile Include="superuser\views.py" />
+    <Compile Include="superuser\__init__.py" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="donation\templates\donation\donation_completed.html" />
+    <Content Include="donation\templates\donation\test.html" />
+    <Content Include="donation\templates\donation\gatewaypage.html" />
+    <Content Include="donation\templates\donation\money.html" />
+    <Content Include="donation\templates\donation\paypal_cancel.html" />
+    <Content Include="donation\templates\donation\paypal_return.html" />
+    <Content Include="donation\templates\donation\requestplaced.html" />
+    <Content Include="donation\templates\donation\social.html" />
+    <Content Include="donation\templates\donation\valuables.html" />
+    <Content Include="media\orphanage_image\4\Screenshot_1.png" />
+    <Content Include="media\orphanage_image\5\Screenshot_10.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_1.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_10.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_11.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_13.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_13_MoKajkU.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_1_9t6mPvp.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_1_DMPGVL1.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_1_DUfFa5F.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_1_I3opxiO.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_1_wuV2mEE.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_20.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_3.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_4.png" />
+    <Content Include="media\orphanage_image\None\Screenshot_8.png" />
+    <Content Include="static\donation\css\admin-style.css" />
+    <Content Include="static\donation\css\form.css" />
+    <Content Include="static\donation\js\admin-script.js" />
+    <Content Include="static\homepage\css\bootstrap.css" />
+    <Content Include="static\homepage\css\bootstrap.min.css" />
+    <Content Include="static\homepage\css\breadcrumb.css" />
+    <Content Include="static\homepage\css\font-awesome.min.css" />
+    <Content Include="static\homepage\css\responsive.css" />
+    <Content Include="static\homepage\css\style.css" />
+    <Content Include="static\homepage\css\_about.css" />
+    <Content Include="static\homepage\css\_client.css" />
+    <Content Include="static\homepage\css\_feature.css" />
+    <Content Include="static\homepage\css\_gallery.css" />
+    <Content Include="static\homepage\css\_product.css" />
+    <Content Include="static\homepage\css\_team.css" />
+    <Content Include="static\homepage\css\_timer.css" />
+    <Content Include="static\homepage\css\_variables.css" />
+    <Content Include="static\homepage\images\about-us.jpg" />
+    <Content Include="static\homepage\images\banner-bg.jpg" />
+    <Content Include="static\homepage\images\banner\banner.jpg" />
+    <Content Include="static\homepage\images\banner\home-banner.jpg" />
+    <Content Include="static\homepage\images\banner\home.jpg" />
+    <Content Include="static\homepage\images\banner\text-img.jpg" />
+    <Content Include="static\homepage\images\banner\text-img.png" />
+    <Content Include="static\homepage\images\banner\v1.jpg" />
+    <Content Include="static\homepage\images\banner\v3.jpg" />
+    <Content Include="static\homepage\images\banner\v4.jpg" />
+    <Content Include="static\homepage\images\blog\add.jpg" />
+    <Content Include="static\homepage\images\blog\author.png" />
+    <Content Include="static\homepage\images\blog\c1.jpg" />
+    <Content Include="static\homepage\images\blog\c2.jpg" />
+    <Content Include="static\homepage\images\blog\c3.jpg" />
+    <Content Include="static\homepage\images\blog\c4.jpg" />
+    <Content Include="static\homepage\images\blog\c5.jpg" />
+    <Content Include="static\homepage\images\blog\c6.jpg" />
+    <Content Include="static\homepage\images\blog\cat-post\cat-post-1.jpg" />
+    <Content Include="static\homepage\images\blog\cat-post\cat-post-2.jpg" />
+    <Content Include="static\homepage\images\blog\cat-post\cat-post-3.jpg" />
+    <Content Include="static\homepage\images\blog\causes\causes-1.jpg" />
+    <Content Include="static\homepage\images\blog\causes\causes-2.jpg" />
+    <Content Include="static\homepage\images\blog\causes\causes-3.jpg" />
+    <Content Include="static\homepage\images\blog\feature-img1.jpg" />
+    <Content Include="static\homepage\images\blog\latest-post\l-post-1.jpg" />
+    <Content Include="static\homepage\images\blog\latest-post\l-post-2.jpg" />
+    <Content Include="static\homepage\images\blog\latest-post\l-post-3.jpg" />
+    <Content Include="static\homepage\images\blog\latest-post\l-post-4.jpg" />
+    <Content Include="static\homepage\images\blog\main-blog\m-blog-1.jpg" />
+    <Content Include="static\homepage\images\blog\main-blog\m-blog-2.jpg" />
+    <Content Include="static\homepage\images\blog\main-blog\m-blog-3.jpg" />
+    <Content Include="static\homepage\images\blog\main-blog\m-blog-4.jpg" />
+    <Content Include="static\homepage\images\blog\main-blog\m-blog-5.jpg" />
+    <Content Include="static\homepage\images\blog\next.jpg" />
+    <Content Include="static\homepage\images\blog\popular-post\post1.jpg" />
+    <Content Include="static\homepage\images\blog\popular-post\post2.jpg" />
+    <Content Include="static\homepage\images\blog\popular-post\post3.jpg" />
+    <Content Include="static\homepage\images\blog\popular-post\post4.jpg" />
+    <Content Include="static\homepage\images\blog\post-img1.jpg" />
+    <Content Include="static\homepage\images\blog\post-img2.jpg" />
+    <Content Include="static\homepage\images\blog\prev.jpg" />
+    <Content Include="static\homepage\images\causes\c1.png" />
+    <Content Include="static\homepage\images\causes\c2.png" />
+    <Content Include="static\homepage\images\causes\c3.png" />
+    <Content Include="static\homepage\images\clients-logo\c-logo-1.png" />
+    <Content Include="static\homepage\images\clients-logo\c-logo-2.png" />
+    <Content Include="static\homepage\images\clients-logo\c-logo-3.png" />
+    <Content Include="static\homepage\images\clients-logo\c-logo-4.png" />
+    <Content Include="static\homepage\images\clients-logo\c-logo-5.png" />
+    <Content Include="static\homepage\images\donation\d1.jpg" />
+    <Content Include="static\homepage\images\donation\d2.jpg" />
+    <Content Include="static\homepage\images\donation\d3.jpg" />
+    <Content Include="static\homepage\images\donation\e1.jpg" />
+    <Content Include="static\homepage\images\donation\e2.jpg" />
+    <Content Include="static\homepage\images\donation\sc1.jpg" />
+    <Content Include="static\homepage\images\elements\a.jpg" />
+    <Content Include="static\homepage\images\elements\a2.jpg" />
+    <Content Include="static\homepage\images\elements\d.jpg" />
+    <Content Include="static\homepage\images\elements\disabled-check.png" />
+    <Content Include="static\homepage\images\elements\disabled-radio.png" />
+    <Content Include="static\homepage\images\elements\f1.jpg" />
+    <Content Include="static\homepage\images\elements\f2.jpg" />
+    <Content Include="static\homepage\images\elements\f3.jpg" />
+    <Content Include="static\homepage\images\elements\f4.jpg" />
+    <Content Include="static\homepage\images\elements\f5.jpg" />
+    <Content Include="static\homepage\images\elements\f6.jpg" />
+    <Content Include="static\homepage\images\elements\f7.jpg" />
+    <Content Include="static\homepage\images\elements\f8.jpg" />
+    <Content Include="static\homepage\images\elements\g1.jpg" />
+    <Content Include="static\homepage\images\elements\g2.jpg" />
+    <Content Include="static\homepage\images\elements\g3.jpg" />
+    <Content Include="static\homepage\images\elements\g4.jpg" />
+    <Content Include="static\homepage\images\elements\g5.jpg" />
+    <Content Include="static\homepage\images\elements\g6.jpg" />
+    <Content Include="static\homepage\images\elements\g7.jpg" />
+    <Content Include="static\homepage\images\elements\g8.jpg" />
+    <Content Include="static\homepage\images\elements\primary-check.png" />
+    <Content Include="static\homepage\images\elements\primary-radio.png" />
+    <Content Include="static\homepage\images\elements\success-check.png" />
+    <Content Include="static\homepage\images\elements\success-radio.png" />
+    <Content Include="static\homepage\images\elements\user1.png" />
+    <Content Include="static\homepage\images\elements\user2.png" />
+    <Content Include="static\homepage\images\event-details.jpg" />
+    <Content Include="static\homepage\images\icons\favicon.png" />
+    <Content Include="static\homepage\images\icons\home1.png" />
+    <Content Include="static\homepage\images\icons\home2.png" />
+    <Content Include="static\homepage\images\icons\home3.png" />
+    <Content Include="static\homepage\images\icons\home4.png" />
+    <Content Include="static\homepage\images\instagram\Image-01.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-02.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-03.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-04.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-05.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-06.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-07.jpg" />
+    <Content Include="static\homepage\images\instagram\Image-08.jpg" />
+    <Content Include="static\homepage\images\logo.png" />
+    <Content Include="static\homepage\images\photo.jpg" />
+    <Content Include="static\homepage\img\about-us.jpg" />
+    <Content Include="static\homepage\img\banner-bg.jpg" />
+    <Content Include="static\homepage\img\banner\banner.jpg" />
+    <Content Include="static\homepage\img\banner\home-banner.jpg" />
+    <Content Include="static\homepage\img\banner\home.jpg" />
+    <Content Include="static\homepage\img\banner\text-img.jpg" />
+    <Content Include="static\homepage\img\banner\text-img.png" />
+    <Content Include="static\homepage\img\banner\v1.jpg" />
+    <Content Include="static\homepage\img\banner\v3.jpg" />
+    <Content Include="static\homepage\img\banner\v4.jpg" />
+    <Content Include="static\homepage\img\blog\add.jpg" />
+    <Content Include="static\homepage\img\blog\author.png" />
+    <Content Include="static\homepage\img\blog\c1.jpg" />
+    <Content Include="static\homepage\img\blog\c2.jpg" />
+    <Content Include="static\homepage\img\blog\c3.jpg" />
+    <Content Include="static\homepage\img\blog\c4.jpg" />
+    <Content Include="static\homepage\img\blog\c5.jpg" />
+    <Content Include="static\homepage\img\blog\c6.jpg" />
+    <Content Include="static\homepage\img\blog\cat-post\cat-post-1.jpg" />
+    <Content Include="static\homepage\img\blog\cat-post\cat-post-2.jpg" />
+    <Content Include="static\homepage\img\blog\cat-post\cat-post-3.jpg" />
+    <Content Include="static\homepage\img\blog\causes\causes-1.jpg" />
+    <Content Include="static\homepage\img\blog\causes\causes-2.jpg" />
+    <Content Include="static\homepage\img\blog\causes\causes-3.jpg" />
+    <Content Include="static\homepage\img\blog\feature-img1.jpg" />
+    <Content Include="static\homepage\img\blog\latest-post\l-post-1.jpg" />
+    <Content Include="static\homepage\img\blog\latest-post\l-post-2.jpg" />
+    <Content Include="static\homepage\img\blog\latest-post\l-post-3.jpg" />
+    <Content Include="static\homepage\img\blog\latest-post\l-post-4.jpg" />
+    <Content Include="static\homepage\img\blog\main-blog\m-blog-1.jpg" />
+    <Content Include="static\homepage\img\blog\main-blog\m-blog-2.jpg" />
+    <Content Include="static\homepage\img\blog\main-blog\m-blog-3.jpg" />
+    <Content Include="static\homepage\img\blog\main-blog\m-blog-4.jpg" />
+    <Content Include="static\homepage\img\blog\main-blog\m-blog-5.jpg" />
+    <Content Include="static\homepage\img\blog\next.jpg" />
+    <Content Include="static\homepage\img\blog\popular-post\post1.jpg" />
+    <Content Include="static\homepage\img\blog\popular-post\post2.jpg" />
+    <Content Include="static\homepage\img\blog\popular-post\post3.jpg" />
+    <Content Include="static\homepage\img\blog\popular-post\post4.jpg" />
+    <Content Include="static\homepage\img\blog\post-img1.jpg" />
+    <Content Include="static\homepage\img\blog\post-img2.jpg" />
+    <Content Include="static\homepage\img\blog\prev.jpg" />
+    <Content Include="static\homepage\img\causes\c1.png" />
+    <Content Include="static\homepage\img\causes\c2.png" />
+    <Content Include="static\homepage\img\causes\c3.png" />
+    <Content Include="static\homepage\img\clients-logo\c-logo-1.png" />
+    <Content Include="static\homepage\img\clients-logo\c-logo-2.png" />
+    <Content Include="static\homepage\img\clients-logo\c-logo-3.png" />
+    <Content Include="static\homepage\img\clients-logo\c-logo-4.png" />
+    <Content Include="static\homepage\img\clients-logo\c-logo-5.png" />
+    <Content Include="static\homepage\img\donation\d1.jpg" />
+    <Content Include="static\homepage\img\donation\d2.jpg" />
+    <Content Include="static\homepage\img\donation\d3.jpg" />
+    <Content Include="static\homepage\img\donation\e1.jpg" />
+    <Content Include="static\homepage\img\donation\e2.jpg" />
+    <Content Include="static\homepage\img\donation\sc1.jpg" />
+    <Content Include="static\homepage\img\elements\a.jpg" />
+    <Content Include="static\homepage\img\elements\a2.jpg" />
+    <Content Include="static\homepage\img\elements\d.jpg" />
+    <Content Include="static\homepage\img\elements\disabled-check.png" />
+    <Content Include="static\homepage\img\elements\disabled-radio.png" />
+    <Content Include="static\homepage\img\elements\f1.jpg" />
+    <Content Include="static\homepage\img\elements\f2.jpg" />
+    <Content Include="static\homepage\img\elements\f3.jpg" />
+    <Content Include="static\homepage\img\elements\f4.jpg" />
+    <Content Include="static\homepage\img\elements\f5.jpg" />
+    <Content Include="static\homepage\img\elements\f6.jpg" />
+    <Content Include="static\homepage\img\elements\f7.jpg" />
+    <Content Include="static\homepage\img\elements\f8.jpg" />
+    <Content Include="static\homepage\img\elements\g1.jpg" />
+    <Content Include="static\homepage\img\elements\g2.jpg" />
+    <Content Include="static\homepage\img\elements\g3.jpg" />
+    <Content Include="static\homepage\img\elements\g4.jpg" />
+    <Content Include="static\homepage\img\elements\g5.jpg" />
+    <Content Include="static\homepage\img\elements\g6.jpg" />
+    <Content Include="static\homepage\img\elements\g7.jpg" />
+    <Content Include="static\homepage\img\elements\g8.jpg" />
+    <Content Include="static\homepage\img\elements\primary-check.png" />
+    <Content Include="static\homepage\img\elements\primary-radio.png" />
+    <Content Include="static\homepage\img\elements\success-check.png" />
+    <Content Include="static\homepage\img\elements\success-radio.png" />
+    <Content Include="static\homepage\img\elements\user1.png" />
+    <Content Include="static\homepage\img\elements\user2.png" />
+    <Content Include="static\homepage\img\event-details.jpg" />
+    <Content Include="static\homepage\img\icons\favicon.png" />
+    <Content Include="static\homepage\img\icons\home1.png" />
+    <Content Include="static\homepage\img\icons\home2.png" />
+    <Content Include="static\homepage\img\icons\home3.png" />
+    <Content Include="static\homepage\img\icons\home4.png" />
+    <Content Include="static\homepage\img\instagram\Image-01.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-02.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-03.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-04.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-05.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-06.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-07.jpg" />
+    <Content Include="static\homepage\img\instagram\Image-08.jpg" />
+    <Content Include="static\homepage\img\logo.png" />
+    <Content Include="static\homepage\img\photo.jpg" />
+    <Content Include="static\homepage\js\bootstrap.min.js" />
+    <Content Include="static\homepage\js\contact.js" />
+    <Content Include="static\homepage\js\custom.js" />
+    <Content Include="static\homepage\js\gmaps.min.js" />
+    <Content Include="static\homepage\js\jquery-3.2.1.min.js" />
+    <Content Include="static\homepage\js\jquery.ajaxchimp.min.js" />
+    <Content Include="static\homepage\js\jquery.form.js" />
+    <Content Include="static\homepage\js\jquery.validate.min.js" />
+    <Content Include="static\homepage\js\mail-script.js" />
+    <Content Include="static\homepage\js\popper.js" />
+    <Content Include="static\homepage\js\stellar.js" />
+    <Content Include="static\homepage\vendors\animate-css\animate.css" />
+    <Content Include="static\homepage\vendors\animate-css\wow.min.js" />
+    <Content Include="static\homepage\vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.css" />
+    <Content Include="static\homepage\vendors\bootstrap-datepicker\bootstrap-datetimepicker.min.js" />
+    <Content Include="static\homepage\vendors\bootstrap-datepicker\bootstrap-select.css" />
+    <Content Include="static\homepage\vendors\bootstrap-datepicker\bootstrap-select.js" />
+    <Content Include="static\homepage\vendors\counter-up\jquery.counterup.js" />
+    <Content Include="static\homepage\vendors\counter-up\jquery.waypoints.min.js" />
+    <Content Include="static\homepage\vendors\flipclock\timer.js" />
+    <Content Include="static\homepage\vendors\isotope\imagesloaded.pkgd.min.js" />
+    <Content Include="static\homepage\vendors\isotope\isotope-min.js" />
+    <Content Include="static\homepage\vendors\jquery-ui\jquery-ui.css" />
+    <Content Include="static\homepage\vendors\jquery-ui\jquery-ui.js" />
+    <Content Include="static\homepage\vendors\lightbox\simpleLightbox.css" />
+    <Content Include="static\homepage\vendors\lightbox\simpleLightbox.min.js" />
+    <Content Include="static\homepage\vendors\linericon\fonts\Linearicons-Free.svg" />
+    <Content Include="static\homepage\vendors\linericon\style.css" />
+    <Content Include="static\homepage\vendors\nice-select\css\nice-select.css" />
+    <Content Include="static\homepage\vendors\nice-select\css\style.css" />
+    <Content Include="static\homepage\vendors\nice-select\js\jquery.nice-select.js" />
+    <Content Include="static\homepage\vendors\nice-select\js\jquery.nice-select.min.js" />
+    <Content Include="static\homepage\vendors\owl-carousel\assets\ajax-loader.gif" />
+    <Content Include="static\homepage\vendors\owl-carousel\assets\animated.css" />
+    <Content Include="static\homepage\vendors\owl-carousel\assets\owl.carousel.css" />
+    <Content Include="static\homepage\vendors\owl-carousel\owl.carousel.min.css" />
+    <Content Include="static\homepage\vendors\owl-carousel\owl.carousel.min.js" />
+    <Content Include="static\orphanageadmin\addorphan.css" />
+    <Content Include="static\registration\css\admin-style.css" />
+    <Content Include="static\registration\js\admin-script.js" />
+    <Content Include="templates\homepage\contact.html" />
+    <Content Include="templates\homepage\index.html" />
+    <Content Include="templates\orphanageadmin\addorphan.html" />
+    <Content Include="templates\orphanageadmin\home.html" />
+    <Content Include="templates\registration\donate-history.html" />
+    <Content Include="templates\registration\join-orphan.html" />
+    <Content Include="templates\registration\login.html" />
+    <Content Include="templates\registration\login_success.html" />
+    <Content Include="templates\registration\near-you.html" />
+    <Content Include="templates\registration\orphanage_signup.html" />
+    <Content Include="templates\registration\pending.html" />
+    <Content Include="templates\registration\profile.html" />
+    <Content Include="templates\registration\user_login_page.html" />
+    <Content Include="templates\registration\user_register_page.html" />
+    <Content Include="templates\registration\user_signup.html" />
+    <Content Include="templates\superuser\basic.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="donation" />
+    <Folder Include="donation\migrations" />
+    <Folder Include="donation\templates\" />
+    <Folder Include="donation\templates\donation" />
+    <Folder Include="homepage" />
+    <Folder Include="homepage\migrations" />
+    <Folder Include="media\" />
+    <Folder Include="media\orphanage_image\" />
+    <Folder Include="media\orphanage_image\4" />
+    <Folder Include="media\orphanage_image\5" />
+    <Folder Include="media\orphanage_image\None" />
+    <Folder Include="oms" />
+    <Folder Include="orphanageadmin" />
+    <Folder Include="orphanageadmin\migrations" />
+    <Folder Include="registration" />
+    <Folder Include="registration\migrations" />
+    <Folder Include="static\" />
+    <Folder Include="static\donation\css\" />
+    <Folder Include="static\donation\js\" />
+    <Folder Include="static\homepage\" />
+    <Folder Include="static\homepage\css" />
+    <Folder Include="static\homepage\images" />
+    <Folder Include="static\homepage\images\banner" />
+    <Folder Include="static\homepage\images\blog" />
+    <Folder Include="static\homepage\images\blog\cat-post" />
+    <Folder Include="static\homepage\images\blog\causes" />
+    <Folder Include="static\homepage\images\blog\latest-post" />
+    <Folder Include="static\homepage\images\blog\main-blog" />
+    <Folder Include="static\homepage\images\blog\popular-post" />
+    <Folder Include="static\homepage\images\causes" />
+    <Folder Include="static\homepage\images\clients-logo" />
+    <Folder Include="static\homepage\images\donation" />
+    <Folder Include="static\homepage\images\elements" />
+    <Folder Include="static\homepage\images\icons" />
+    <Folder Include="static\homepage\images\instagram" />
+    <Folder Include="static\homepage\img" />
+    <Folder Include="static\homepage\img\banner" />
+    <Folder Include="static\homepage\img\blog" />
+    <Folder Include="static\homepage\img\blog\cat-post" />
+    <Folder Include="static\homepage\img\blog\causes" />
+    <Folder Include="static\homepage\img\blog\latest-post" />
+    <Folder Include="static\homepage\img\blog\main-blog" />
+    <Folder Include="static\homepage\img\blog\popular-post" />
+    <Folder Include="static\homepage\img\causes" />
+    <Folder Include="static\homepage\img\clients-logo" />
+    <Folder Include="static\homepage\img\donation" />
+    <Folder Include="static\homepage\img\elements" />
+    <Folder Include="static\homepage\img\icons" />
+    <Folder Include="static\homepage\img\instagram" />
+    <Folder Include="static\homepage\js" />
+    <Folder Include="static\homepage\vendors\" />
+    <Folder Include="static\homepage\vendors\animate-css" />
+    <Folder Include="static\homepage\vendors\bootstrap-datepicker" />
+    <Folder Include="static\homepage\vendors\counter-up" />
+    <Folder Include="static\homepage\vendors\flipclock" />
+    <Folder Include="static\homepage\vendors\isotope" />
+    <Folder Include="static\homepage\vendors\jquery-ui" />
+    <Folder Include="static\homepage\vendors\lightbox" />
+    <Folder Include="static\homepage\vendors\linericon" />
+    <Folder Include="static\homepage\vendors\linericon\fonts" />
+    <Folder Include="static\homepage\vendors\nice-select\" />
+    <Folder Include="static\homepage\vendors\nice-select\css" />
+    <Folder Include="static\homepage\vendors\nice-select\js" />
+    <Folder Include="static\homepage\vendors\owl-carousel" />
+    <Folder Include="static\homepage\vendors\owl-carousel\assets" />
+    <Folder Include="static\donation\" />
+    <Folder Include="static\orphanageadmin" />
+    <Folder Include="static\registration\" />
+    <Folder Include="static\registration\css" />
+    <Folder Include="static\registration\js" />
+    <Folder Include="superuser" />
+    <Folder Include="superuser\migrations" />
+    <Folder Include="templates\" />
+    <Folder Include="templates\homepage" />
+    <Folder Include="templates\orphanageadmin" />
+    <Folder Include="templates\registration" />
+    <Folder Include="templates\superuser" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.Django.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <AutoAssignPort>True</AutoAssignPort>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -62,7 +62,7 @@
                                             <td class='cnt' width="15%">
                                             <form method="post" action= "{% url 'orphanageadmin:o_reccan' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
                                                 {% csrf_token %}
-                                                <input type="hidden" name="id1" value={{ content.id }}>
+                                                <input type="hidden" name="id1" value={{ content.tid }}>
                                                 <input type="hidden" name="val" value= 2 >
                                                 <input class="acc btn" type="submit" value="Received" name ="myButton">
                                             </form>
@@ -70,7 +70,7 @@
                                             <td class='cnt' width="15%">
                                             <form method="post" action= "{% url 'orphanageadmin:o_reccan' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
                                                     {% csrf_token %}
-                                                    <input type="hidden" name="id1" value={{ content.id }}>
+                                                    <input type="hidden" name="id1" value={{ content.tid }}>
                                                     <input type="hidden" name="val" value= -2>
                                                     <input class="rej btn" type="submit" value="cancel" name ="myButton">
                                             </form>

@@ -19,7 +19,7 @@
 
   <!-- JQuery -->
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" rel="stylesheet"></script>
 <script type="text/javascript" src="{% static 'registration/js/admin-script.js' %}"></script>
 </head>
 
@@ -29,64 +29,42 @@
 <div class="container-fluid p-0 d-flex wrapper">
 
 	<!-- Sidebar  -->
-	
+
         <nav id="sidebar">
             <div class="sidebar-header  p-3.5">
-				<a href="{% url 'h_index' %}">
-                <h3>Kare</h3>
-				</a>
+            <a href="{% url 'h_index' %}" class="mx-4">
+              <img src="{% static 'homepage/img/logo.png' %}" class="nav-logo">
+            </a>
             </div>
-			
+
             <ul class="list-unstyled components">
-                <li  class="sidebar-active">
-                    <a href="{% url 'orphanageadmin:o_profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
-                </li>
-                <li>
-                    <a href="#user-donate" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Donations</a>
-                    <ul class="collapse list-unstyled" id="user-donate">
-                        <li>
-                            <a href="{% url 'orphanageadmin:o_requesteddonations' %}"></i>Requested Donations</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'orphanageadmin:o_accepteddonations' %}">Accepted Donations</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'orphanageadmin:o_receiveddonations' %}"></i>Received Donations</a>
-                        </li>
-                        <li>
-                            <a href="#">Money Donations</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#Events" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-hands-helping mr-3"></i>Events</a>
-                    <ul class="collapse list-unstyled" id="Events">
-                        <li>
-                            <a href="#"></i>Requested Events</a>
-                        </li>                        
-                        <li>
-                            <a href="#">Accepted Events</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#orphan" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-user-friends mr-3"></i>Orphans</a>
-                    <ul class="collapse list-unstyled" id="orphan">
-                        <li>
-                            <a href="{% url 'orphanageadmin:o_joinorphan' %}">Add Orphans</a>
-                        </li>                        
-                        <li>
-                            <a href="#">Orphans</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="{% url 'orphanageadmin:o_emergencyrequest' %}"><i class="fas fa-bullhorn mr-3"></i>Emergency Request</a>
-                </li>
+              <li class="sidebar-active">
+                  <a href="{% url 'profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
+              </li>
+              <li>
+                  <a href="#user-donate" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Donations</a>
+                  <ul class="collapse list-unstyled" id="user-donate">
+                      <li>
+                          <a href="#"><i class="fas fa-hand-holding-usd mr-3"></i>Donate</a>
+                      </li>
+                      <li>
+                          <a href="{% url 'donate_history' %}"><i class="fas fa-history mr-3"></i>History</a>
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  <a href="{% url 'pending' %}"><i class="far fa-envelope mr-3"></i>Pending Requests</a>
+              </li>
+              <li>
+                  <a href="{% url 'near_you' %}"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
+              </li>
+              <li>
+                  <a href="{% url 'join_orphan' %}"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
+              </li>
             </ul>
         </nav>
-		
-		
+
+
 		<!-- side bar ends here -->
 		<!-- Page Content Holder -->
         <div id="content">
@@ -99,9 +77,9 @@
                         <span></span>
                         <span></span>
                     </button>
-                    
+
                     <ul class="nav navbar-nav ml-auto">
-                        
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false">
@@ -112,31 +90,79 @@
                                 <a class="dropdown-item" href="#"><i class="fas fa-user mr-3"></i>Profile</a>
                                 <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd mr-3"></i>Donate</a>
                                 <hr class="m-0 p-0">
-                                <a class="dropdown-item" href="{% url 'orphanageadmin:o_logout' %}"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>
                             </div>
                         </li>
                     </ul>
-                    
+
                 </div>
             </nav>
+
+
+
             <!-- content starts here-->
-            <br>
-            <center>
-                <div style="width:75%"'>
-                    {% if messages %}
-                    {% for message in messages %}
-                    <div class='alert alert-{{ message.tags }}'>
-                        {{ message }}
+            <div class="content my-3">
+                <div class="row">
+                    <div class="col">
+                            <div class="card">
+                                    <div class="card-header">
+                                      <h5 class="title">Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col col-4 pt-4">
+                                          <img src="{% static 'homepage/img/photo.jpg' %}" class="profile-img">
+                                        </div>
+                                        <div class="col col-6">
+                                          <div class="row my-2">
+                                            <div class="col ">Name</div>
+                                            <div class="col">:</div>
+                                            <div class="col ">{{ qs.username }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">phone number</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs1.phone_no }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">firstname</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.first_name}}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">lastname</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.last_name }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col col-4">Email</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.email}}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">Gender</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs1.gender}}</div>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                  <form action="result1" method="post" class="text-center">
+                                    {% csrf_token %}
+
+                                  <button class="btn btn-primary "  >Edit Profile</button>
+
+                                  </form>
+                                    </div>
+
+                                  </div>
+
                     </div>
-                    {% endfor %}
-                    {% endif %}
                 </div>
-            </center>
-            <br><br>
-            <h3> {{ orphanage_name }} </h3>
+            </div>
             <!-- content ends here-->
         </div>
-        
+
 
 </div>
 
