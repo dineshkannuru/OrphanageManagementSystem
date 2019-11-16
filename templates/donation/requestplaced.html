@@ -1,12 +1,43 @@
-﻿<!DOCTYPE html>
+﻿{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+      <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h3>Your request has been placed</h3>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+       </div>
+<!-- Modal body -->
+      <div class="modal-body">
+        <h4 style="text-align:center">Share us with your friends</h4>
+      
+          
+        </div>
+        <a href="{% url 'userdashboard:u_Profile' %}">Go to home</a>
+          <center><div class="fb-share-button" data-href="http://127.0.0.1:8000/" data-layout="button" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2F127.0.0.1%3A8000%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share us with your friends</a></div>
+        </center>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
 
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="utf-8" />
-    <title></title>
-</head>
-<body>
-    <h1>Request placed</h1>
 
-</body>
-</html>
+<script>
+$(document).ready(function(){
+  // Show the Modal on load
+  $("#myModal").modal("show");
+    
+  // Hide the Modal
+  $("#myBtn").click(function(){
+    $("#myModal").modal("hide");
+  });
+});
+</script>
+
+{% endblock content %}

@@ -131,11 +131,11 @@ def signup(request):
                 user_type.save()
 
                 current_site = get_current_site(request)
-                mail_subject = 'Activate your OMS orphanage account.'
+                mail_subject = 'Activate your OMS user account.'
                 message = render_to_string('registration/acc_active_email.html', {
                     'user': new_user,
                     'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(new_user.pk)),
+                    'uid': urlsafe_base64_encode(force_bytes(new_user.pk)).decode(),
                     'token': account_activation_token.make_token(new_user),
                 })
                 to_email = new_user_form.cleaned_data.get('email')

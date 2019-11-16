@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from homepage.models import Orphan,Orphanage,donatevaluables,donatemoney,Emergency,Events,Orphan
+from homepage.models import Orphan,Orphanage,donatevaluables,donatemoney,Emergency,Events,Orphan,AddOrphan
 import datetime
 import json
 
@@ -271,6 +271,31 @@ def HistoryOfPosts(request):
     return render(request,'orphanageadmin/historyofposts.html',content)
 
 @login_required
-def logout_view(request):
-    logout(request)
-    return redirect('h_index')
+def Requested_orphan(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    donation_request = AddOrphan.objects.filter(orphanage_id = orphanage,ref_no = 0)
+    content = {'donation_request':donation_request}
+    return render(request,'orphanageadmin/requestedorphan.html',content)
+
+@login_required
+def AccReq_orphan(request):
+    if request.method == 'POST':
+        val = int(request.POST["val"])
+        id1 = request.POST["id1"]
+        print(val)
+        AddOrphan.objects.filter(id = id1).update(ref_no = val)
+        if val == 1:
+            messages.success(request,'Successfully accepted the request')
+            return redirect('orphanageadmin:o_requestedorphan')
+        else:
+            messages.warning(request,'Successfully rejected the request')
+            return redirect('orphanageadmin:o_requestedorphan')
+
+@login_required
+def Accepted_orphan(request):
+    user = request.user
+    orphanage = Orphanage.objects.get(orphanage_id = user)
+    donation_request = AddOrphan.objects.filter(orphanage_id = orphanage,ref_no = 1)
+    content = {'donation_request':donation_request}
+    return render(request,'orphanageadmin/acceptedorphan.html',content)

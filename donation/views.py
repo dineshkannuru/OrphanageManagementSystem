@@ -1,5 +1,4 @@
-import twitter
-import facebook
+from django.shortcuts import render
 import json
 import requests
 from json import load
@@ -15,6 +14,8 @@ from homepage.models import donatemoney,donatevaluables,Orphanage
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 
+# Create your views here.
+
 
 # Create your views here.
 @login_required(login_url='registration:login')
@@ -25,11 +26,12 @@ def donatemoneyview(request):
         transfer = request.POST['transfer']
         amount = request.POST['amount']
         orphanage_id1 = request.POST['orphanage_id']
-        orphanage = Orphanage.objects.get(pk = orphanage_id1)
+        orphanage=Orphanage.objects.get(pk = orphanage_id1)
+        orphanage_name = orphanage.orphanage_name
         print(orphanage_id1)
         description= request.POST['description']
         status = "0"
-        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,description=description,status=status)
+        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status)
         saveform.save()
         tid=donatemoney.objects.latest('tid')
         tidstring=tid.tid
@@ -42,7 +44,7 @@ def donatemoneyview(request):
     return render(request,'donation/money.html',context)
 
 def donation_completedview(request):
-    return render(request,'donation/donation_completed.html')
+    return render(request,'donation/donation_done.html')
 
 @login_required(login_url='registration:login')
 def donatevaluablesview(request):
@@ -63,7 +65,7 @@ def donatevaluablesview(request):
         status='0'
         saveform = donatevaluables.objects.create(user_id=user_id,donation_type=type,orphanage_name=orphanage_name,object_name=object,orphanage_id=orphanage,quantity=quantity,description=description,address=address,status=status)
         saveform.save()
-        return HttpResponseRedirect(reverse('donation:completed'))
+        return HttpResponseRedirect(reverse('donation:request_placed'))
     else:
         context = {
             'orphanages': Orphanages
@@ -83,7 +85,7 @@ def paypal_home(request,tid,amount,orphanage_id1):
         "item_name": tid,
         "invoice": tid,
         "notify_url": "http://57e8e544.ngrok.io/donation/HaSHinGLinKK/",
-        "return": "http://127.0.0.1:8000/donation/money/",
+        "return": "http://127.0.0.1:8000/donation/donation_done/",
         "cancel_return": "http://127.0.0.1:8000/donation/money/",
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
@@ -118,12 +120,12 @@ def acceptedview(request):
     context = {"accepted": accepted}
     return render(request, "donation/Accepted.html", context)
 
-def history(request):
+def historyview(request):
     user = request.user
     donations = donatemoney.objects.filter(user_id=user)
     
     context = {"donations": donations}
-    return render(request, "donation/Accepted.html", context)
+    return render(request, "donation/history.html", context)
 
 
 
