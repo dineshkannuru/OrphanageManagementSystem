@@ -30,6 +30,7 @@
                                         {% if  donation_request %}
                                         <thead><tr>
                                             <th class='cnt'> User </th>
+                                            
                                             <th class='cnt'> Date of Event </th>
                                             <th class='cnt'> Event </th>
                                             <th class='cnt' colspan = '2' > Accept/Reject </th>
@@ -38,7 +39,7 @@
                                         {% for content in donation_request %}
                                         <tr>
                                             <td class= 'cnt'>{{ content.user_id }}</td>
-                                            <td class= 'cnt'>{{ content.date_of_event.date }}</td>
+                                            <td class= 'cnt'>{{ content.date_of_event }}</td>
                                             <td class= 'cnt'>{{ content.event }}</td>
                                             <td rowspan='2' class='cnt' width="15%">
                                             <form method="post" action= "{% url 'orphanageadmin:o_acceptedeventschangestatus' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">

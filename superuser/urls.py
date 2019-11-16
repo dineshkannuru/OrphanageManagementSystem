@@ -11,7 +11,10 @@ urlpatterns = [
     path('rejected/', views.rejected,name='rejected'),
     path('check/', views.check,name='check'),
     path('addevent/',views.addevent,name='addevent'),
-    path('checkdate/',views.checkdate,name='checkdate')
+    path('checkdate/',views.checkdate,name='checkdate'),
+    path('requestedevents/<int:pk>',views.requestedevents,name='requestedevents'),
+    path('acceptedevents/',views.acceptedevents,name='acceptedevents'),
+    path('rejectedevents/',views.rejectedevents,name='rejectedevents')
     
 
 ]

@@ -63,13 +63,14 @@ class donatemoney(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     transfer = models.CharField(max_length=264,default=0)
     amount = models.IntegerField(default=0)
+    orphanage_name = models.CharField(default=None,max_length=100)
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
     status = models.IntegerField()
     date_of_donation = models.DateTimeField(default = timezone.now)
     description = models.CharField(default=None,max_length=50)
 
     class Meta:
-        get_latest_by = ['tid']
+        get_latest_by = ['tid','status']
 
 class donatevaluables(models.Model):
     TYPE = (
@@ -83,13 +84,16 @@ class donatevaluables(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
     donation_type = models.CharField(max_length=1,choices=TYPE)
+    orphanage_name = models.CharField(default=None,max_length=100)
     date_of_donation = models.DateTimeField(default=timezone.now)
     quantity = models.IntegerField()
+    object_name = models.CharField(default=None,max_length=100)
+    address = models.CharField(default=None,max_length=100)
     description = models.CharField(default=None,max_length=100)
     status = models.IntegerField()
 
     class Meta:
-        get_latest_by = ['tid']
+        get_latest_by = ['tid','status']
 
 class Emergency(models.Model):
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.CASCADE)

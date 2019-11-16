@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Orphanage,donatevaluables,UserDetails,Transport,verification
+from .models import Orphanage,donatevaluables,UserDetails,Transport,verification,Type
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
+
 
 
 # Create your views here.
@@ -50,6 +52,8 @@ class followview(APIView):
                     #'lat':each.lat,
                     'address':each.address,
                     'phone_no': each.phone_no,
+                    'lat':each.lat,
+                    'lon':each.lon,
                     #'image': each.image,
                     'description': each.description
                 }
@@ -81,6 +85,7 @@ class followview1(APIView):
                 a=User.objects.get(username=orp.orphanage_id.username)
                 print(a.username)
                 b=Type.objects.get(user=a)
+                print('cametorequired')
                 
 
                 if status1=='Accepted':

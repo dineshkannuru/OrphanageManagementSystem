@@ -33,13 +33,13 @@
     </div>
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
-            <a href="#"><i class="fas fa-user mr-3"></i>Profile</a>
+            <a href="{% url 'userdashboard:u_Profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
         </li>
         <li >
             <a href="#donations" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-donate"><i class="fas fa-donate mr-3"></i>Money Donations</a>
             <ul class="collapse list-unstyled" id="donations">
                 <li>
-                    <a href="#">Donate</a>
+                    <a href="{% url 'donation:donatemoney' %}">Donate</a>
                 </li>                        
                 <li>
                     <a href="#">History</a>
@@ -50,13 +50,13 @@
             <a href="#Valuable" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-valuable"><i class="fas fa-hamburger mr-3"></i>Valuable Donations</a>
             <ul class="collapse list-unstyled" id="Valuable">
                 <li>
-                    <a href="#">Donate</a>
+                    <a href="{% url 'donation:donate_valuables' %}">Donate</a>
                 </li>    
                 <li>
-                    <a href="#">Accepted Donations</a>
+                    <a href="{% url 'donation:accepted' %}">Accepted Donations</a>
                 </li>                        
                 <li>
-                    <a href="#">Rejected Donations</a>
+                    <a href="{% url 'donation:rejected' %}">Rejected Donations</a>
                 </li>
             </ul>
         </li>
@@ -68,23 +68,23 @@
                     <a href="{% url 'superuser:addevent' %}">Add an event</a>
                 </li>
                 <li>
-                    <a href="#">Request Events</a>
+                    <a href="{% url 'superuser:requestedevents' pk=0 %}">Requested Events</a>
                 </li>                        
                 <li>
-                    <a href="#">Accepted Events</a>
+                    <a href="{% url 'superuser:acceptedevents' %}">Accepted Events</a>
                 </li>
                 <li>
-                    <a href="#">Rejected Events</a>
+                    <a href="{% url 'superuser:rejectedevents' %}">Rejected Events</a>
                 </li>
             </ul>
-        </li>
-        <li class="sidebar-onearyou">
-            <a href="#"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
         </li>
         <li class="sidebar-join orphan">
             <a href="#"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
         </li>
-        <li class="sidebar-join orphan">
+        <li class="sidebar-onearyou">
+            <a  href="{% url 'userdashboard:u_maps' %}"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
+        </li>
+        <li class="sidebar-about orphan">
             <a href="#"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>
         </li>
     </ul>

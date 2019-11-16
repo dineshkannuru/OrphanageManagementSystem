@@ -4,8 +4,35 @@ import json
 from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
+def requestedevents(request,pk=0):
+    if request.method=='POST':
+        print('hii')
+        user = request.user
+        a=Events.objects.get(pk=pk)
+        a.status='Cancelled By User'
+        a.save()
+        messages.warning(request,'Event got cancelled')
+        a=Events.objects.filter(orphanage_id = orphanage,status = 'Freshly Applied')
+        return render(request,'superuser/requestedevents.html',context={'t':a})
+    else:
+        user = request.user
+        a=Events.objects.filter(user_id=user,status = 'Freshly Applied')
+        return render(request,'superuser/requestedevents.html',context={'t':a})        
+@login_required
+def acceptedevents(request):
+    user = request.user
+    a=Events.objects.filter(user_id=user,status = 'Accepted')
+    return render(request,'superuser/acceptedevents.html',context={'t':a})        
+
+@login_required
+def rejectedevents(request):
+    user = request.user
+    a=Events.objects.filter(user_id=user,status = 'Rejected')
+    return render(request,'superuser/rejectedevents.html',context={'t':a})        
 
 
 def freshlyapplied(request):
@@ -65,11 +92,11 @@ def addevent(request):
         print(description)
         orp=Orphanage.objects.get(orphanage_name=orphanage)
         Events.objects.create(user_id=request.user,orphanage_id=orp,date_of_event=date,event=event,description=description)
-        subject='Confirmation of event'
+        '''subject='Confirmation of event'
         message='Your event is confirmed'
         from_mail='sudarshan333u@gmail.com'
         to_list=[str(request.user.email)]
-        send_mail(subject,message,from_mail,to_list,fail_silently=True)
+        send_mail(subject,message,from_mail,to_list,fail_silently=True)'''
         messages.success(request,'Added Event successfully')    
         return render(request,'superuser/addevent.html',context={'f':1})            
 

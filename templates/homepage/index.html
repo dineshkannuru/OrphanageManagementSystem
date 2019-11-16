@@ -80,8 +80,8 @@
 			<div class="container">
 				<div class="banner_content row">
 					<div class="offset-lg-2 col-lg-8">
-						<img class="img-fluid" src="{% static 'homepage/img/banner/3.png' %}">
-						<p>Start the change you want to see in the world</p>
+						<img class="img-fluid wow bounceInDown" src="{% static 'homepage/img/banner/3.png' %}">
+						<p class="wow fadeInRightBig" >Start the change you want to see in the world</p>
 						<a class="main_btn mr-10" href="#">donate now</a>
 						<a class="white_bg_btn" href="#">view activity</a>
 					</div>
@@ -130,11 +130,11 @@
 	================ End important-points section =================-->
 	<section class="causes_area">
 	<div class="container">
-		<div class="main_title animated fadeInDown">
+		<div class="main_title wow fadeInDown">
 			<h2>How Could You Help</h2>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-md-6 animated fadeInLeft">
+			<div class="col-lg-4 col-md-6 wow fadeInLeft">
 				<div class="single_causes">
 					<h4>Give Donation</h4>
 					<img src="{% static 'homepage/img/causes/c1.png' %}" >
@@ -143,14 +143,14 @@
 						But we make a life by what we give.”					</p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6 animated fadeInUp">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_causes">
 					<h4>Give Inspiration</h4>
 					<img src="{% static 'homepage/img/causes/c2.png' %}" style="margin-bottom: 42px;">
 					<p>
 						“We rise by lifting others.” 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6 animated fadeInRight">
+			<div class="col-lg-4 col-md-6 wow fadeInRight">
 				<div class="single_causes">
 					<h4>Become volunteer</h4>
 					<img src="{% static 'homepage/img/causes/c3.png' %}" >
@@ -432,7 +432,7 @@
 
 						<div class="col-lg-4">
 							<div class="donate_box">
-								<button type="submit" class="main_btn w-100">donate now</button>
+								<button type="submit" class="main_btn w-100 wow bounceIn">donate now</button>
 							</div>
 						</div>
 					</div>
@@ -446,12 +446,12 @@
 
 	<section class="causes_area">
 	<div class="container">
-		<div class="main_title">
+		<div class="main_title wow fadeInLeft">
 			<h2>Top Donars</h2>
 			<p>Creepeth called face upon face yielding midst is after moveth </p>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_cause">
 					<img src="{% static 'homepage/images/roger9.jpg' %}"  class="rounded-circle profileabc-img">
 					<h4>Roger Federer
@@ -461,7 +461,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_cause">
 					<img src="{% static 'homepage/images/medvevev.jpg' %}"  class="rounded-circle profileabc-img">
 					<h4>Daniil Medvedev
@@ -471,7 +471,7 @@
 					</p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_cause">
 					<img src="{% static 'homepage/images/tiger.jpg' %}"  class="rounded-circle profileabc-img">
 					<h4>Tiger Woods
@@ -667,7 +667,7 @@
 
 	<section class="experience_donation "     style="padding: 100px;"
 >
-		<div class="container">
+		<div class="container wow jackInTheBox">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-12">
 					<h1>Join An Orphan</h1>
@@ -885,6 +885,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	================ End Footer Area  =================-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+								<script>
+								new WOW().init();
+								</script>
 
 
 
