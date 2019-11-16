@@ -10,6 +10,8 @@ urlpatterns = [
     path('accepted/', views.accepted,name='accepted'),
     path('rejected/', views.rejected,name='rejected'),
     path('check/', views.check,name='check'),
+    path('addevent/',views.addevent,name='addevent'),
+    path('checkdate/',views.checkdate,name='checkdate')
     
 
 ]

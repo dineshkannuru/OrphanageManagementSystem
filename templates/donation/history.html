@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+     <h3>Accepted Transactions:</h3>
+    <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Transaction id</th>
+      <th scope="col">Orphanage</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for accept in donations %}
+      <tr>
+      <th scope="row">{{accept.tid}}</th>
+      <td>{{accept.orphanage_name}}</td>
+      <td>{{accept.amount}}</td>
+      <td>{{accept.date_of_donation}}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+
+</body>
+</html>

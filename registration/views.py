@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 
-from homepage.models import Orphanage, Type, UserDetails
+from homepage.models import Orphanage, Type, UserDetails,Transport,donatevaluables
 from registration.form import RegisterForm, CustomAuthForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
@@ -82,7 +82,7 @@ def signup(request):
                 message = render_to_string('registration/acc_active_email.html', {
                     'user': new_user,
                     'domain': current_site.domain,
-                    'uid': urlsafe_base64_encode(force_bytes(new_user.pk)).decode(),
+                    'uid': urlsafe_base64_encode(force_bytes(new_user.pk)),
                     'token': account_activation_token.make_token(new_user),
                 })
                 to_email = new_user_form.cleaned_data.get('email')
@@ -105,7 +105,11 @@ def signup(request):
                     password=new_user_form.cleaned_data["password"],
                     email=new_user_form.cleaned_data["email"]
                 )
+                print(request.POST["current_latitude"])
+                print(request.POST["current_longitude"])
+                new_user.save()
                 new_orphanage_user = Orphanage.objects.create(
+                    orphanage_id=User.objects.get(username=new_user_form.cleaned_data["username"]),
                     orphanage_name=request.POST["orphanage_name"],
                     year_of_establishment=request.POST["year_of_establishment"],
                     address=request.POST["address"],
@@ -115,8 +119,7 @@ def signup(request):
                     lat=float(request.POST["current_latitude"]),
                     lon=float(request.POST["current_longitude"]),
                 )
-                print(request.POST["current_latitude"])
-                print(request.POST["current_longitude"])
+
                 user_type = Type.objects.create(
                     user=new_user,
                     ref_no=2
@@ -228,7 +231,11 @@ def login_view(request):
             login(request, user)
             type = Type.objects.get(user=user)
             if type.ref_no == 1:
-                return redirect(reverse('userdashboard:u_home', kwargs={'id1': user.id}))
+                return redirect('userdashboard:u_Profile')
+            elif type.ref_no == 2:
+                return HttpResponse("<h1>Please wait to get into the dashboard, until your orphanage gets verified</h1>")
+            elif type.ref_no == 3:
+                return redirect('orphanageadmin:o_profile')
             else:
                 return HttpResponse("Not a regular user")
         else:
@@ -323,4 +330,37 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return HttpResponseRedirect(request.path_info)
+    return redirect('h_index')
+
+def solution(request):
+    user = request.user
+    #print(user)
+    data=Transport.objects.all()
+    for each in data:
+        h=each.danation_id
+        l=donatevaluables.objects.get(pk=h)
+        #print(l.user_id,User.objects.get(username=user))
+        if l.user_id==User.objects.get(username=user) and l.status==0:  #0 means not delivered
+            print(l.pk)
+            data1=Transport.objects.filter(danation_id=l.pk)
+            print(data1)
+            break;
+    return render(request,'registration/accep.html',{"data1":data1})
+
+def result(request):
+    if request.method == "POST":
+        id=request.POST['name']
+        data=Transport.objects.get(pk=id)
+        k=data.danation_id
+        h=Transport.objects.filter(danation_id=k)
+        #print(data.company_name)
+        data.save()
+        data.status=1 #1 means Accepted
+        l=donatevaluables.objects.get(pk=data.danation_id)
+        l.status=1 #1 means Accepted
+        l.save()
+        for each in h:
+            if each.pk!=int(id):
+                print(each.pk,id)
+                each.status=2
+                each.save() #2 means Rejected

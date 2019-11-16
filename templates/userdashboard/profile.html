@@ -1,0 +1,69 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-profile")
+</script>
+        <br>
+            <!-- content starts here-->
+            <div class="content my-3">
+                <div class="row">
+                    <div class="col">
+                            <div class="card">
+                                    <div class="card-header">
+                                      <h5 class="title">Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                      <div class="row">
+                                        <div class="col col-4 pt-4">
+                                          <img src="{% static 'homepage/img/photo.jpg' %}" class="profile-img">
+                                        </div>
+                                        <div class="col col-6">
+                                          <div class="row my-2">
+                                            <div class="col ">Name</div>
+                                            <div class="col">:</div>
+                                            <div class="col ">{{ qs.username }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">phone number</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs1.phone_no }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">firstname</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.first_name}}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">lastname</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.last_name }}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col col-4">Email</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs.email}}</div>
+                                          </div>
+                                          <div class="row my-5">
+                                            <div class="col">Gender</div>
+                                            <div class="col">:</div>
+                                            <div class="col">{{ qs1.gender}}</div>
+                                          </div>
+                                        </div>
+                                    </div>
+
+                                  <form action="{%url 'userdashboard:u_result11' %}" method="post" class="text-center">
+                                    {% csrf_token %}
+
+                                  <button class="btn btn-primary "  >Edit Profile</button>
+
+                                  </form>
+                                    </div>
+
+                                  </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- content ends here-->
+{% endblock content %}

@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='sudarshan333u@gmail.com'
+EMAIL_HOST_PASSWORD='9542569068'
+EMAIL_PORT=587
+
 
 
 
@@ -29,8 +35,8 @@ SECRET_KEY = 'elaak_hmy)uzom-@k%0ig-ah_tt)bl2lxe0ozv^2_+v@w90(*w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['164c9534.ngrok.io','localhost','127.0.0.1']
 
-ALLOWED_HOSTS = []
 
 LOGIN_REDIRECT_URL = '/homepage'
 # Application definition
@@ -46,11 +52,13 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'widget_tweaks',
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -138,8 +146,19 @@ EMAIL_PORT = 587
 DEFAULT_FROM_EMAIL = 'OMS Team <oms.email.confirmation@gmail.com>'
 
 
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+
+}
+
+PAYPAL_RECEIVER_EMAIL='harshab@harsha.com'
+PAYPAL_TEST = True
+
+
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
-
-

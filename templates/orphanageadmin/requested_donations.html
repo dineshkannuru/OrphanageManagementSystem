@@ -1,0 +1,96 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+    sidebar_shift("sidebar-donations")
+</script>
+            <!-- Start Content -->
+            <center>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class='alert alert-{{ message.tags }}'>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </center>
+            <br>
+            <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                    <h4 class="card-title text-center"> Requested Donations </h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-striped"  id = "customers">
+                                        {% if  donation_request %}
+                                        <thead><tr>
+                                            <th class='cnt'> User </th>
+                                            <th class='cnt'> Date </th>
+                                            <th class='cnt'> Type </th>
+                                            <th class='cnt'> Quantity </th>
+                                            <th class='cnt' colspan = '2' > Accept/Reject </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        {% for content in donation_request %}
+                                        <tr>
+                                            <td class= 'cnt'>{{ content.user_id }}</td>
+                                            <td class= 'cnt'>{{ content.date_of_donation.date }}</td>
+                                            {% if content.donation_type == 'C' %} 
+                                                <td class= 'cnt'> Cloths </td>
+                                                <td class= 'cnt'>{{ content.quantity }} </td>
+                                            {% endif %}
+                                            {% if content.donation_type == 'F' %} 
+                                                <td class= 'cnt'> Food </td>
+                                                <td class= 'cnt'>{{ content.quantity }} &nbsp; Kg</td>
+                                            {% endif %}
+                                            {% if content.donation_type == 'B' %} 
+                                                <td class= 'cnt'> Book </td>
+                                                <td class= 'cnt'>{{ content.quantity }} &nbsp; </td>
+                                            {% endif %}
+                                            {% if content.donation_type == 'E' %} 
+                                                <td class= 'cnt'> Eletrical Appliances </td>
+                                                <td class= 'cnt'>{{ content.quantity }} &nbsp; </td>
+                                            {% endif %}
+                                            {% if content.donation_type == 'O' %} 
+                                                <td class= 'cnt'> Other </td>
+                                                <td class= 'cnt'>{{ content.quantity }} &nbsp; </td>
+                                            {% endif %}
+                                            <td rowspan='2' class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'orphanageadmin:o_accrej' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id1" value={{ content.tid }}>
+                                                <input type="hidden" name="val" value= 1 >
+                                                <input class="acc btn" type="submit" value="Accept" name ="myButton">
+                                            </form>
+                                            </td>
+                                            <td rowspan='2' class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'orphanageadmin:o_accrej' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id1" value={{ content.tid }}>
+                                                    <input type="hidden" name="val" value= -1>
+                                                    <input class="rej btn" type="submit" value="Reject" name ="myButton">
+                                            </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="4" > DESCRIPTION : &nbsp; {{ content.description }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    {% else %}
+                                    <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No Requests Available </h5>
+                                    {% endif %}
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- End Content -->
+{% endblock content %}

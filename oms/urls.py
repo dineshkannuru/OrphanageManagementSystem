@@ -28,7 +28,7 @@ urlpatterns = [
     path('orphanage_dashboard/', include('orphanageadmin.urls')),
     path('superuser/', include('superuser.urls')),
     path('userdashboard/',include('userdashboard.urls')),
-
+    path('donation/',include('donation.urls')),
     path('password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(template_name='registration/password_reset_complete.html') ,
             name='password_reset_complete'),
