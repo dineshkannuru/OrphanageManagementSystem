@@ -6,12 +6,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="{% static 'homepage/images/icons/favicon.png' %}" rel="icon" type="image/png">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title> User Dashboard </title>
+  <title> Orphanage </title>
   <link rel="stylesheet" href="{% static 'orphanageadmin/theme2.css' %}">
         <script src="{% static 'orphanageadmin/caleandar.js' %}"></script>
-        <script src="{% static 'orphanageadmin/admin-scrleipt.js' %}"></script>
+        <script src="{% static 'orphanageadmin/admin-script.js' %}"></script>
             <link rel="stylesheet" type="text/css" href="{% static 'superuser/css/givereview.css' %}">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -107,9 +106,6 @@
         </li>
         <li class="sidebar-about orphan">
             <a href="{% url 'userdashboard:u_aboutor' %}"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>
-        </li>
-        <li class="sidebar-emergency-posts">
-          <a href="{% url 'userdashboard:u_view_emergency_posts' %}"><i class="far fa-plus-square mr-3"></i>Emergency posts</a>
         </li>
     </ul>
 </nav>

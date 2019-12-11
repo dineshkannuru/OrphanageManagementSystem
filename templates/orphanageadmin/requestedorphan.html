@@ -46,7 +46,7 @@
                                                 {% csrf_token %}
                                                 <input type="hidden" name="id1" value={{ content.id }}>
                                                 <input type="hidden" name="val" value= 1 >
-                                                <input class="acc btn" type="submit" value="Accept" name ="myButton">
+                                                <input class="acc btn" type="submit" value="Received" name ="myButton">
                                             </form>
                                             </td>
                                             <td class='cnt' width="15%">
@@ -54,7 +54,7 @@
                                                     {% csrf_token %}
                                                     <input type="hidden" name="id1" value={{ content.id }}>
                                                     <input type="hidden" name="val" value= -1>
-                                                    <input class="rej btn" type="submit" value="Reject" name ="myButton">
+                                                    <input class="rej btn" type="submit" value="cancel" name ="myButton">
                                             </form>
                                         </td>
                                     </tr>    

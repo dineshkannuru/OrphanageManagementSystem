@@ -5,26 +5,35 @@ from django.http import JsonResponse
 from django.core.mail import send_mail
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+import datetime
 
 
 
-
+@login_required
 def givereview(request):
     
 
     if request.method=='POST':
         print('jj')
+
+        x=request.POST.get('name')
+        print(x)
+        q=catering.objects.get(event_id=int(x))
+        w=CateringCompany.objects.get(company_name=q.company_name)
         description=request.POST.get('description')
         rating=request.POST.get('ratingnew')
-        w = CateringCompany.objects.all()
-        q=review.objects.all()
+        v=Events.objects.get(pk=int(x))
+        v.canbereviewed='Completed'
+        v.save()
+        review.objects.create(description=description,rating=rating,user=request.user,company=w,date_created=datetime.datetime.now())
+        messages.success(request, 'Added Review successfully')
 
-        review.objects.create(description=description,rating=rating,user=request.user,company=w[0])
 
-
-        return render(request,'superuser/showreview.html',context={'list':q})
+        return render(request,'superuser/givereview.html')
     else:
-        return render(request,'superuser/givereview.html')    
+        x=request.GET.get('name')
+        print('x='+str(x))
+        return render(request,'superuser/givereview.html',context={'x':x})
 
 
 
@@ -50,8 +59,29 @@ def requestedevents(request,pk=0):
 @login_required
 def acceptedevents(request):
     user = request.user
+    now = datetime.datetime.now()
     a=Events.objects.filter(user_id=user,status = 'Accepted')
+    print('len(a)=');print(len(a))
+    for i in a:
+        print(str(i.date_of_event))
+        a,b,c=str(i.date_of_event).split('-')
+        print('a='+str(a));
+        print(b)
+        print(c)
+        print(now.year)
+        print(now.month)
+        print(now.day)
+        eventdate=datetime.datetime(int(a),int(b),int(c))
+        currentdate=datetime.datetime(now.year,now.month,now.day)
+        if currentdate>eventdate and i.canbereviewed=='No':
+            i.canbereviewed='Yes'
+            i.save()
+            print('yesssss')
+
+
+
     transport = catering.objects.filter(status=0)
+    a = Events.objects.filter(user_id=user, status='Accepted')
 
     transpose = []
     for accept in a:
@@ -60,6 +90,7 @@ def acceptedevents(request):
                 accept.status = 10
                 break
     context={'t':a,"transpose":transpose}
+
     return render(request,'superuser/acceptedevents.html',context)
 
 
@@ -203,7 +234,7 @@ def result(request):
     if request.method == "POST":
         id = request.POST['name']
         print(id, '123')
-        data = catering.objects.get(event_id=id)
+        data = catering.objects.get(pk=id)
         k = data.event_id
         h = catering.objects.filter(event_id=k)
         # print(data.company_name)
@@ -214,7 +245,7 @@ def result(request):
         l.status = 'Accepted'  # 1 means Accepted
         l.save()
         for each in h:
-            if str(each.event_id) != str(id):
+            if str(each.pk) != str(id):
                 print(each.event_id, id)
                 each.status = '2'
                 each.save()  # 2 means Rejected

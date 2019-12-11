@@ -35,7 +35,7 @@ SECRET_KEY = 'elaak_hmy)uzom-@k%0ig-ah_tt)bl2lxe0ozv^2_+v@w90(*w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['38ed8983.ngrok.io','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['2a379797.ngrok.io','localhost','127.0.0.1']
 
 
 LOGIN_REDIRECT_URL = '/homepage'
@@ -102,7 +102,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',
-        'PORT': '3307',
+        'PORT': '3306',
         'OPTIONS': {
         'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
         }
@@ -168,7 +168,7 @@ REST_FRAMEWORK = {
 
 }
 
-PAYPAL_RECEIVER_EMAIL='harshab@harsha.com'
+PAYPAL_RECEIVER_EMAIL='sb-th3743389074@business.example.com'
 PAYPAL_TEST = True
 
 

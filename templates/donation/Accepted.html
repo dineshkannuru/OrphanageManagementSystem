@@ -5,8 +5,8 @@
         sidebar_shift("sidebar-valuable")
 </script>
     <h3>Accepted Transactions:</h3>
-    <table class="table">
-  <thead class="thead-dark">
+    <table class="table table-striped">
+  <thead >
     <tr>
       <th scope="col">Transaction id</th>
       <th scope="col">Orphanage</th>
@@ -28,8 +28,14 @@
       {% if accept.status == 10 %}
       <td> <form action="{% url 'registration:solution' %}" method="post" >
           {% csrf_token %}
+
+          {% if accept.status != 3 %}
         <input type="hidden" name='name' value="{{ accept.pk }}" >
         <button class="btn btn-primary "  >Accept</button>
+          {% else %}
+          Completed
+
+          {% endif %}
 
         </form>
        </button></td>

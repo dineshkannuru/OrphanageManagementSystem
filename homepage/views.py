@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.authtoken.models import Token
 from django.utils import timezone
 from rest_framework import status
 from django.http import HttpResponse, HttpResponseRedirect
@@ -48,6 +49,7 @@ class followview(APIView):
             if abs(time.second-b.second) > 5  :
                 f[0].hit = datetime.datetime.now()
                 f[0].save()
+
                 data=Orphanage.objects.filter(status='Freshly Applied')
                 for each in data:
                     var={
@@ -242,7 +244,7 @@ class useraccepted(APIView):
                 f[0].hit = datetime.datetime.now()
                 f[0].save()
 
-                company_name=k[0].companyname.company_name
+                company_name=k[0].companyname
                 data=Transport.objects.all()
 
                 status="Not Checked "
@@ -334,7 +336,7 @@ class useracceptedid(APIView):
             if abs(time.second - b.second) > 5:
                 f[0].hit = datetime.datetime.now()
                 f[0].save()
-                company_name=k[0].companyname.company_name
+                company_name=k[0].companyname
                 data=Transport.objects.filter(danation_id=id)
 
                 status="Not Checked "
@@ -372,7 +374,7 @@ class transport4(APIView):
             if abs(time.second - b.second) > 5:
                 f[0].hit = datetime.datetime.now()
                 f[0].save()
-                company_name=k[0].companyname.company_name
+                company_name=k[0].companyname
                 data=Transport.objects.filter(danation_id=id)
                 status="Not delivered"
                 for each in data:
@@ -424,13 +426,16 @@ class usercatering(APIView):
                     print(h.id,h.username)
                     h1=UserDetails.objects.get(user_id=h.id)
                     var={
-                        'date_of_event':each.date_of_event,
-                        'username':each.user_id.username,
-                        'orphanage_name':each.orphanage_id.orphanage_name,
-                        'user_phonenumber':h1.phone_no,
-                        'orphanage_phonenumber':z.phone_no,
-                        'address':z.address,
-                        'id':each.pk
+                    'date_of_event':each.date_of_event,
+                    'event':each.event,
+                    'username':each.user_id.username,
+                    'orphanage_name':each.orphanage_id.orphanage_name,
+                    'description':each.description,
+                    'user_phonenumber':h1.phone_no,
+                    'orphanage_phonenumber':z.phone_no,
+                    'address':z.address,
+                    'id':each.pk
+
 
                     }
                     list.append(var)
@@ -456,32 +461,34 @@ class usercateringid(APIView):
         list = []
         f = verification.objects.filter(token=company_name)
         if len(f) != 0:
-            time = datetime.datetime.now()
-            b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
-                each=Events.objects.filter(status='Accepted',pk=id) # admin accepted
-                z = Orphanage.objects.get(orphanage_id=each.orphanage_id.orphanage_id)
-                print(z)
-                h =User.objects.get(id=each.user_id.id)
-                print(h.id,h.username)
-                h1=UserDetails.objects.get(user_id=h.id)
-                var={
-                    'date_of_event':each.date_of_event,
-                    'username':each.user_id.username,
-                    'orphanage_name':each.orphanage_id.orphanage_name,
-                    'user_phonenumber':h1.phone_no,
-                    'orphanage_phonenumber':z.phone_no,
-                    'address':z.address,
-                    'id':each.pk
+            # time = datetime.datetime.now()
+            # b = (f[0].hit)
+            # if abs(time.second - b.second) > 5:
+            #     f[0].hit = datetime.datetime.now()
+            #     f[0].save()
+            each=Events.objects.get(status='Accepted',pk=id) # admin accepted
+            z = Orphanage.objects.get(orphanage_id=each.orphanage_id.orphanage_id)
+            print(z)
+            h =User.objects.get(id=each.user_id.id)
+            print(h.id,h.username)
+            h1=UserDetails.objects.get(user_id=h.id)
+            var={
+                'date_of_event':each.date_of_event,
+                'event':each.event,
+                'username':each.user_id.username,
+                'orphanage_name':each.orphanage_id.orphanage_name,
+                'description':each.description,
+                'user_phonenumber':h1.phone_no,
+                'orphanage_phonenumber':z.phone_no,
+                'address':z.address,
+                'id':each.pk
 
-                }
-                list.append(var)
-            else :
-
-                var = {"detail": "Hit after five seconds"}
-                list.append(var)
+            }
+            list.append(var)
+            # else :
+            #
+            #     var = {"detail": "Hit after five seconds"}
+            #     list.append(var)
 
         else:
             var={"detail": "Authentication credentials were not provided."}
@@ -496,42 +503,42 @@ class cateringtoken(APIView):
     def post(self, request,company_name):
         f = verification.objects.filter(token=company_name)
         if len(f) != 0:
-            time = datetime.datetime.now()
-            b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
+            # time = datetime.datetime.now()
+            # b = (f[0].hit)
+            # if abs(time.second - b.second) > 5:
+            #     f[0].hit = datetime.datetime.now()
+            #     f[0].save()
 
-                print(request.data)
-                for each in request.data:
-                    event_id=each['event_id']           #request.data[each]['event_id']
-                    company_name=each['company_name']   #request.data[each]['company_name']
-                    items=each['items']                     #request.data[each]['description']
-                    price=each['price']
-                    image=each['image']
-                    print(company_name,event_id)
-                    #h=Donation.objects.get(pk=danation_id)
-                    data=catering.objects.filter(event_id=event_id)
-                    count=0
-                    for k in data:
-                        print(k.company_name,company_name)
-                        if k and k.company_name==company_name :
-                            count=count+1
-                    print(count)
-                    if count==0:
-                        newtransport=catering.objects.create(   #creating object
-                        event_id=event_id,
-                        company_name=company_name,
-                        items=items,
-                        price=price,
-                        image=image,
-                        status='0'
-                        )
-                        newtransport.save()
-            else :
-                list=[]
-                var = {"detail": "Hit after five seconds"}
-                list.append(var)
+            print(request.data)
+            for each in request.data:
+                event_id=request.data[each]['event_id']           #request.data[each]['event_id']
+                company_name=request.data[each]['company_name']   #request.data[each]['company_name']
+                items=request.data[each]['items']                     #request.data[each]['description']
+                price=request.data[each]['price']
+                image=request.data[each]['image']
+                print(company_name,event_id,image,items,price)
+                #h=Donation.objects.get(pk=danation_id)
+                data=catering.objects.filter(event_id=event_id)
+                count=0
+                for k in data:
+                    print(k.company_name,company_name)
+                    if k and k.company_name==company_name :
+                        count=count+1
+                print(count)
+                if count==0:
+                    newtransport=catering.objects.create(   #creating object
+                    event_id=event_id,
+                    company_name=company_name,
+                    items=items,
+                    price=price,
+                    image=image,
+                    status='0'
+                    )
+                    newtransport.save()
+            # else :
+            #     list=[]
+            #     var = {"detail": "Hit after five seconds"}
+            #     list.append(var)
 
         else:
             list=[]
@@ -554,7 +561,7 @@ class useracceptcateringid(APIView):
             if abs(time.second - b.second) > 5:
                 f[0].hit = datetime.datetime.now()
                 f[0].save()
-                company_name=k[0].companyname.company_name
+                company_name=k[0].companyname
                 data=catering.objects.filter(event_id=id)
                 print('hii')
                 status="Not Checked "

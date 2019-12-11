@@ -3,9 +3,7 @@ from homepage.models import donatemoney,donatevaluables,Orphanage
 from django.contrib.auth.models import User
 
 class MoneySerializer(serializers.ModelSerializer):
-    
     user = serializers.SerializerMethodField('get_userid')
-
     class Meta:
         model = donatemoney
         fields = ("__all__")

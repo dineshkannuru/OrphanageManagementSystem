@@ -14,6 +14,7 @@ urlpatterns = [
     path('test/',include(router.urls)),
     path('api/',views.rest_moneyview,name='rest'),
     path('donate_money/',views.donatemoneyview,name='donatemoney'),
+    path('emer_donate_money/<int:eid>/',views.emergencydonatemoneyview,name='emergencydonatemoney'),
     path('donate_valuables/',views.donatevaluablesview,name='donate_valuables'),
     path('donation_done/',views.donation_completedview,name='completed'),
     path('donation_interrupt/',views.donation_interruptview,name='cancel'),
@@ -27,6 +28,6 @@ urlpatterns = [
     path('Rejected/',views.rejectedview,name='rejected'),
     path('history/',views.historyview,name='history'),
     path('received/',views.receivedview,name='received'),
-    path('emer_donate_money/<int:eid>/',views.emergencydonatemoneyview,name='emergencydonatemoney'),
+    path('progress/',views.progressview,name='progress'),
 
 ]
