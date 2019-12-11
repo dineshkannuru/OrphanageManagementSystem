@@ -40,14 +40,62 @@
                                         {% for content in data1 %}
                                         <tr>
                                             <td class= 'cnt'>{{ content.company_name }}</td>
-                                            <td class= 'cnt'><input class="acc btn" type="submit" value="View Menu" name ="myButton"></td>
+                                            <td class= 'cnt'><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title " id="exampleModalLongTitle" > {{ content.company_name  }}  Menu </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <div class="container">
+              <div class="row">
+                  <div class="col l6">
+                      <img src="{% static 'homepage/images/medvevev.jpg' %}"  style="width: 300px !important;
+    height: 300px !important;" >
+                  </div>
+
+                  <div class="col l6">
+                  <h3 class="mr-auto mb-4">Items</h3>
+                    <ul class="">
+                                        {%   for each in check %}
+
+                      <li style="width:150px;">{{ each }}</li>
+
+                                            {% endfor %}
+
+                    </ul>
+                  </div>
+
+              </div>
+          </div>
+
+
+      </div>
+      <div class="modal-footer">
+          <div class="mr-auto">
+              <h2 style="">Total Amount : {{ content.price }}</h2>
+          </div>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div></td>
                                             <td class= 'cnt'>{{ content.duration }}</td>
                                             <td class= 'cnt'>{{ content.price }}</td>
 
                                             <td  class='cnt' width="15%">
                                             <form method="post" action= "{% url 'superuser:r_result1' %}" autocomplete="off" >
                                                 {% csrf_token %}
-                                                <input type="hidden" name="name" value={{ content.event_id }}>
+                                                <input type="hidden" name="name" value={{ content.pk }}>
                                                 <input class="acc btn" type="submit" value="Accept" name ="myButton">
                                             </form>
                                             </td>

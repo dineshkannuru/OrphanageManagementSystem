@@ -11,9 +11,6 @@ from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
 def show_me_the_money(sender, **kwargs):
     print("MAY be")
 
-def user_image_upload_url(instance, filename):
-    return os.path.join("user_image", str(instance.user_id), filename)
-
 def orphanage_image_upload_url(instance, filename):
     return os.path.join("orphanage_image", str(instance.orphanage_name), filename)
 
@@ -34,7 +31,6 @@ class UserDetails(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER)
     phone_no = models.CharField(max_length=10,null=True)
-    image = models.ImageField(upload_to=user_image_upload_url, blank=True, null=True)
 
 class Orphanage(models.Model):
     orphanage_id = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -63,6 +59,7 @@ class review(models.Model):
     description=models.CharField(max_length=150,null=True)
     rating=models.IntegerField(null=True)
     user=models.ForeignKey(User, on_delete=models.PROTECT)
+    date_created=models.DateField(default=None)
 
 
 
@@ -100,6 +97,7 @@ class donatemoney(models.Model):
     status = models.IntegerField()
     date_of_donation = models.DateTimeField(default = timezone.now)
     description = models.CharField(default=None,max_length=50)
+    paypal_transaction = models.CharField(default=None,max_length=50)
 
     class Meta:
         get_latest_by = ['tid','status']
@@ -134,7 +132,6 @@ class Emergency(models.Model):
     date_of_post = models.DateTimeField(default=timezone.now)
     status = models.IntegerField()
 
-
 class Events(models.Model):
     user_id = models.ForeignKey(User, on_delete=models.PROTECT)
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
@@ -143,6 +140,7 @@ class Events(models.Model):
     status = models.CharField(max_length=50,default='Freshly Applied')
     description = models.CharField(max_length=200)
     event = models.CharField(max_length=30)
+    canbereviewed=models.CharField(max_length=30,default='No')
 
 class Transport(models.Model):
     danation_id = models.IntegerField()

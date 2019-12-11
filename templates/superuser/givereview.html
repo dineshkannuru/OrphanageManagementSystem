@@ -13,8 +13,9 @@
                         {{ message }}
                     </div>
                     {% endfor %}
-                {% endif %}
+
             </div>
+                {% else %}
             <div class="content my-3">
                 <div class="container-fluid">
                     <div class="row">
@@ -24,8 +25,9 @@
                                     <h4 class="card-title text-center"> Give your review to company </h4>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
-                                    <form method="POST" action='{% url "superuser:givereview" %}'>
+                                    <form method="POST" action='{% url "superuser:givereview"  %}'>
                                         {% csrf_token %}
+                                        <input  type=hidden name="name" value="{{ x }}">
 
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Write your review</b><br> <textarea rows="4" cols="50" name="description">
                                         </textarea>
@@ -64,6 +66,7 @@
                     </div>
                 </div>
             </div>
+        {% endif %}
 
                         <!-- content ends here-->
 {% endblock content %}

@@ -9,10 +9,15 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <title> Orphanage </title>
   <link rel="stylesheet" href="{% static 'orphanageadmin/theme2.css' %}">
+    <script src="{% static "company/Chart.js" %}"></script>
         <script src="{% static 'orphanageadmin/caleandar.js' %}"></script>
         <script src="{% static 'orphanageadmin/admin-script.js' %}"></script>
             <link rel="stylesheet" type="text/css" href="{% static 'superuser/css/givereview.css' %}">
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -54,7 +59,7 @@
             </ul>
         </li>
         <li class="sidebar-reviews">
-            <a href="{% url 'userdashboard:u_aboutor' %}"><i class="far fa-thumbs-up mr-3"></i>Reviews</a>
+            <a href="{% url 'company:ureviews' %}"><i class="far fa-thumbs-up mr-3"></i>Reviews</a>
         </li>
 
 

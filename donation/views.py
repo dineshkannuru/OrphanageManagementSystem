@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import json
+import re
 import requests
 from json import load
 from urllib.request import urlopen
@@ -13,7 +14,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from paypal.standard.models import ST_PP_COMPLETED
 from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
-from homepage.models import donatemoney,donatevaluables,Orphanage,Transport, Emergency
+from homepage.models import donatemoney,donatevaluables,Orphanage,Transport,Emergency
 from paypal.standard.forms import PayPalPaymentsForm
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status,viewsets
@@ -25,19 +26,6 @@ import random
 import pdb
 
 # Create your views here.
-
-@csrf_exempt
-def show_me_the_money(sender, **kwargs):
-    ipn_obj = sender
-    print(ipn_obj)
-    print("may be")
-    if ipn_obj.payment_status == ST_PP_COMPLETED:
-        # Undertake some action depending upon `ipn_obj`.
-        if ipn_obj.custom == "Upgrade all users!":
-            Users.objects.update(paid=True)
-    else:
-        Users.objects.update(paid=False)
-
 
 
 # Create your views here.
@@ -53,8 +41,9 @@ def donatemoneyview(request):
         orphanage_name = orphanage.orphanage_name
         print(orphanage_id1)
         description= request.POST['description']
+        paypal_transaction = 'None'
         status = "0"
-        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status)
+        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status,paypal_transaction= paypal_transaction)
         saveform.save()
         tid=donatemoney.objects.latest('pk')
         print(tid)
@@ -67,35 +56,61 @@ def donatemoneyview(request):
         }
     return render(request,'donation/money.html',context)
 
+
+@login_required(login_url='registration:login')
+def emergencydonatemoneyview(request,eid):
+    emergency=Emergency.objects.get(pk = eid)
+    print(emergency)
+    Orphanages = emergency.orphanage_id
+    des = emergency.situation
+    des=str(des)
+    print(Orphanages)
+   # des = emergency.situation
+   # Orphanages=Orphanage.objects.get(pk = id_orphanage)
+    if request.method =='POST':
+        user_id = request.user
+        transfer = request.POST['transfer']
+        amount = request.POST['amount']
+        orphanage_id1 = request.POST['orphanage_id']
+        orphanage=Orphanage.objects.get(pk = orphanage_id1)
+        orphanage_name = orphanage.orphanage_name
+        print(orphanage_id1)
+        description = des
+        paypal_transaction = 'None'
+        status = "0"
+        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status,paypal_transaction= paypal_transaction)
+        saveform.save()
+        tid=donatemoney.objects.latest('pk')
+        print(tid)
+        tidstring=tid.pk
+        if transfer=="paypal":
+            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage_id1))) 
+    else:
+        context = {
+            'orphanage': Orphanages,'des':des
+        }
+    return render(request,'donation/emer_donate.html',context)
+
+
 @csrf_exempt
 def donation_completedview(request):
-    args = {'post':request.POST,'get':request.GET}
-    data=donatemoney.objects.latest()
-    data.status='1'
-    valid_ipn_received.connect(show_me_the_money)
-    data.save()
-    return render(request,'donation/donation_done.html',args)
+    return render(request,'donation/donation_done.html')
 
 @csrf_exempt
 def donation_interruptview(request):
-    data=donatemoney.objects.latest()
-    data.status='-1'
-    data.save()
     return render(request,'donation/donation_interrupt.html')
 
 @login_required(login_url='registration:login')
 def donatevaluablesview(request):
     Orphanages = Orphanage.objects.all()
-    
     if request.method =='POST':
         user_id = request.user
-        type=request.POST.get('type')
+        type =request.POST.get('type')
         quantity=request.POST.get('quantity')
         orphanage_id1 = request.POST['orphanage_id']
         orphanage=Orphanage.objects.get(pk = orphanage_id1)
         orphanage_name = orphanage.orphanage_name
         object = request.POST.get('object_name')
-        orphanage = Orphanage.objects.get(pk = orphanage_id1)
         description= request.POST.get('description')
         address = request.POST.get('address')
         print(user_id)
@@ -114,17 +129,16 @@ def paypal_home(request,tid,amount,orphanage_id1):
     orphanage=selected_orphanage.orphanage_name
     user_name=request.user
     account=selected_orphanage.account
-    num = random.randint(1,100000)
     print(account)
     paypal_dict = {
         "business": account,
         "amount": amount,
         "currency-code":"USD",
-        "item_name": num,
-        "invoice": num,
+        "item_name": amount,
+        "invoice": tid,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return": "http://38ed8983.ngrok.io/donation/donation_done/",
-        "cancel_return": "http://38ed8983.ngrok.io/donation/donation_interrupt/",
+        "return": "http://2a379797.ngrok.io/donation/donation_done/",
+        "cancel_return": "http://2a379797.ngrok.io/donation/donation_interrupt/",
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     data=donatemoney.objects.latest()
@@ -180,56 +194,140 @@ def acceptedview(request):
 def historyview(request):
     user = request.user
     donations = donatemoney.objects.filter(user_id=user)
+    count=0
+    badge=0
+    for donation in donations:
+        if donation.status ==2:
+            count += donation.amount
+            if count>250:
+                badge=25
+            elif count>500:
+                badge=50
+            elif count>1000:
+                badge=100
+            else:
+                badge=0
+    badge=str(badge)
+    print(badge)
+    print(count)
+    if count<1000:
+        percent = count/1000*100
+    else:
+        percent = 100
     
-    context = {"donations": donations}
-    return render(request, "donation/history.html", context)
+    context = {"donations": donations,'badge':badge,'count':count,'percent':percent}
+    return render(request, "donation/test2.html", context)
 
 
+def progressview(request):
+    user = request.user
+    donations = donatemoney.objects.filter(user_id = user)
+    count=0
+    badge=0
+    for donation in donations:
+        if donation.paypal_transaction !=None:
+            count += donation.amount
+            if count>25:
+                badge=1
+            elif count>50:
+                badge=2
+            elif count>100:
+                badge=3
+            else:
+                badge=4
 
+    context = {'badge':badge,'count':count}
+    return render(request, "donation/progress.html", context)
 
 #COULD not access 2d list in django
 def socialview(request):
-    url="https://graph.facebook.com/v5.0/107316914058945?fields=posts.limit(20)%7Bmessage%2Cfrom%2Cadmin_creator%2Clikes.limit(30)%2Cfull_picture%7D%2Cevents.limit(10)%7Bowner%2Cdescription%2Cstart_time%7D&access_token=EAALOtHuxZAWUBANT76cZC0rRVlFDrwXrReqBWC4jiotiZCZAI7KIp9Glc1yakdJ1rJG0V8mRxNYGiIaKlHbc3dIVXWzPUOImGjVp8kxAQb71p7d2t4Kk5W2LzIwEnrpfDUQbiN1vHH2gUJR9QLmP9hBnLOsKZBDjYWFq7Dn6cc3ZAMLSVaXBZBRYlzSIuO9G6ZB4kevqTwh0DgZDZD"
+    url= "https://graph.facebook.com/v5.0/107316914058945?fields=posts.limit(20)%7Bmessage%2Cfrom%2Cadmin_creator%2Cfull_picture%2Ccreated_time%2Clikes.summary(true)%2Cplace%2Cevent%2Cid%7D%2Cevents.limit(10)%7Bowner%2Cdescription%2Cstart_time%2Cname%2Cend_time%2Cpicture%7D&transport=cors&access_token=EAALOtHuxZAWUBAPYBI0QoZAcslh0gA6TpBi4O47az8CWDA2g4ipZCoeD3Ve4ZCblC1z8jaDk08JVZAmW0c8vHh8Bt4u6iKZAlItfdkaFEbFf8M7mLLKg1keoSNAJ8jOfJ1Sny4ZBOUuEpsOEN6UFdOa3U4wX8xTwN6D7IBh91i01ZBBEZBvwKx3Wg9Nfcb95dO08ZD"
     response=urlopen(url)
     json_text = load(response)
     
     feed_messages=list()
     feed_pictures=list()
+    feed_date=list()
     event_owner=list()
     event_description=list()
     event_start=list()
-    
-    feed = [[] for i in range(10)]
+    event_iden=list()
+    event_end=list()
+    event_pics=list()
+    event_title=list()
+    feed_likes = list()
+    event_time=list()
+    feed=list()
+    event=list()
    
+    date=''
+    iden_list=[]
+    start=[]
 
-    for info in json_text["posts"]["data"]:
-        mess=info.get('message', 'null')
-        pics=info.get('full_picture','null')
-        likes=info.get('likes','null')
-        feed_messages.append(mess)
-        feed_pictures.append(pics)
         
     for info in json_text["events"]["data"]:
-        mess=info.get('description', 'null')
-        owner=info.get('name', 'null')
-        start=info.get('start_time','null')
+        start_list=[]
+        date_list=[]
+        end_list=[]
+        mess=info.get('description',None)
+        owner=info['owner'].get('name', None)
+        title=info.get('name', None)
+        start=info.get('start_time',None)
+        start_list=re.split(r'T',start)
+        print(start_list[1])
+        p=str(start_list[1])
+        date_list=re.split(r':',p)
+        start = str(start_list[0])
+        time=str(date_list[0])+str(':')+str(date_list[1])
+        end=info.get('end_time', None)
+        end_list=re.split(r'T',end)
+        print(end_list[1])
+        p=str(end_list[1])
+        end_list=re.split(r':',p)
+        end=str(end_list[0])+str(':')+str(end_list[1])
+        pics=info.get('full_picture',None)
+        iden=info.get('id',None)
         event_description.append(mess)
         event_owner.append(owner)
-        event_start.append(pics)
+        event_pics.append(pics)
+        event_title.append(title)
+        event_start.append(start)
+        event_end.append(end)
+        event_iden.append(iden)
+        event_time.append(time)  
         
+
+    for info in json_text["posts"]["data"]:
+        mess=info.get('message', None)
+        pics=info.get('full_picture',None)
+        iden=info.get('id',None)
+        iden_list = re.split(r'_',iden)
+        iden=iden_list[1]
+        if iden not in event_iden: 
+            count = info['likes']['summary']['total_count']
+            if count !=0:
+                likes = count
+            else:
+                likes = None
+            date=str((info.get('created_time',None)))
+            date = re.split(r'T',date)
+            print(date)
+            feed_messages.append(mess)
+            feed_pictures.append(pics)
+            feed_likes.append(likes)
+            feed_date.append(date[0])
+            
     print(feed_messages)
     print(feed_pictures)
 
     for i in range(len(feed_messages)):
         print(feed_messages[i])
-        feed[i][0]=feed_messages[i]
-        feed[i][1]=feed_pictures[i]
+        feed.append([i,feed_messages[i],feed_pictures[i],feed_likes[i],feed_date[i]])
     
     for i in range(len(event_description)):
-        event[i][0]=event_description[i]
-        event[i][1]=feed_pictures[i]
+        event.append([i,event_title[i],event_description[i],event_pics[i],event_owner[i],event_start[i],event_time[i],event_end[i]])
     
-    context = {"feed":feed,"mess": feed_messages,"pics":feed_pictures,"desc":event_description,"owner":event_owner,"start":event_start}
+    context = {"feed":feed,"mess": feed_messages,"pics":feed_pictures,"desc":event_description,"owner":event_owner,"start":event_start,'events':event}
     return render(request, "donation/social.html", context)
     
    
@@ -262,42 +360,3 @@ class CurrentUserViewSet(viewsets.ReadOnlyModelViewSet):
 class testorphanage(viewsets.ModelViewSet):
     queryset = Orphanage.objects.all()
     serializer_class = testorphanageserializer
-
-@login_required(login_url='registration:login')
-def emergencydonatemoneyview(request,eid):
-    emergency=Emergency.objects.get(pk = eid)
-    print(emergency)
-    Orphanages = emergency.orphanage_id
-    des = emergency.situation
-    des = str(des)
-    print(Orphanages)
-   # des = emergency.situation
-   # Orphanages=Orphanage.objects.get(pk = id_orphanage)
-    if request.method =='POST':
-        user_id = request.user
-        transfer = request.POST['transfer']
-        amount = request.POST['amount']
-        orphanage_id1 = request.POST['orphanage_id']
-        orphanage=Orphanage.objects.get(pk = orphanage_id1)
-        orphanage_name = orphanage.orphanage_name
-        print(orphanage_id1)
-        description= des
-        paypal_transaction = 'None'
-        status = "0"
-        saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status,paypal_transaction= paypal_transaction)
-        saveform.save()
-        tid=donatemoney.objects.latest('pk')
-        print(tid)
-        tidstring=tid.pk
-        if transfer=="paypal":
-            return HttpResponseRedirect(reverse('donation:inprogress',args=(tidstring,amount,orphanage_id1)))
-    else:
-        context = {
-            'orphanage': Orphanages,'des':des
-        }
-    return render(request,'donation/emer_donate.html',context)
-
-
-
-valid_ipn_received.connect(show_me_the_money)
-

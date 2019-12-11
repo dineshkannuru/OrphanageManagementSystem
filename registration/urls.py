@@ -30,6 +30,7 @@ urlpatterns = [
     path('result',views.result,name='r_result1'),
 
 
+
     # path(r'password_reset/', auth_views.PasswordResetView.as_view() , name= 'password_reset'),
     # path(r'password_reset/done/', auth_views.PasswordResetDoneView.as_view(), name= 'password_reset_done'),
     # path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),

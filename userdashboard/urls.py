@@ -15,5 +15,4 @@ path('about',views.about,name='u_aboutor'),
 path('about1',views.about1,name='u_aboutor1'),
 path('about_page',views.about_page,name='u_about_page'),
 path('location',views.location,name='u_location'),
-path('emergency', views.view_emergency_posts, name= 'u_view_emergency_posts')
 ]
