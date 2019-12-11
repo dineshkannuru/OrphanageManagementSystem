@@ -1,0 +1,189 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+    sidebar_shift("sidebar-Valuable Donations")
+</script>
+
+ <!--           Start Content
+            <center>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class='alert alert-{{ message.tags }}'>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </center>-->
+            <br>
+            <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                    <h4 class="card-title text-center"> Company </h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-striped"  id = "customers">
+                                        {% if  data1 %}
+                                        <thead><tr>
+                                            <th class='cnt'> Company Name </th>
+                                            <th class='cnt'> Menu </th>
+                                            <th class='cnt'> Timings </th>
+                                            <th class='cnt'> Cost </th>
+                                            <th class='cnt' colspan = '2' > Accept </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        {% for content in data1 %}
+                                        <tr>
+                                            <td class= 'cnt'>{{ content.company_name }}</td>
+                                            <td class= 'cnt'><input class="acc btn" type="submit" value="View Menu" name ="myButton"></td>
+                                            <td class= 'cnt'>{{ content.duration }}</td>
+                                            <td class= 'cnt'>{{ content.price }}</td>
+
+                                            <td  class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'superuser:r_result1' %}" autocomplete="off" >
+                                                {% csrf_token %}
+                                                <input type="hidden" name="name" value={{ content.event_id }}>
+                                                <input class="acc btn" type="submit" value="Accept" name ="myButton">
+                                            </form>
+                                            </td>
+
+
+                                        </tr>
+
+                                        {% endfor %}
+                                        </tbody>
+                                    {% else %}
+                                    <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No Requests Available </h5>
+                                    {% endif %}
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- End Content -->
+{% endblock content %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE>
+<html>
+<head>
+  <style>
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
+    border-radius: 5px;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+
+  .btnsuccess {
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #4CAF50;
+  color: green;
+  }
+
+  .btnsuccess:hover {
+  background-color: #4CAF50;
+  color: white;
+  }
+
+
+  .btndanger{
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: white;
+  color: black;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-color: #f44336;
+  color: red
+  }
+
+  .btndanger:hover {
+  background: #f44336;
+  color: white;
+  }
+
+
+
+  </style>
+</head>
+<body>
+  {% for q in data1 %}
+<div class="card">
+<form action="{% url 'registration:r_result1'%}" method="post">{% csrf_token %}
+
+<h3> {{ q.company_name}}</h3>
+<input type="hidden" name="name" value="{{ q.pk }}" >
+<button class="btnsuccess"   value="accept" name="accept" >accept</button>
+</form>
+</div>
+{% endfor %}
+</body>
+
+
+
+
+
+</html>-->

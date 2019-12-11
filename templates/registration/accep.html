@@ -47,7 +47,7 @@
                                             <td  class='cnt' width="15%">
                                             <form method="post" action= "{% url 'registration:r_result1' %}" autocomplete="off" >
                                                 {% csrf_token %}
-                                                <input type="hidden" name="name" value={{ content.pk }}>
+                                                <input type="hidden" name="name" value={{ content.danation_id }}>
                                                 <input class="acc btn" type="submit" value="Accept" name ="myButton">
                                             </form>
                                             </td>

@@ -14,7 +14,10 @@ urlpatterns = [
     path('checkdate/',views.checkdate,name='checkdate'),
     path('requestedevents/<int:pk>',views.requestedevents,name='requestedevents'),
     path('acceptedevents/',views.acceptedevents,name='acceptedevents'),
-    path('rejectedevents/',views.rejectedevents,name='rejectedevents')
-
+    path('rejectedevents/',views.rejectedevents,name='rejectedevents'),
+    path('givereview/',views.givereview,name='givereview'),
+   # path('showreview/',views.showreview,name='showreview'),
+    path('solution', views.solution, name='solution'),
+    path('result', views.result, name='r_result1'),
 
 ]

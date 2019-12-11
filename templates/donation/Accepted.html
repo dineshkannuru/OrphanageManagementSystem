@@ -13,9 +13,11 @@
       <th scope="col">Type</th>
       <th scope="col">Object</th>
       <th scope="col">Date</th>
+ <th scope="col">delivery</th>
     </tr>
   </thead>
   <tbody>
+    
     {% for accept in accepted %}
       <tr>
       <th scope="row">{{accept.tid}}</th>
@@ -23,6 +25,15 @@
       <td>{{accept.donation_type}}</td>
       <td>{{accept.object_name}}</td>
       <td>{{accept.date_of_donation}}</td>
+      {% if accept.status == 10 %}
+      <td> <form action="{% url 'registration:solution' %}" method="post" >
+          {% csrf_token %}
+        <input type="hidden" name='name' value="{{ accept.pk }}" >
+        <button class="btn btn-primary "  >Accept</button>
+
+        </form>
+       </button></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

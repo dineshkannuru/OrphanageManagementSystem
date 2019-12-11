@@ -35,7 +35,7 @@ SECRET_KEY = 'elaak_hmy)uzom-@k%0ig-ah_tt)bl2lxe0ozv^2_+v@w90(*w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['164c9534.ngrok.io','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['38ed8983.ngrok.io','localhost','127.0.0.1']
 
 
 LOGIN_REDIRECT_URL = '/homepage'
@@ -96,13 +96,27 @@ WSGI_APPLICATION = 'oms.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'dota',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3307',
+        'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    }
+}
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}'''
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Password validation

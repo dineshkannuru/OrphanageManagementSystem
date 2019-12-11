@@ -1,0 +1,35 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+    sidebar_shift("sidebar-valuable")
+</script>
+            <h3>Yet to be confirmed Transactions:</h3>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Transaction id</th>
+                        <th scope="col">Orphanage</th>
+                        <th scope="col">Type</th>
+                        <th scope="col">Object</th>
+                        <th scope="col">Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for receive in received %}
+                    <tr>
+                        <th scope="row">{{receive.tid}}</th>
+                        <td>{{receive.orphanage_name}}</td>
+                        <td>{{receive.donation_type}}</td>
+                        <td>{{receive.object_name}}</td>
+                        <td>{{receive.date_of_donation}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+       
+    
+
+<!-- content ends here-->
+{% endblock content %}

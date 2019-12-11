@@ -5,29 +5,6 @@
     sidebar_shift("sidebar-valuable")
 </script>
 
-            <h3>Accepted Transactions:</h3>
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Transaction id</th>
-                        <th scope="col">Orphanage</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Object</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for accept in accepted %}
-                    <tr>
-                        <th scope="row">{{accept.tid}}</th>
-                        <td>{{accept.orphanage_name}}</td>
-                        <td>{{accept.donation_type}}</td>
-                        <td>{{accept.object_name}}</td>
-                        <td>{{accept.date_of_donation}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
 
 
             <h3>Rejected Transactions:</h3>

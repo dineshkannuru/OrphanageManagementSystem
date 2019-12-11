@@ -1,0 +1,76 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-donate")
+</script>
+<script>
+    var selected_options = document.querySelector('#drop').selectedOptions;
+
+for(var i=0; i<selected_options.length; i++) {
+	// echoes the text of the option
+	console.log(selected_options[i].text);
+	
+	// echoes the value of the option
+	console.log(selected_options[i].value);
+}
+</script>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=790224518079845&autoLogAppEvents=1"></script>
+    <form method="post" >
+        {% csrf_token %}
+        <div class="form-group">
+           
+                        <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center text-heading title">Donate money</h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                        <div class="form-group">
+                            <!-- <span>Subject</span> -->
+                            <label for="drop">Orphanage</label>
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage_id" id="drop">
+                                <option value="{{ orphanage.pk }}">{{ orphanage.orphanage_name }}</option>
+                            </select>
+                        </div>
+                        <!--Message-->
+                        <div class="md-form">
+                            <textarea id="Message" name="description" class="form-control md-textarea" rows="2" disabled>{{ des }}</textarea>
+                            <label for="Message">Message</label>
+                        </div>
+                         <div class="form-group">
+                            <span class="mr-3">Payment gateway</span>
+                            <!-- Default inline 1-->
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" class="custom-control-input" id="defaultInline1" value="paypal" name="transfer">
+                                <label class="custom-control-label" for="defaultInline1">Paypal</label>
+                            </div>
+
+                        </div> 
+                            <div class="md-form mt-3 ">
+                            <label for="amount">Amount</label>
+                            <input type="text" id="amount" name="amount" class="form-control" />   
+                        </div>
+                    </div>
+
+                <div class="col-sm-8">
+                <div class="md-form">
+                           <button style="text-align:center" value="submit" type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
+                        
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>
+            
+                </div>
+            </div>
+
+                                
+</form>
+
+            <!-- content ends here-->
+{% endblock content %}

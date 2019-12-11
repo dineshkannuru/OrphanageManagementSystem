@@ -1,2 +1,0 @@
-C:\Users\Acer\source\repos\Orphanage-Management-System-SOAD\bin\Microsoft.PythonTools.WebRole.dll
-C:\Users\Acer\source\repos\Orphanage-Management-System-SOAD\bin\wfastcgi.py

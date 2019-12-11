@@ -31,6 +31,7 @@
                                             
                                             <th class='cnt'> Orphanage </th>
                                             <th class='cnt'> Date </th>
+                                            <th class='cnt'>Accept</th>
                                         </tr></thead>
                                         <tbody>
                                         {% for i in t %}
@@ -39,7 +40,15 @@
                                             <td class= 'cnt'>{{ i.orphanage_id.orphanage_name }}</td>
                                             <td class= 'cnt'>{{ i.date_of_event }}</td>
                                             
-                                            
+                                            {% if i.status == 10 %}
+      <td> <form action="{% url 'superuser:solution' %}" method="post" >
+          {% csrf_token %}
+        <input type="hidden" name='name' value="{{ i.pk }}" >
+        <button class="btn btn-primary "  >Accept</button>
+
+        </form>
+       </td>
+      {% endif %}
                                             
                                         </tr>
                                         {% endfor %}

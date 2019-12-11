@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from homepage.models import Orphan,Orphanage,donatevaluables,donatemoney,Emergency,Events,Orphan,AddOrphan
+from homepage.models import Orphan,Orphanage,donatevaluables,donatemoney,Emergency,Events,Orphan,AddOrphan,Transport
 import datetime
 import json
 
@@ -14,18 +14,21 @@ def Profile(request):
     user = request.user
     print(user)
     qs = Orphanage.objects.get(orphanage_id = user)
+    qs1=User.objects.get(username=user)
     #content = {'orphanage_name':orphanage.orphanage_name}
     print(qs.image,'###')
-    return render(request,'orphanageadmin/profile.html',{"qs":qs})
+    return render(request,'orphanageadmin/profile.html',{"qs":qs,"qs1":qs1})
 
 @login_required
 def result1(request):
     user = request.user
     print(user)
     qs = Orphanage.objects.get(orphanage_id = user)
+    qs1=User.objects.get(username=user)
+
     #content = {'orphanage_name':orphanage.orphanage_name}
     print(qs.orphanage_name)
-    return render(request,'orphanageadmin/edit_profile.html',{"qs":qs})
+    return render(request,'orphanageadmin/edit_profile.html',{"qs":qs,"qs1":qs1})
 
 @login_required
 def result(request):
@@ -34,16 +37,26 @@ def result(request):
         print(user)
         empty=''
         qs = Orphanage.objects.get(orphanage_id = user)
+        qs1=User.objects.get(username=user)
+
         orphanage_name=request.POST.get('orphanage_name')
         phone_no=request.POST.get('phone_no')
         year_of_establishment=request.POST.get('year_of_establishment')
         description=request.POST.get('description')
         address=request.POST.get('address')
+        email=request.POST.get('email')
         print(orphanage_name)
         print(phone_no)
         print(year_of_establishment)
         print(description)
         print(address)
+
+        
+        if email==empty:
+            pass
+        else:
+            qs1.email = email
+
         if phone_no==empty:
             pass
         else:
@@ -65,11 +78,11 @@ def result(request):
 
 
 
-
+        qs1.save()
         qs.save()
-
+        qs1=User.objects.get(username=user)
         qs = Orphanage.objects.get(orphanage_id=user)
-        return render(request,'orphanageadmin/profile.html',{"qs":qs})
+        return render(request,'orphanageadmin/profile.html',{"qs":qs,"qs1":qs1})
 
 @login_required
 def RequestedDonations(request):
@@ -107,6 +120,8 @@ def AcceptedDonationsRecCan(request):
         val = int(request.POST["val"])
         id1 = request.POST["id1"]
         donatevaluables.objects.filter( tid = id1).update(status = val)
+        k=donatevaluables.objects.get( tid = id1,status=2)
+        Transport.objects.filter(danation_id=k.pk,status=1).update(status=3)
         if val == 2:
             messages.success(request,'Successfully received the donation')
             return redirect('orphanageadmin:o_accepteddonations')
@@ -126,7 +141,7 @@ def ReceivedDonations(request):
 def MoneyDonations(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = donatemoney.objects.filter(orphanage_id = orphanage)
+    donation_request = donatemoney.objects.filter(orphanage_id = orphanage,status=1)
     content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/moneydonations.html',content)
 

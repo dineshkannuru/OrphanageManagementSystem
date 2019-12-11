@@ -106,3 +106,43 @@ def pendingJoinOrphan_requests(request):
     pending_joinorphan_requests = AddOrphan.objects.filter(ref_no=0, user_id=request.user)
     return render(request, 'userdashboard/pending_joinorphan_request.html',
                   {'pending_requests': pending_joinorphan_requests})
+
+@login_required
+def about(request):
+    orphanage = Orphanage.objects.all()
+    nulllist = []
+    for i in range(0,len(orphanage)):
+        nulllist.append(orphanage[i])
+    return render(request, 'userdashboard/about.html',{'contents':nulllist})
+
+@login_required
+def about1(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        nulllist = []
+        orphanage = Orphanage.objects.all()
+        for i in range(0,len(orphanage)):
+            if orphanage[i].orphanage_name.lower().find(search.lower()) == -1:
+                continue
+            else:
+                nulllist.append(orphanage[i])
+        return render(request,'userdashboard/about.html',{'contents':nulllist})
+
+@login_required
+def about_page(request):
+    if request.method == 'POST':
+        id1 = str(request.POST['id1'])
+        orphanage = Orphanage.objects.get(orphanage_name = id1)
+    return render(request,'userdashboard/about1.html',{'qs':orphanage})
+
+@login_required
+def location(request):
+    if request.method == 'POST':
+        id1 = str(request.POST['id1'])
+        orphanage = Orphanage.objects.get(orphanage_name = id1)
+    return render(request,'userdashboard/about2.html',{'qs':orphanage})
+
+@login_required
+def view_emergency_posts(request):
+    posts = Emergency.objects.filter(status=1)
+    return render(request, 'userdashboard/emergency_posts_view.html', {'posts': posts})
