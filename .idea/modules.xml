@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Orphanage-Management-System-SOAD-dummy.iml" filepath="$PROJECT_DIR$/.idea/Orphanage-Management-System-SOAD-dummy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Orphanage-Management-System-SOAD.iml" filepath="$PROJECT_DIR$/.idea/Orphanage-Management-System-SOAD.iml" />
     </modules>
   </component>
 </project>

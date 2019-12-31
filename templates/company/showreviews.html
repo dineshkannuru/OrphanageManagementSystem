@@ -1,0 +1,86 @@
+{% extends 'company/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-reviews")
+</script>
+            <!-- content starts here-->
+
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                    <h4 class="card-title text-center"> <b>Reviews given by users</b> </h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    {% if allreviews %}
+
+
+                                    {% for review in allreviews %}
+                                        <br>
+                                        <b>Date:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ review.date_created.day }}/{{ review.date_created.month }}/{{ review.date_created.year }}
+                                        <br>
+                                        <br>
+                                        <b>Name:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ review.user.username }}<br>
+                                        <b>rating:</b>
+
+                                        <div class="star-rating" style="margin-left: 0px;">
+                                        <input id="star-5_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                                        <label for="star-5_{{ review.pk }}" title="5 stars">
+                                            <i class="active fa fa-star" aria-hidden="true"></i>
+                                        </label>
+
+                                        <input id="star-4_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                                        <label for="star-4_{{ review.pk }}" title="5 stars">
+                                            <i class="active fa fa-star" aria-hidden="true"></i>
+                                        </label>
+                                        <input id="star-3_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                                        <label for="star-3_{{ review.pk }}" title="5 stars">
+                                            <i class="active fa fa-star" aria-hidden="true"></i>
+                                        </label>
+                                        <input id="star-2_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                                        <label for="star-2_{{ review.pk }}" title="5 stars">
+                                            <i class="active fa fa-star" aria-hidden="true"></i>
+                                        </label>
+                                        <input id="star-1_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                                        <label for="star-1_{{ review.pk }}" title="5 stars">
+                                            <i class="active fa fa-star" aria-hidden="true"></i>
+                                        </label>
+                                        </div>
+                                        <br>
+                                        <b>Review:</b>
+                                        {{ review.description }}
+                                        <br>
+
+
+                                        <script>
+                                            console.log($('input[name="ratingnew_{{ review.pk }}"]:radio'));
+                                            $($('input[name="ratingnew_{{ review.pk }}"]:radio')[5-{{ review.rating }}])
+                                                .prop("checked", true);
+                                        </script>
+
+                                    {% endfor %}
+                                  {% else %}
+                                        <h1>No reviews yet</h1>
+                                  {% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                        <!-- content ends here-->
+{% endblock content %}

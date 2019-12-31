@@ -21,7 +21,7 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover hoverable">
                                 <div class="card-header ">
-                                    <h4 class="card-title text-center"> Accepted Events </h4>
+                                    <h4 class="text-center text-heading title"> Accepted Events </h4>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-striped"  id = "customers">
@@ -31,6 +31,8 @@
                                             
                                             <th class='cnt'> Orphanage </th>
                                             <th class='cnt'> Date </th>
+                                            <th class='cnt'>Give Review</th>
+                                            <th class='cnt'>Accept</th>
                                         </tr></thead>
                                         <tbody>
                                         {% for i in t %}
@@ -38,8 +40,33 @@
                                             <td class= 'cnt'>{{ i.event }}</td>
                                             <td class= 'cnt'>{{ i.orphanage_id.orphanage_name }}</td>
                                             <td class= 'cnt'>{{ i.date_of_event }}</td>
+                                            {% if i.canbereviewed == 'Yes' %}
+                                            <td class="cnt">
+                                            <form action="{% url 'superuser:givereview' %}" method="get" >
+                                              {% csrf_token %}
+                                            <input type="hidden" name='name' value="{{ i.pk }}" >
+                                            <button class="btn btn-primary "  >Give Review</button>
+
+                                            </form>
+
+                                            </td>
+                                            {% elif i.canbereviewed == 'Completed' %}
+                                            <td class="cnt">Reviewed</td>
+                                            {% else %}
+                                            <td class="cnt">You can review after or on date of event</td>
+                                            {% endif %}
                                             
-                                            
+                                            {% if i.status == 10 %}
+      <td> <form action="{% url 'superuser:solution' %}" method="post" >
+          {% csrf_token %}
+        <input type="hidden" name='name' value="{{ i.pk }}" >
+        <button class="btn btn-primary "  >Accept</button>
+
+        </form>
+       </td>
+      {% else %}
+                                                <td class="cnt">No Tokens</td>
+      {% endif %}
                                             
                                         </tr>
                                         {% endfor %}

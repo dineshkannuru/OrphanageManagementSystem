@@ -1,51 +1,18 @@
-
-<!--
-
-=========================================================
-* Argon Dashboard - v1.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard
-* Copyright 2019 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 {% load static %}
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   <title>
-    Login
+    Registration
   </title>
   <!-- Extra details for Live View on GitHub Pages -->
   <!-- Canonical SEO -->
   <link rel="canonical" href="https://www.creative-tim.com/product/argon-dashboard" />
-  <!--  Social tags      -->
-  <meta name="keywords" content="dashboard, bootstrap 4 dashboard, bootstrap 4 design, bootstrap 4 system, bootstrap 4, bootstrap 4 uit kit, bootstrap 4 kit, argon, argon ui kit, creative tim, html kit, html css template, web template, bootstrap, bootstrap 4, css3 template, frontend, responsive bootstrap template, bootstrap ui kit, responsive ui kit, argon dashboard">
-  <meta name="description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <!-- Twitter Card data -->
-  <meta name="twitter:card" content="product">
-  <meta name="twitter:site" content="@creativetim">
-  <meta name="twitter:title" content="Argon - Free Dashboard for Bootstrap 4 by Creative Tim">
-  <meta name="twitter:description" content="Start your development with a Dashboard for Bootstrap 4.">
-  <meta name="twitter:creator" content="@creativetim">
-  <meta name="twitter:image" content="https://s3.amazonaws.com/creativetim_bucket/products/96/original/opt_ad_thumbnail.jpg">
-  <!-- Open Graph data -->
-  <meta property="fb:app_id" content="655968634437471">
-  <meta property="og:title" content="Argon - Free Dashboard for Bootstrap 4 by Creative Tim" />
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="https://demos.creative-tim.com/argon-dashboard/index.html" />
-  <meta property="og:image" content="https://s3.amazonaws.com/creativetim_bucket/products/96/original/opt_ad_thumbnail.jpg" />
-  <meta property="og:description" content="Start your development with a Dashboard for Bootstrap 4." />
-  <meta property="og:site_name" content="Creative Tim" />
+
   <!-- Favicon -->
-  <link href="https://demos.creative-tim.com/argon-dashboard/assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <link href="{% static 'homepage/images/icons/favicon.png' %}" rel="icon" type="image/png">
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- Icons -->
@@ -77,12 +44,8 @@
 </head>
 
 <body class="bg-default">
-  <p id="demo" style="display: none">Demo p tag is here</p>
-  <!-- Extra details for Live View on GitHub Pages -->
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NKDMSK6" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <div class="main-content">
+<p id="demo" style="display: none">Demo p tag is here</p>
+<div class="main-content">
     <!-- Navbar -->
     <nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark">
       <div class="container px-4">
@@ -112,29 +75,12 @@
           <!-- Navbar items -->
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://demos.creative-tim.com/argon-dashboard/index.html">
-                <i class="ni ni-planet"></i>
-                <span class="nav-link-inner--text">Dashboard</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://demos.creative-tim.com/argon-dashboard/examples/register.html">
-                <i class="ni ni-circle-08"></i>
-                <span class="nav-link-inner--text">Register</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://demos.creative-tim.com/argon-dashboard/examples/login.html">
+              <a class="nav-link nav-link-icon" href="{% url 'registration:login' %}">
                 <i class="ni ni-key-25"></i>
                 <span class="nav-link-inner--text">Login</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="https://demos.creative-tim.com/argon-dashboard/examples/profile.html">
-                <i class="ni ni-single-02"></i>
-                <span class="nav-link-inner--text">Profile</span>
-              </a>
-            </li>
+            
           </ul>
         </div>
       </div>
@@ -150,6 +96,7 @@
                 <select id = "select_type_dropDown" onchange="myFunction('user')" class="btn btn-primary dropdown-toggle .btn-warning">
                     <option value="user" >User</option>
                     <option value="orphanage">Orphanage</option>
+                    <option value="catering_company">Company</option>
                 </select>
             </div>
             </div>
@@ -165,6 +112,13 @@
     <!-- Page content -->
     <div class="container mt--8 pb-5">
       <div class="row justify-content-center">
+
+
+
+
+
+
+
             <div class="container" id ="user_signup_div">
                 <div class="col-lg-12 col-md-12 ">
                     <div class="card shadow border-0">
@@ -172,11 +126,11 @@
                             <div class="text-center text-muted mb-4">
                                 <h2>Sign up as User</h2>
                             </div>
-                            <form method="post" class="text-center text-muted" action="{% url 'registration:signup' %}" id="register_form">
-                <input type='hidden' value='{{ signup_type}}' id='user_type' />
+                            <form method="post" class="text-center text-muted" action="{% url 'registration:signup' %}" enctype="multipart/form-data"  id="register_form">
+                            <input type='hidden' value='{{ signup_type}}' id='user_type' />
 
                 <script>
-
+                $.getJSON('http://127.0.0.1:8000/registration/getData/user/');
                 function myFunction(x) {
                     x = document.getElementById("select_type_dropDown").value;
                     document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
@@ -192,27 +146,56 @@
                         document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
                         document.getElementById("demo").innerText += x;
                     }
+                    else if (document.getElementById('user_type').value === 'catering_company'){
+                        x = "catering_company";
+                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                        document.getElementById("demo").innerText += x;
+                    }
+
                     switch (x) {
                         case "user":
+                            document.getElementById('demo').innerText = "case user has run";
                             document.getElementById('user_signup_div').style.display = 'block';
                             document.getElementById('orphanage_signup_div').style.display = 'none';
+                            document.getElementById('catering_company_signup_div').style.display = 'none';
                             break;
                         case "orphanage":
+                            document.getElementById('demo').innerText = "case orphanage has run";
                             document.getElementById('user_signup_div').style.display = 'none';
                             document.getElementById('orphanage_signup_div').style.display = 'block';
+                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                            break;
+                        case "catering_company":
+                            document.getElementById('demo').innerText = "case catering company has run";
+                            document.getElementById('user_signup_div').style.display = 'none';
+                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                            document.getElementById('catering_company_signup_div').style.display = 'block';
                             break;
                         default:
+                            document.getElementById('demo').innerText = "default case has run";
                             document.getElementById('user_signup_div').style.display = 'block';
                             document.getElementById('orphanage_signup_div').style.display = 'none';
+                            document.getElementById('catering_company_signup_div').style.display = 'none';
                             break
                     }
-                }
 
+                }
+                if (document.getElementById('user_type').value === 'user') {
+                    document.getElementById("select_type_dropDown").value = "user";
+                    myFunction('user');
+                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+                }
                 if (document.getElementById('user_type').value === 'orphanage') {
                     document.getElementById("select_type_dropDown").value = "orphanage";
                     myFunction('orphanage');
                     document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
                 }
+                if (document.getElementById('user_type').value === 'catering_company') {
+                    document.getElementById("select_type_dropDown").value = "catering_company";
+                    myFunction('catering_company');
+                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+                }
+
                 </script>
 
                 {% csrf_token %}
@@ -220,12 +203,8 @@
 
                 <div class="form-row mb-4">
                     <div class="col">
-                        <!-- First name -->
-            {#            <input type="text" name="firstname" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">#}
                         {{ signup_form.first_name|add_class:"validate form-control" }}
                     </div>
-
-
                     {% if signup_form.first_name.help_text %}
                         <span >{{ signup_form.first_name.help_text }}</span>
                     {% endif %}
@@ -236,11 +215,7 @@
                     </span>
 
                     <div class="col">
-                        <!-- Last name -->
-            {#            <input type="text" name="lastname" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">#}
                         {{ signup_form.last_name|add_class:"validate form-control" }}
-
-
                         {% if signup_form.last_name.help_text %}
                             <span >{{ signup_form.last_name.help_text }}</span>
                         {% endif %}
@@ -249,10 +224,8 @@
                             <span >{{ signup_form.first_name.errors }}</span>
                         {% endif %}
                         </span>
-
                     </div>
                 </div>
-            {#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
                 {{ signup_form.username|add_class:"validate form-control mb-4" }}
 
                 {% if signup_form.first_name.help_text %}
@@ -264,8 +237,6 @@
                 {% endif %}
                 </span>
 
-                <!-- E-mail -->
-            {#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
                 {{ signup_form.email|add_class:"validate form-control mb-4" }}
                 {% if signup_form.email.help_text %}
                     <span >{{ signup_form.email.help_text }}</span>
@@ -275,14 +246,11 @@
                     <span >{{ signup_form.email.errors }}</span>
                 {% endif %}
                 </span>
-                <!-- Password -->
-            {#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
-                {{ signup_form.password|add_class:"validate form-control" }}
 
+                {{ signup_form.password|add_class:"validate form-control" }}
                 <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
                     At least 8 characters/digits are required
                 </small>
-
                 {% if signup_form.password.help_text %}
                     <span >{{ signup_form.password.help_text }}</span>
                 {% endif %}
@@ -291,6 +259,7 @@
                     <span >{{ signup_form.password.errors }}</span>
                 {% endif %}
                 </span>
+
                 {{ signup_form.confirm_password|add_class:"validate form-control" }}
                 {% if signup_form.confirm_password.help_text %}
                     <span >{{ signup_form.confirm_password.help_text }}</span>
@@ -301,6 +270,7 @@
                 {% endif %}
                 </span>
                 <br>
+
                 <div class="form-row mb-4">
                     <div class="col">
                         <input type="date" name="DOB"  class="form-control mb-4" placeholder="Date of birth"
@@ -312,15 +282,14 @@
                           <option value="F">Female</option>
                         </select>
                     </div>
-
                 </div>
-                <!-- Phone number -->
+
+                <input type="file" name="user_image" accept="image/*" class="form-control mb-4" >
+
                 <input type="number"  name="phone_number" id="defaultRegisterPhonePassword" class="form-control"
                        placeholder="Phone number" aria-describedby="defaultRegisterFormPhoneHelpBlock"
                         min="6000000000" max="9999999999">
 
-
-                <!-- Sign up button -->
                 <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
 
             </form>
@@ -329,6 +298,8 @@
                     </div>
                 </div>
             </div>
+
+
 
 
 
@@ -351,39 +322,72 @@
             <input type='hidden' value='{{ signup_type}}' id='user_type' />
             <script>
 
-            function myFunction(x) {
-                x = document.getElementById("select_type_dropDown").value;
-                document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
-                $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
-                document.getElementById("demo").innerHTML = 'getJSON block has been executed';
-                if (document.getElementById('user_type').value === 'orphanage') {
-                    x = "orphanage";
+                function myFunction(x) {
+                    x = document.getElementById("select_type_dropDown").value;
+                    document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
+                    $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
+                    document.getElementById("demo").innerHTML = 'getJSON block has been executed';
+                    if (document.getElementById('user_type').value === 'orphanage') {
+                        x = "orphanage";
+                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                        document.getElementById("demo").innerText += x;
+                    }
+                    else if (document.getElementById('user_type').value === 'user') {
+                        x = "user";
+                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                        document.getElementById("demo").innerText += x;
+                    }
+                    else if (document.getElementById('user_type').value === 'catering_company'){
+                        x = "catering_company";
+                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                        document.getElementById("demo").innerText += x;
+                    }
+
+                    switch (x) {
+                        case "user":
+                            document.getElementById('demo').innerText = "case user has run";
+                            document.getElementById('user_signup_div').style.display = 'block';
+                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                            break;
+                        case "orphanage":
+                            document.getElementById('demo').innerText = "case orphanage has run";
+                            document.getElementById('user_signup_div').style.display = 'none';
+                            document.getElementById('orphanage_signup_div').style.display = 'block';
+                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                            break;
+                        case "catering_company":
+                            document.getElementById('demo').innerText = "case catering company has run";
+                            document.getElementById('user_signup_div').style.display = 'none';
+                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                            document.getElementById('catering_company_signup_div').style.display = 'block';
+                            break;
+                        default:
+                            document.getElementById('demo').innerText = "default case has run";
+                            document.getElementById('user_signup_div').style.display = 'block';
+                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                            break
+                    }
+
+                }
+                if (document.getElementById('user_type').value === 'user') {
+                    document.getElementById("select_type_dropDown").value = "user";
+                    myFunction('user');
                     document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
-                    document.getElementById("demo").innerText += x;
-
                 }
-                switch (x) {
-                    case "user":
-                        document.getElementById('user_signup_div').style.display = 'block';
-                        document.getElementById('orphanage_signup_div').style.display = 'none';
-                        break;
-                    case "orphanage":
-                        document.getElementById('user_signup_div').style.display = 'none';
-                        document.getElementById('orphanage_signup_div').style.display = 'block';
-                        break;
-                    default:
-                        document.getElementById('user_signup_div').style.display = 'block';
-                        document.getElementById('orphanage_signup_div').style.display = 'none';
-                        break
+                if (document.getElementById('user_type').value === 'orphanage') {
+                    document.getElementById("select_type_dropDown").value = "orphanage";
+                    myFunction('orphanage');
+                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
                 }
-            }
+                if (document.getElementById('user_type').value === 'catering_company') {
+                    document.getElementById("select_type_dropDown").value = "catering_company";
+                    myFunction('catering_company');
+                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+                }
 
-            if (document.getElementById('user_type').value === 'orphanage') {
-                document.getElementById("select_type_dropDown").value = "orphanage";
-                myFunction('orphanage');
-                document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
-            }
-            </script>
+                </script>
 
             <div class="form-row mb-4">
                 <div class="col">
@@ -490,8 +494,9 @@
                       return false;
                     }
                     function showPosition(position) {
-                  document.getElementById("current_latitude").value =  position.coords.latitude;
-                  document.getElementById("current_longitude").value = position.coords.longitude;
+                        document.getElementById("current_latitude").value = position.coords.latitude;
+                        document.getElementById("current_longitude").value = position.coords.longitude;
+                    }
                 </script>
 
             </div>
@@ -503,24 +508,191 @@
                 </div>
             </div>
         </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="container" id="catering_company_signup_div" style="display: none">
+                <div class="col-lg-12 col-md-12 ">
+                    <div class="card shadow border-0">
+                        <div class="card-body px-lg-5 py-lg-5">
+                            <div class="text-center text-muted mb-4">
+                                <h2>Sign up as company to use API</h2>
+                            </div>
+                            <form method="post" class="text-center text-muted" action="{% url 'registration:signup' %}" id="register_form" enctype="multipart/form-data" >
+                                <input type='hidden' value='{{ signup_type}}' id='user_type' />
+
+                                <script>
+
+                                function myFunction(x) {
+                                    x = document.getElementById("select_type_dropDown").value;
+                                    document.getElementById("demo").innerHTML = "x is assigned to the dropdown value selected successfully.";
+                                    $.getJSON('http://127.0.0.1:8000/registration/getData/' + x +'/');
+                                    document.getElementById("demo").innerHTML = 'getJSON block has been executed';
+                                    if (document.getElementById('user_type').value === 'orphanage') {
+                                        x = "orphanage";
+                                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                                        document.getElementById("demo").innerText += x;
+                                    }
+                                    else if (document.getElementById('user_type').value === 'user') {
+                                        x = "user";
+                                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                                        document.getElementById("demo").innerText += x;
+                                    }
+                                    else if (document.getElementById('user_type').value === 'catering_company'){
+                                        x = "catering_company";
+                                        document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully. x is ';
+                                        document.getElementById("demo").innerText += x;
+                                    }
+
+                                    switch (x) {
+                                        case "user":
+                                            document.getElementById('demo').innerText = "case user has run";
+                                            document.getElementById('user_signup_div').style.display = 'block';
+                                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                                            break;
+                                        case "orphanage":
+                                            document.getElementById('demo').innerText = "case orphanage has run";
+                                            document.getElementById('user_signup_div').style.display = 'none';
+                                            document.getElementById('orphanage_signup_div').style.display = 'block';
+                                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                                            break;
+                                        case "catering_company":
+                                            document.getElementById('demo').innerText = "case catering company has run";
+                                            document.getElementById('user_signup_div').style.display = 'none';
+                                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                                            document.getElementById('catering_company_signup_div').style.display = 'block';
+                                            break;
+                                        default:
+                                            document.getElementById('demo').innerText = "default case has run";
+                                            document.getElementById('user_signup_div').style.display = 'block';
+                                            document.getElementById('orphanage_signup_div').style.display = 'none';
+                                            document.getElementById('catering_company_signup_div').style.display = 'none';
+                                            break
+                                    }
+
+                                }
+                                if (document.getElementById('user_type').value === 'user') {
+                                    document.getElementById("select_type_dropDown").value = "user";
+                                    myFunction('user');
+                                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+                                }
+                                if (document.getElementById('user_type').value === 'orphanage') {
+                                    document.getElementById("select_type_dropDown").value = "orphanage";
+                                    myFunction('orphanage');
+                                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+                                }
+                                if (document.getElementById('user_type').value === 'catering_company') {
+                                    document.getElementById("select_type_dropDown").value = "catering_company";
+                                    myFunction('catering_company');
+                                    document.getElementById("demo").innerHTML = 'Variable taken from django view to javascript successfully';
+                                }
+
+                                </script>
+
+                                {% csrf_token %}
+                                {% load widget_tweaks %}
+
+                                <div class="form-row mb-4">
+                                    <div class="col">
+                                        <!-- First name -->
+                                        <input type="text" name="company_name" id="defaultRegisterFormFirstName" class="form-control" placeholder="Company name">
+                                    </div>
+                                </div>
+                            {#    <input type="text" name="username"  class="form-control mb-4" placeholder="Username">#}
+                                {{ signup_form.username|add_class:"validate form-control mb-4" }}
+
+
+                                <span style="color: red ; font-size: 15px">
+                                {% if signup_form.username.errors %}
+                                    <span >{{ signup_form.username.errors }}</span>
+                                {% endif %}
+                                </span>
+
+                                <!-- E-mail -->
+                            {#    <input type="email" name="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">#}
+                                {{ signup_form.email|add_class:"validate form-control mb-4" }}
+                                {% if signup_form.email.help_text %}
+                                    <span >{{ signup_form.email.help_text }}</span>
+                                {% endif %}
+                                <span style="color: red ; font-size: 15px">
+                                {% if signup_form.email.errors %}
+                                    <span >{{ signup_form.email.errors }}</span>
+                                {% endif %}
+                                </span>
+                                <!-- Password -->
+                            {#    <input type="password"  name ="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">#}
+                                {{ signup_form.password|add_class:"validate form-control" }}
+
+                                <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+                                    At least 8 characters/digits are required
+                                </small>
+
+                                {% if signup_form.password.help_text %}
+                                    <span >{{ signup_form.password.help_text }}</span>
+                                {% endif %}
+                                <span style="color: red; font-size: 15px">
+                                {% if signup_form.password.errors %}
+                                    <span >{{ signup_form.password.errors }}</span>
+                                {% endif %}
+                                </span>
+                                {{ signup_form.confirm_password|add_class:"validate form-control" }}
+                                {% if signup_form.confirm_password.help_text %}
+                                    <span >{{ signup_form.confirm_password.help_text }}</span>
+                                {% endif %}
+                                <span style="color: red; font-size: 15px">
+                                {% if signup_form.confirm_password.errors %}
+                                    <span >{{ signup_form.confirm_password.errors }}</span>
+                                {% endif %}
+                                </span>
+                                <br>
+                                <input type="file" name="catering_image" accept="image/*" class="form-control mb-4" >
+
+                                <textarea name="address" class="form-control mb-4" placeholder="Address"></textarea>
+                                <!-- Phone number -->
+                                <textarea name="description" class="form-control mb-4" placeholder="Description"></textarea>
+
+
+                                <!-- Sign up button -->
+                                <button class="btn btn-info my-4 btn-block" type="submit">Sign Up</button>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+      </div>
     </div>
+
+
+
 
     <footer class="py-5">
       <div class="container">
         <div class="row align-items-center justify-content-xl-between">
           <div class="col-xl-6">
             <div class="copyright text-center text-xl-left text-muted">
-              © 2018 <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Kare</a>
+              © 2018 <a href="#" class="font-weight-bold ml-1" >Kare</a>
             </div>
           </div>
           <div class="col-xl-6">
             <ul class="nav nav-footer justify-content-center justify-content-xl-end">
               <li class="nav-item">
-                <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Kare</a>
+                <a href="#" class="nav-link" >Kare</a>
               </li>
               <li class="nav-item">
-                <a href="https://www.creative-tim.com/presentation" class="nav-link" target="_blank">About Us</a>
+                <a href="#" class="nav-link" >About Us</a>
               </li>
               <!-- <li class="nav-item">
                 <a href="http://blog.creative-tim.com" class="nav-link" target="_blank">Blog</a>

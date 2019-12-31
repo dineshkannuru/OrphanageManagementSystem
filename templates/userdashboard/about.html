@@ -1,0 +1,50 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .a {border: 1px solid #c6d8ff !important;}
+</style>
+<script>
+        sidebar_shift("sidebar-about")
+</script>
+<br>
+<div class="container">
+<div>
+	<div class="row justify-content-center">
+    <div class="col-6">
+      <form class="card" style="border: none;outline: none;box-shadow: none;" method="post" action= "{% url 'userdashboard:u_aboutor1' %}" autocomplete="off" onsubmit="myButton.disabled = true;">
+        {% csrf_token %}
+          <div class="card-body row align-items-center">
+            <div class="col">
+              <input class="a form-control form-control-lg form-control-borderless"  type="text" placeholder="Search" name='search'>
+            </div>
+            <div class="col-auto">
+              <button id="myButton" type="submit" class="btn btn-info">Search</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<br>
+<div class="row">
+  {% for content in contents %}
+  <div class="col-sm-4 ">
+    <div class="card mt-3">
+      <div class="card-body">
+        <center><h5 class="card-title">{{ content.orphanage_name }}</h5></center>
+         <img src="{{ content.image.url }}" width="100%" height="250">
+         <form  method="post" action= "{% url 'userdashboard:u_about_page' %}" autocomplete="off" onsubmit="myButton.disabled = true;">
+         {% csrf_token %}
+        <input type="hidden" name="id1" value="{{ content.orphanage_name }}" />
+        <center><button id="myButton" class="btn btn-primary">View More</button></center>
+        </form>
+        </center>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+</div>
+{% endblock content %}

@@ -6,11 +6,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="{% static 'homepage/images/icons/favicon.png' %}" rel="icon" type="image/png">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title> Orphanage </title>
+  <title> User Dashboard </title>
   <link rel="stylesheet" href="{% static 'orphanageadmin/theme2.css' %}">
         <script src="{% static 'orphanageadmin/caleandar.js' %}"></script>
-        <script src="{% static 'orphanageadmin/admin-script.js' %}"></script>
+        <script src="{% static 'orphanageadmin/admin-scrleipt.js' %}"></script>
+            <link rel="stylesheet" type="text/css" href="{% static 'superuser/css/givereview.css' %}">
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
@@ -42,7 +47,7 @@
                     <a href="{% url 'donation:donatemoney' %}">Donate</a>
                 </li>
                 <li>
-                    <a href="#">History</a>
+                    <a href="{% url 'donation:history' %}">History</a>
                 </li>
             </ul>
         </li>
@@ -58,6 +63,9 @@
                 <li>
                     <a href="{% url 'donation:rejected' %}">Rejected Donations</a>
                 </li>
+                <li>
+                    <a href="{% url 'donation:received' %}">Not yet reviewed</a>
+                </li>
             </ul>
         </li>
         <li>
@@ -68,16 +76,16 @@
                     <a href="{% url 'superuser:addevent' %}">Add an event</a>
                 </li>
                 <li>
-<a href="{% url 'superuser:requestedevents' pk=0 %}">Requested Events</a>
-</li>
-<li>
-<a href="{% url 'superuser:acceptedevents' %}">Accepted Events</a>
-</li>
-<li>
-<a href="{% url 'superuser:rejectedevents' %}">Rejected Events</a>
-</li>
-</ul>
-</li>
+                    <a href="{% url 'superuser:requestedevents' pk=0 %}">Requested Events</a>
+                </li>
+                <li>
+                    <a href="{% url 'superuser:acceptedevents' %}">Accepted Events</a>
+                </li>
+                <li>
+                    <a href="{% url 'superuser:rejectedevents' %}">Rejected Events</a>
+                </li>
+            </ul>
+        </li>
 
         <li>
 {#            <a href="#"><i class="fas fa-hand-holding mr-3"></i>Join Orphan</a>#}
@@ -98,7 +106,10 @@
             </ul>
         </li>
         <li class="sidebar-about orphan">
-            <a href="#"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>
+            <a href="{% url 'userdashboard:u_aboutor' %}"><i class="far fa-thumbs-up mr-3"></i>About Orphanages</a>
+        </li>
+        <li class="sidebar-emergency-posts">
+          <a href="{% url 'userdashboard:u_view_emergency_posts' %}"><i class="far fa-plus-square mr-3"></i>Emergency posts</a>
         </li>
     </ul>
 </nav>
