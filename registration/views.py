@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 
-from homepage.models import Orphanage, Type, UserDetails,Transport,donatevaluables, CateringCompany
+from homepage.models import Orphanage, Type, UserDetails,Transport,donatevaluables, CateringCompany,verification
 from registration.form import RegisterForm, CustomAuthForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout
@@ -62,7 +62,6 @@ def signup(request):
                     password=new_user_form.cleaned_data["password"],
                     email=new_user_form.cleaned_data["email"]
                 )
-
                 new_user.first_name = new_user_form.cleaned_data["first_name"]
                 new_user.last_name = new_user_form.cleaned_data["last_name"]
                 new_user.is_active = False
@@ -71,8 +70,10 @@ def signup(request):
                     user_id=new_user,
                     date_of_birth=request.POST["DOB"],
                     gender=request.POST["gender"],
-                    phone_no=request.POST["phone_number"]
+                    phone_no=request.POST["phone_number"],
+                    image=request.FILES.get("user_image"),
                 )
+                print(request.FILES.get("user_image"))
                 user_type = Type.objects.create(
                     user=new_user,
                     ref_no=1
@@ -95,8 +96,8 @@ def signup(request):
                     mail_subject, message, to=[to_email]
                 )
                 email.send()
-                return HttpResponse(
-                    '<h1>New user created successfully</h1><br>Please confirm your email address to complete the registration')
+                message = "New user created successfully. Please confirm your email address to complete the registration"
+                return render(request, 'registration/check_for_email.html', {'message': message})
 
             else:
                 print("User signup form Invalid")
@@ -148,15 +149,14 @@ def signup(request):
                     mail_subject, message, to=[to_email]
                 )
                 email.send()
-                return HttpResponse(
-                    '<h1>New orphanage user created successfully</h1><br>'
-                    'Please confirm your email address to complete the registration')
+                message = "New orphanage user created successfully. Please confirm your email address to complete the registration"
+                return render(request, 'registration/check_for_email.html', {'message': message})
                 # return HttpResponse("<h1>New orphanage user created successfully</h1>")
             else:
                 print("Orphanage signup form Invalid")
                 return render(request, 'registration/signup_page.html',
                               {"signup_form": new_user_form, 'signup_type': signup_type})
-        elif signup_type == 'catering_company': 
+        elif signup_type == 'catering_company':
             new_user_form = RegisterForm(request.POST)
             if new_user_form.is_valid():
                 new_user = User.objects.create_user(
@@ -166,20 +166,15 @@ def signup(request):
                 )
                 new_catering_company = CateringCompany.objects.create(
                     company_id=User.objects.get(username=new_user_form.cleaned_data["username"]),
-                    company_name = request.POST["company_name"],
-                    address = request.POST["address"],
-                    description = request.POST["description"],
-                    image = request.FILES.get("image")
+                    company_name=request.POST["company_name"],
+                    address=request.POST["address"],
+                    description=request.POST["description"],
+                    image=request.FILES.get("catering_image")
                 )
                 user_type = Type.objects.create(
                     user=new_user,
                     ref_no=4
                 )
-
-                new_user.save()
-                new_catering_company.save()
-                user_type.save()
-
                 current_site = get_current_site(request)
                 mail_subject = 'Activate your catering company account.'
                 message = render_to_string('registration/acc_active_email.html', {
@@ -192,12 +187,18 @@ def signup(request):
                 email = EmailMessage(
                     mail_subject, message, to=[to_email]
                 )
-                email.send()
-                return HttpResponse(
-                    '<h1>New catering company user created successfully</h1><br>'
-                    'Please confirm your email address to complete the registration')
+                try:
+                    email.send()
+                    message = "New catering company user created successfully. Please confirm your email address to complete the registration"
+                    new_user.save()
+                    new_catering_company.save()
+                    user_type.save()
+                except:
+                    message = "Please check your internet connection."
+                return render(request, 'registration/check_for_email.html', {'message': message})
             else:
                 print("Catering company signup form Invalid")
+                signup_type = 'catering_company'
                 return render(request, 'registration/signup_page.html',
                               {"signup_form": new_user_form, 'signup_type': signup_type})
         else:
@@ -209,6 +210,7 @@ def signup(request):
         new_form = RegisterForm()
         print("Invalid request")
         return render(request, 'registration/signup_page.html', {"signup_form": new_form})
+
 
 
 def activate(request, uidb64, token):
@@ -232,10 +234,24 @@ def activate(request, uidb64, token):
                 user=find
             )
             lt.save()
+            companyname=CateringCompany.objects.get(company_id=data)
+            token=Token.objects.get(user=user)
+            temp=verification.objects.create(
+                token=token.key,
+                companyname=companyname,
+                user_id=data
+            )
+            temp.save()
+
+
+            
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        message = "Thank you for your email confirmation. Now you can login your account."
+        return render(request, 'registration/check_for_email.html', {'message': message})
     else:
-        return HttpResponse('Activation link is invalid!')
+        message = 'Activation link is invalid!'
+        return render(request, 'registration/check_for_email.html', {'message': message})
+
 
 
 
@@ -249,17 +265,23 @@ def login_view(request):
         print(user, username, password)
         if user is not None:
             login(request, user)
-            type = Type.objects.get(user=user)
+            try:
+                type = Type.objects.get(user=user)
+            except:
+                message = "Not a regular user"
+                return render(request, 'registration/not_verified_orphanage.html', {'message': message})
             if type.ref_no == 1:
                 return redirect('userdashboard:u_Profile')
             elif type.ref_no == 2:
-                return HttpResponse("<h1>Please wait to get into the dashboard, until your orphanage gets verified</h1>")
+                message = "Please wait to get into the dashboard, until your orphanage gets verified"
+                return render(request, 'registration/not_verified_orphanage.html', {'message': message})
             elif type.ref_no == 3:
                 return redirect('orphanageadmin:o_profile')
             elif type.ref_no == 4:
                 return redirect('company:c_profile')
             else:
-                return HttpResponse("Not a regular user")
+                message = "Not a regular user"
+                return render(request, 'registration/not_verified_orphanage.html', {'message': message})
         else:
             error_message = "Please enter a correct username and password. Note that both fields may be case-sensitive."
             return render(request, 'registration/login.html', {'form': form, 'error': error_message})
@@ -306,7 +328,7 @@ def result(request):
         k=data.danation_id
         h=Transport.objects.filter(danation_id=k)
         #print(data.company_name)
-        
+
         data.status='1' #1 means Accepted
         data.save()
         l=donatevaluables.objects.get(pk=data.danation_id)
@@ -318,79 +340,3 @@ def result(request):
                 each.status='2'
                 each.save() #2 means Rejected
         return redirect('donation:accepted')
-
-
-
-# def user_signup1(request):
-#     return render(request, 'registration/user_signup.html')
-#
-#
-# def user_signup12(request):
-#     if request.method == "POST":
-#         new_user = User.objects.create_user(
-#             username=request.POST["username"],
-#             password=request.POST["password"],
-#             email=request.POST["email"],
-#         )
-#         user_details = UserDetails.objects.create(
-#             user_id=new_user,
-#             date_of_birth=request.POST["DOB"],
-#             gender=request.POST["gender"],
-#             phone_no=request.POST["phone_number"]
-#         )
-#
-#         user_type = Type.objects.create(
-#             user=new_user,
-#             ref_no=1
-#         )
-#         new_user.save()
-#         user_details.save()
-#         user_type.save()
-#         return HttpResponse("<h1>New user created successfully</h1>")
-#
-#
-# def orphanage_signup1(request):
-#     return render(request, 'registration/orphanage_signup.html')
-
-#
-# def orphanage_signup(request):
-#     print(request)
-#     type(request)
-#     if request.method == "POST":
-#         new_user_form = RegisterForm(request.POST)
-#         if new_user_form.is_valid():
-#             new_user = User.objects.create_user(
-#                 username=new_user_form.cleaned_data["username"],
-#                 password=new_user_form.cleaned_data["password"],
-#                 email=new_user_form.cleaned_data["email"]
-#             )
-#             new_orphanage_user = Orphanage.objects.create(
-#                 orphanage_name=request.POST["orphanage_name"],
-#                 year_of_establishment=request.POST["year_of_establishment"],
-#                 address=request.POST["address"],
-#                 phone_no=request.POST["phone_number"],
-#                 description=request.POST["description"],
-#                 image=request.FILES.get("orphanage_image"),
-#                 lat=request.POST["current_latitude"],
-#                 lon=request.POST["current_longitude"]
-#             )
-#
-#             user_type = Type.objects.create(
-#                 user=new_user,
-#                 ref_no=2
-#             )
-#             new_user.save()
-#             new_orphanage_user.save()
-#             user_type.save()
-#             return HttpResponse("<h1>New orphanage user created successfully</h1>")
-#         else:
-#             print("Form Invalid")
-#             return render(request, 'registration/orphanage_signup.html', {"signup_form": new_user_form})
-#     else:
-#         new_form = RegisterForm()
-#         print("Invalid request")
-#         return render(request, 'registration/orphanage_signup.html', {"signup_form": new_form})
-#
-#
-# def signup1(request):
-#     return render(request, 'registration/signup_page.html')

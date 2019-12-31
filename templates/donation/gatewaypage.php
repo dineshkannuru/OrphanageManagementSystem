@@ -15,22 +15,22 @@
         <div class='column'>
       <div >
     
-        <table class="table">
+        <table class="table" style="border-collapse: collapse; border: none;">
   <tbody>
-    <tr>
-      <th scope="row">Transaction id :</th>
-      <td>{{data.tid}}</td>
+    <tr style="border: none;">
+      <th scope="row" style="border: none;">Transaction id :</th>
+      <td style="border: none;">{{data.tid}}</td>
     </tr>
-    <tr>
-      <th scope="row">Name &emsp;&emsp;&emsp;:</th>
+    <tr style="border: none;">
+      <th scope="row" style="border: none;">Name &emsp;&emsp;&emsp;:</th>
       <td>{{user_name}}</td>
     </tr>
-    <tr>
-      <th scope="row">Orphanage&emsp;&nbsp;:</th>
+    <tr >
+      <th scope="row" style="border: none;">Orphanage&emsp;&nbsp;:</th>
       <td>{{orphanage}}</td>
     </tr>
-    <tr>
-      <td><div style="font-size:25px;padding:40px;"><table>
+    <tr style="border: none;">
+      <td style="border: none;"><div style="font-size:25px;padding:40px;"><table>
         <tr>
           
         </tr>
@@ -38,7 +38,7 @@
   
   <h2>&emsp;Paypal</h2>
   {{ form.render }}</td>
-  <td> <div style="font-size:25px;padding:25px;margin-top:20px;">Amount:{{data.amount}} $</div> </td>  
+  <td style="border: none;"> <div style="font-size:25px;padding:25px;margin-top:20px;">Amount:{{data.amount}} $</div> </td>  
   </tr>
   
   </div>

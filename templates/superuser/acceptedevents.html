@@ -21,7 +21,7 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover hoverable">
                                 <div class="card-header ">
-                                    <h4 class="card-title text-center"> Accepted Events </h4>
+                                    <h4 class="text-center text-heading title"> Accepted Events </h4>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-striped"  id = "customers">
@@ -31,7 +31,8 @@
                                             
                                             <th class='cnt'> Orphanage </th>
                                             <th class='cnt'> Date </th>
-                                            <th class='cnt'>Acsscept</th>
+                                            <th class='cnt'>Give Review</th>
+                                            <th class='cnt'>Accept</th>
                                         </tr></thead>
                                         <tbody>
                                         {% for i in t %}
@@ -52,7 +53,7 @@
                                             {% elif i.canbereviewed == 'Completed' %}
                                             <td class="cnt">Reviewed</td>
                                             {% else %}
-                                            <td class="cnt">You can review after sometime</td>
+                                            <td class="cnt">You can review after or on date of event</td>
                                             {% endif %}
                                             
                                             {% if i.status == 10 %}
@@ -63,6 +64,8 @@
 
         </form>
        </td>
+      {% else %}
+                                                <td class="cnt">No Tokens</td>
       {% endif %}
                                             
                                         </tr>

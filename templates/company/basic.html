@@ -7,7 +7,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <title> Orphanage </title>
+  <title> Company </title>
+  <link href="{% static 'homepage/images/icons/favicon.png' %}" rel="icon" type="image/png">
+
   <link rel="stylesheet" href="{% static 'orphanageadmin/theme2.css' %}">
     <script src="{% static "company/Chart.js" %}"></script>
         <script src="{% static 'orphanageadmin/caleandar.js' %}"></script>
@@ -42,27 +44,11 @@
     </div>
     <ul class="list-unstyled components">
         <li class="sidebar-profile">
-            <a href="{% url 'userdashboard:u_Profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
-        </li>
-        <li>
-            <a href="#Events" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle sidebar-events"><i class="fas fa-hands-helping mr-3"></i>Events</a>
-            <ul class="collapse list-unstyled" id="Events">
-                <li>
-                    <a href="{% url 'superuser:requestedevents' pk=0 %}">Requested Events</a>
-                </li>
-                <li>
-                    <a href="{% url 'superuser:acceptedevents' %}">Accepted Events</a>
-                </li>
-                <li>
-                    <a href="{% url 'superuser:rejectedevents' %}">Rejected Events</a>
-                </li>
-            </ul>
+            <a href="{% url 'company:c_profile' %}"><i class="fas fa-user mr-3"></i>Profile</a>
         </li>
         <li class="sidebar-reviews">
             <a href="{% url 'company:ureviews' %}"><i class="far fa-thumbs-up mr-3"></i>Reviews</a>
         </li>
-
-
     </ul>
 </nav>
 

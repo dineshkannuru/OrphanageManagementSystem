@@ -19,5 +19,7 @@ urlpatterns = [
    # path('showreview/',views.showreview,name='showreview'),
     path('solution', views.solution, name='solution'),
     path('result', views.result, name='r_result1'),
+    path('viewcompanyprofile/<int:pk>',views.viewcompanyprofile,name='viewcompanyprofile'),
+    path('viewreviews/',views.viewreviews,name='viewreviews')
 
 ]

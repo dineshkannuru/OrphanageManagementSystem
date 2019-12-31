@@ -44,7 +44,10 @@ def donatemoneyview(request):
         paypal_transaction = 'None'
         status = "0"
         saveform = donatemoney.objects.create(user_id=user_id,transfer=transfer,amount=amount,orphanage_id=orphanage,orphanage_name=orphanage_name,description=description,status=status,paypal_transaction= paypal_transaction)
-        saveform.save()
+        try:
+            saveform.save()
+        except:
+            print("ERROR")
         tid=donatemoney.objects.latest('pk')
         print(tid)
         tidstring=tid.pk
@@ -137,8 +140,8 @@ def paypal_home(request,tid,amount,orphanage_id1):
         "item_name": amount,
         "invoice": tid,
         "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return": "http://2a379797.ngrok.io/donation/donation_done/",
-        "cancel_return": "http://2a379797.ngrok.io/donation/donation_interrupt/",
+        "return": "http://3c11fa0e.ngrok.io/donation/donation_done/",
+        "cancel_return": "http://3c11fa0e.ngrok.io/donation/donation_interrupt/",
     }
     form = PayPalPaymentsForm(initial=paypal_dict)
     data=donatemoney.objects.latest()
@@ -179,15 +182,18 @@ def receivedview(request):
 def acceptedview(request):
     user = request.user
     transport = Transport.objects.filter(status=0)
+    transport1 = Transport.objects.filter(status=1)
+
     accepted = donatevaluables.objects.filter(user_id=user,status=1)
+    accepted12 = donatevaluables.objects.filter(user_id=user,status=2)
+    accepted=accepted.union(accepted12)
     transpose=[]
     for accept in accepted:
         for trans in transport:
             if trans.danation_id == accept.pk:
                 accept.status = 10
                 break
-
-    context = {"accepted": accepted,"transpose":transpose}
+    context = {"accepted": accepted,"transpose":transpose,"transport1":transport1}
     return render(request, "donation/Accepted.html", context)
 
 

@@ -35,7 +35,7 @@ SECRET_KEY = 'elaak_hmy)uzom-@k%0ig-ah_tt)bl2lxe0ozv^2_+v@w90(*w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['2a379797.ngrok.io','localhost','127.0.0.1']
+ALLOWED_HOSTS = ['3c11fa0e.ngrok.io','localhost','127.0.0.1']
 
 
 LOGIN_REDIRECT_URL = '/homepage'
@@ -98,7 +98,7 @@ WSGI_APPLICATION = 'oms.wsgi.application'
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dota',
+        'NAME': 'oms',
         'USER': 'root',
         'PASSWORD': '',
         'HOST': '127.0.0.1',

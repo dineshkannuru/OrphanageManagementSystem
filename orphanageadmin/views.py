@@ -141,7 +141,7 @@ def ReceivedDonations(request):
 def MoneyDonations(request):
     user = request.user
     orphanage = Orphanage.objects.get(orphanage_id = user)
-    donation_request = donatemoney.objects.filter(orphanage_id = orphanage,status=1)
+    donation_request = donatemoney.objects.filter(orphanage_id = orphanage,status=2)
     content = {'donation_request':donation_request}
     return render(request,'orphanageadmin/moneydonations.html',content)
 
@@ -171,10 +171,14 @@ def AcceptedEvents_ChangeStatus(request):
 @login_required
 def AcceptedEvents(request):
     user = request.user
+    print(user.username)
     orphanage = Orphanage.objects.get(orphanage_id = user)
     a=Events.objects.filter(orphanage_id = orphanage,status = 'Accepted')
+    b=Events.objects.filter(orphanage_id = orphanage,status = 'completed')
+    c=a.union(b)
+    print(type(c))
     l=[]
-    for i in a:
+    for i in c:
         print(i.date_of_event)
         q=[None]*5
         g,h,j=str(i.date_of_event).split('-')

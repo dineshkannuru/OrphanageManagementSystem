@@ -6,10 +6,13 @@ import os
 import datetime
 from paypal.standard.ipn.signals import valid_ipn_received, invalid_ipn_received
 
-
+#merged at 1:37pm
 
 def show_me_the_money(sender, **kwargs):
     print("MAY be")
+
+def user_image_upload_url(instance, filename):
+    return os.path.join("user_image", str(instance.user_id), filename)
 
 def orphanage_image_upload_url(instance, filename):
     return os.path.join("orphanage_image", str(instance.orphanage_name), filename)
@@ -31,6 +34,7 @@ class UserDetails(models.Model):
     date_of_birth = models.DateField()
     gender = models.CharField(max_length=1, choices=GENDER)
     phone_no = models.CharField(max_length=10,null=True)
+    image = models.ImageField(upload_to=user_image_upload_url, blank=True, null=True)
 
 class Orphanage(models.Model):
     orphanage_id = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -96,7 +100,7 @@ class donatemoney(models.Model):
     orphanage_id = models.ForeignKey(Orphanage, on_delete=models.PROTECT)
     status = models.IntegerField()
     date_of_donation = models.DateTimeField(default = timezone.now)
-    description = models.CharField(default=None,max_length=50)
+    description = models.CharField(default=None,max_length=500)
     paypal_transaction = models.CharField(default=None,max_length=50)
 
     class Meta:

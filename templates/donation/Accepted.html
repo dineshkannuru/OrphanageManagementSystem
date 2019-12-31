@@ -4,45 +4,63 @@
 <script>
         sidebar_shift("sidebar-valuable")
 </script>
-    <h3>Accepted Transactions:</h3>
-    <table class="table table-striped">
-  <thead >
-    <tr>
-      <th scope="col">Transaction id</th>
-      <th scope="col">Orphanage</th>
-      <th scope="col">Type</th>
-      <th scope="col">Object</th>
-      <th scope="col">Date</th>
- <th scope="col">delivery</th>
-    </tr>
-  </thead>
-  <tbody>
-    
-    {% for accept in accepted %}
-      <tr>
-      <th scope="row">{{accept.tid}}</th>
-      <td>{{accept.orphanage_name}}</td>
-      <td>{{accept.donation_type}}</td>
-      <td>{{accept.object_name}}</td>
-      <td>{{accept.date_of_donation}}</td>
-      {% if accept.status == 10 %}
-      <td> <form action="{% url 'registration:solution' %}" method="post" >
-          {% csrf_token %}
 
-          {% if accept.status != 3 %}
-        <input type="hidden" name='name' value="{{ accept.pk }}" >
-        <button class="btn btn-primary "  >Accept</button>
-          {% else %}
-          Completed
 
-          {% endif %}
+            <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                 <h4 class="card-title text-center">Accepted Donations </h4>
+                                </div>
+                                   <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-striped" >
 
-        </form>
-       </button></td>
-      {% endif %}
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-            <!-- content ends here-->
+                                        <thead><tr>
+                                            <th class='cnt'>Transaction id </th>
+
+                                            <th class='cnt'> Orphanage </th>
+                                            <th class='cnt'> Type </th>
+                                            <th class='cnt'> Object </th>
+                                            <th class='cnt' > Date </th>
+                                            <th class='cnt' > Delivery </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        {% for accept in accepted %}
+                                        <tr>
+                                            <td class= 'cnt'>{{accept.tid}}</td>
+                                            <td class= 'cnt'>{{accept.orphanage_name}}</td>
+                                            <td class= 'cnt'>{{accept.donation_type}}</td>
+                                            <td  class='cnt' >{{accept.object_name}}</td>
+                                        <td  class='cnt' >{{accept.date_of_donation}}</td>
+                                                                             {% if accept.status == 10 %}
+                                          <td class= 'cnt'> <form action="{% url 'registration:solution' %}" method="post" >
+                                              {% csrf_token %}
+                                            <input type="hidden" name='name' value="{{ accept.pk }}" >
+                                            <button class="btn btn-primary "  >Accept</button>
+                                              {% elif accept.status == 3 %}
+                                                <td>Completed</td>
+
+                                                {% else %}
+                                                <td>No tokens</td>
+                                              {% endif %}
+
+                                            </form>
+                                           </button></td>
+                                                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                </div>
+            </div>
+
+                        <!-- content ends here-->
 {% endblock content %}

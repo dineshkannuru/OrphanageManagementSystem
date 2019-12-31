@@ -46,29 +46,22 @@ class followview(APIView):
         if len(f)!=0:
             time=datetime.datetime.now()
             b=(f[0].hit)
-            if abs(time.second-b.second) > 5  :
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
 
-                data=Orphanage.objects.filter(status='Freshly Applied')
-                for each in data:
-                    var={
-                        'orphanage_id':each.orphanage_id.pk,
-                        'orphanage_name':each.orphanage_name,
-                        'year_of_establishment':each.year_of_establishment,
-                        #'log':each.lon,
-                        #'lat':each.lat,
-                        'address':each.address,
-                        'phone_no': each.phone_no,
-                        'lat':each.lat,
-                        'lon':each.lon,
-                        #'image': each.image,
-                        'description': each.description
-                    }
-                    list1.append(var)
-            else :
-
-                var = {"detail": "Hit after five seconds"}
+            data=Orphanage.objects.filter(status='Freshly Applied')
+            for each in data:
+                var={
+                    'orphanage_id':each.orphanage_id.pk,
+                    'orphanage_name':each.orphanage_name,
+                    'year_of_establishment':each.year_of_establishment,
+                    #'log':each.lon,
+                    #'lat':each.lat,
+                    'address':each.address,
+                    'phone_no': each.phone_no,
+                    'lat':each.lat,
+                    'lon':each.lon,
+                    #'image': each.image,
+                    'description': each.description
+                }
                 list1.append(var)
 
         else:
@@ -83,47 +76,40 @@ class followview1(APIView):
         if len(f) != 0:
             time = datetime.datetime.now()
             b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
 
-                print('came to eoor')
-                print(request.data)
-                for each in request.data:
-                    print('eacho='+str(request.data[each]['orphanage_id']))
-                    print('jii')
-                    orphanage_id = request.data[each]['orphanage_id']
-                    status1 = request.data[each]['status']
-                    print(orphanage_id,status1)
-                    print('came')
-                    for i in Orphanage.objects.all():
-                        print('id='+str(i.orphanage_id))
-                    print('gone')
-                    orp = Orphanage.objects.get(orphanage_id=int(orphanage_id))
-                    print('name=',end=' ')
-                    print(orp.orphanage_id.username)
-                    a=User.objects.get(username=orp.orphanage_id.username)
-                    print(a.username)
-                    b=Type.objects.get(user=a)
-                    print('cametorequired')
+            print('came to eoor')
+            print(request.data)
+            for each in request.data:
+                print('eacho='+str(request.data[each]['orphanage_id']))
+                print('jii')
+                orphanage_id = request.data[each]['orphanage_id']
+                status1 = request.data[each]['status']
+                print(orphanage_id,status1)
+                print('came')
+                for i in Orphanage.objects.all():
+                    print('id='+str(i.orphanage_id))
+                print('gone')
+                orp = Orphanage.objects.get(orphanage_id=int(orphanage_id))
+                print('name=',end=' ')
+                print(orp.orphanage_id.username)
+                a=User.objects.get(username=orp.orphanage_id.username)
+                print(a.username)
+                b=Type.objects.get(user=a)
+                print('cametorequired')
 
 
-                    if status1=='Accepted':
-                        b.ref_no=3
-                        orp.status='Accepted'
-                        orp.save()
-                        b.save()
-                    else:
-                        print('deletecame')
-                        b.ref_no=0
-                        orp.status='Rejected'
-                        orp.save()
-                        b.save()
-            else :
-                list1 = []
-                var = {"detail": "Hit after five seconds"}
-                list1.append(var)
-
+                if status1=='Accepted':
+                    b.ref_no=3
+                    orp.status='Accepted'
+                    orp.save()
+                    b.save()
+                else:
+                    print('deletecame')
+                    b.ref_no=0
+                    orp.status='Rejected'
+                    orp.save()
+                    b.save()
+            
 
             print('orpcompl')
 
@@ -191,40 +177,32 @@ class transportuserid(APIView):
         if len(f) != 0:
             time = datetime.datetime.now()
             b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
+        
+            each=donatevaluables.objects.get(status=1,pk=id) #1 admin accepted
+            z = Orphanage.objects.get(orphanage_id=each.orphanage_id.orphanage_id)
+            h=User.objects.get(id=each.user_id.id)
+            h1=UserDetails.objects.get(user_id=h.id)
+            var={
+                'donation_id':each.pk,
+                'orphanage_id':each.orphanage_id.orphanage_name,
+                'user_id':each.user_id.username,
+                'donation_type':each.donation_type,
+                'quantity':each.quantity,
+                #'orphanage_name':each.orphanage_name,
+                #'year_of_establishment':each.year_of_establishment,
+                #'log':each.lon,
+                #'lat':each.lat,
+                'address':z.address,
+                'phone_no': z.phone_no,
+                'phone_no_user': h1.phone_no,
+                'address_user': each.address,
+                #'image': each.image,
+                #'description': each.description,
+                #'status':each.status
+            }
 
-                each=donatevaluables.objects.get(status=1,pk=id) #1 admin accepted
-                z = Orphanage.objects.get(orphanage_id=each.orphanage_id.orphanage_id)
-                h=User.objects.get(id=each.user_id.id)
-                h1=UserDetails.objects.get(user_id=h.id)
-                var={
-                    'donation_id':each.pk,
-                    'orphanage_id':each.orphanage_id.orphanage_name,
-                    'user_id':each.user_id.username,
-                    'donation_type':each.donation_type,
-                    'quantity':each.quantity,
-                    #'orphanage_name':each.orphanage_name,
-                    #'year_of_establishment':each.year_of_establishment,
-                    #'log':each.lon,
-                    #'lat':each.lat,
-                    'address':z.address,
-                    'phone_no': z.phone_no,
-                    'phone_no_user': h1.phone_no,
-                    'address_user': each.address,
-                    #'image': each.image,
-                    #'description': each.description,
-                    #'status':each.status
-                }
+            list1.append(var)
 
-                list1.append(var)
-
-
-            else :
-
-                var = {"detail": "Hit after five seconds"}
-                list1.append(var)
 
         else:
             var={"detail": "Authentication credentials were not provided."}
@@ -238,34 +216,23 @@ class useraccepted(APIView):
         list = []
         f = verification.objects.filter(token=company_name)
         if len(f) != 0:
-            time = datetime.datetime.now()
-            b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
+            company_name=k[0].companyname.company_name
+            data=Transport.objects.all()
 
-                company_name=k[0].companyname
-                data=Transport.objects.all()
-
-                status="Not Checked "
-                for each in data:
-                    print(each.status)
-                    if each.status=='1': #1 means Accepted
-                        status="Accepted"
-                    elif each.status=='2':#2 means Rejected
-                        status="Rejected"
-                    var={
-                    'donation_id':each.danation_id,
-                    'status':status
-                    }
-                    print(each.company_name)
-                    if each.company_name==company_name:
-                        list.append(var)
-
-            else :
-
-                var = {"detail": "Hit after five seconds"}
-                list.append(var)
+            status="Not Checked "
+            for each in data:
+                print(each.status)
+                if each.status=='1': #1 means Accepted
+                    status="Accepted"
+                elif each.status=='2':#2 means Rejected
+                    status="Rejected"
+                var={
+                'donation_id':each.danation_id,
+                'status':status
+                }
+                print(each.company_name)
+                if each.company_name==company_name:
+                    list.append(var)
 
         else:
             var={"detail": "Authentication credentials were not provided."}
@@ -279,40 +246,33 @@ class transporttoken(APIView):
         if len(f) != 0:
             time = datetime.datetime.now()
             b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
 
-                print(request.data)
-                for each in request.data:
-                    danation_id=request.data[each]['donation_id']
-                    type = request.data[each]['Type']
-                    cost = request.data[each]['cost']
-                    duration=request.data[each]['duration']
-                    company_name=request.data[each]['company_name']
-                    print(type,cost,duration,company_name,danation_id)
-                    #h=Donation.objects.get(pk=danation_id)
-                    data=Transport.objects.filter(danation_id=danation_id)
-                    count=0
-                    for k in data:
-                        print(k.company_name,company_name)
-                        if k and k.company_name==company_name :
-                            count=count+1
-                    print(count)
-                    if count==0:
-                        newtransport=Transport.objects.create(   #creating object
-                        danation_id=danation_id,
-                        type=type,
-                        duration=duration,
-                        company_name=company_name,
-                        cost=cost,
-                        status='0'
-                        )
-                        newtransport.save()
-            else :
-
-                var = {"detail": "Hit after five seconds"}
-                list.append(var)
+            print(request.data)
+            for each in request.data:
+                danation_id=request.data[each]['donation_id']
+                type = request.data[each]['Type']
+                cost = request.data[each]['cost']
+                duration=request.data[each]['duration']
+                company_name=request.data[each]['company_name']
+                print(type,cost,duration,company_name,danation_id)
+                #h=Donation.objects.get(pk=danation_id)
+                data=Transport.objects.filter(danation_id=danation_id)
+                count=0
+                for k in data:
+                    print(k.company_name,company_name)
+                    if k and k.company_name==company_name :
+                        count=count+1
+                print(count)
+                if count==0:
+                    newtransport=Transport.objects.create(   #creating object
+                    danation_id=danation_id,
+                    type=type,
+                    duration=duration,
+                    company_name=company_name,
+                    cost=cost,
+                    status='0'
+                    )
+                    newtransport.save()
 
         else:
             list=[]
@@ -331,32 +291,26 @@ class useracceptedid(APIView):
         list = []
         f = verification.objects.filter(token=company_name)
         if len(f) != 0:
-            time = datetime.datetime.now()
-            b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
-                company_name=k[0].companyname
-                data=Transport.objects.filter(danation_id=id)
 
-                status="Not Checked "
-                for each in data:
-                    print(each.status)
-                    if each.status=='1': #1 means Accepted
-                        status="Accepted"
-                    elif each.status=='2':#2 means Rejected
-                        status="Rejected"
-                    var={
-                    'donation_id':each.danation_id,
-                    'status':status
-                    }
-                    print(each.company_name)
-                    if each.company_name==company_name:
-                        list.append(var)
-            else :
+            f[0].hit = datetime.datetime.now()
+            f[0].save()
+            company_name=k[0].companyname.company_name
+            data=Transport.objects.filter(danation_id=id)
 
-                var = {"detail": "Hit after five seconds"}
-                list.append(var)
+            status="Not Checked "
+            for each in data:
+                print(each.status)
+                if each.status=='1': #1 means Accepted
+                    status="Accepted"
+                elif each.status=='2':#2 means Rejected
+                    status="Rejected"
+                var={
+                'donation_id':each.danation_id,
+                'status':status
+                }
+                print(each.company_name)
+                if each.company_name==company_name:
+                    list.append(var)
 
         else:
             var={"detail": "Authentication credentials were not provided."}
@@ -371,30 +325,24 @@ class transport4(APIView):
         if len(f) != 0:
             time = datetime.datetime.now()
             b = (f[0].hit)
-            if abs(time.second - b.second) > 5:
-                f[0].hit = datetime.datetime.now()
-                f[0].save()
-                company_name=k[0].companyname
-                data=Transport.objects.filter(danation_id=id)
-                status="Not delivered"
-                for each in data:
-                    print(each.status)
-                    if each.status=='3': #1 means Accepted
-                        status="delivered"
-                    elif each.status=='1':#2 means Rejected
-                        status="Not delivered"
-                    var={
-                    'donation_id':each.danation_id,
-                    'status':status,
-                    'date':date.today()
-                    }
-                    print(each.company_name)
-                    if each.company_name==company_name:
-                        list.append(var)
-            else :
 
-                var = {"detail": "Hit after five seconds"}
-                list.append(var)
+            company_name=k[0].companyname
+            data=Transport.objects.filter(danation_id=id)
+            status="Not delivered"
+            for each in data:
+                print(each.status)
+                if each.status=='3': #1 means Accepted
+                    status="delivered"
+                elif each.status=='1':#2 means Rejected
+                    status="Not delivered"
+                var={
+                'donation_id':each.danation_id,
+                'status':status,
+                'date':date.today()
+                }
+                print(each.company_name)
+                if each.company_name==company_name.company_name:
+                    list.append(var)
 
         else:
             var={"detail": "Authentication credentials were not provided."}
@@ -575,8 +523,7 @@ class useracceptcateringid(APIView):
                     'donation_id':each.event_id,
                     'status':status
                     }
-                    print(each.company_name)
-                    if each.company_name==company_name:
+                    if each.company_name==company_name.company_name:
                         list.append(var)
             else :
 

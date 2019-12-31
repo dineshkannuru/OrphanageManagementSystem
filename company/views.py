@@ -8,19 +8,7 @@ from rest_framework.authtoken.models import Token
 def ureviews(request):
     q=CateringCompany.objects.get(company_id=request.user)
     a=review.objects.filter(company=q)
-    one=0;two=0;three=0;four=0;five=0
-    for i in a:
-        if i.rating==1:
-            one=one+1
-        elif i.rating==2:
-            two=two+1
-        elif i.rating==3:
-            three=three+1
-        elif i.rating==4:
-            four=four+1
-        elif i.rating==5:
-            five=five+1
-
+    
     return render(request, 'company/showreviews.html', {'allreviews':a})
 
 def profile(request):

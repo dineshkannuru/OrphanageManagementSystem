@@ -7,6 +7,20 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import datetime
 
+def viewreviews(request):
+    h=request.POST.get('company')
+    q=CateringCompany.objects.get(pk=int(h))
+    a=review.objects.filter(company=q)
+    
+    return render(request, 'superuser/showreviews.html', {'allreviews':a})
+
+
+@login_required
+def viewcompanyprofile(request,pk):
+    c=catering.objects.get(pk=pk)
+    
+    catering_company = CateringCompany.objects.get(company_name=c.company_name)
+    return render(request, 'superuser/profile.html', {'user': catering_company.company_id, 'company': catering_company})
 
 
 @login_required
@@ -60,7 +74,9 @@ def requestedevents(request,pk=0):
 def acceptedevents(request):
     user = request.user
     now = datetime.datetime.now()
-    a=Events.objects.filter(user_id=user,status = 'Accepted')
+    c=Events.objects.filter(user_id=user,status = 'completed')
+    b=Events.objects.filter(user_id=user,status = 'Accepted')
+    a=b.union(c)
     print('len(a)=');print(len(a))
     for i in a:
         print(str(i.date_of_event))
@@ -82,13 +98,19 @@ def acceptedevents(request):
 
     transport = catering.objects.filter(status=0)
     a = Events.objects.filter(user_id=user, status='Accepted')
+    b = Events.objects.filter(user_id=user, status='Completed')
+    print(type(a))
 
+    a=a.union(b)
     transpose = []
     for accept in a:
         for trans in transport:
             if trans.event_id == accept.pk:
                 accept.status = 10
                 break
+
+
+
     context={'t':a,"transpose":transpose}
 
     return render(request,'superuser/acceptedevents.html',context)
@@ -226,9 +248,14 @@ def solution(request):
             print(l.pk)
             data1=catering.objects.filter(event_id=l.pk)
             print(data1)
-            break;
-    return render(request,'superuser/accep.html',{"data1":data1})
 
+            check = data1[0].items
+            check = check.replace('[', '')
+            check = check.replace(']', '')
+            check = check.split(',')
+
+            break;
+    return render(request, 'superuser/accep.html', {"data1": data1, "check": check})
 
 def result(request):
     if request.method == "POST":
@@ -242,7 +269,7 @@ def result(request):
         data.status = '1'  # 1 means Accepted
         data.save()
         l = Events.objects.get(pk=data.event_id)
-        l.status = 'Accepted'  # 1 means Accepted
+        l.status = 'completed'  # 1 means Accepted
         l.save()
         for each in h:
             if str(each.pk) != str(id):

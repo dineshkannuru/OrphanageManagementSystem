@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <script>
-        sidebar_shift("sidebar-orphans")
+        sidebar_shift("sidebar-reviews")
 </script>
             <!-- content starts here-->
 
@@ -21,7 +21,7 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover hoverable">
                                 <div class="card-header ">
-                                    <h4 class="card-title text-center"> Reviews given by users </h4>
+                                    <h4 class="card-title text-center"> <b>Reviews given by users</b> </h4>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     {% if allreviews %}
@@ -30,6 +30,7 @@
                                     {% for review in allreviews %}
                                         <br>
                                         <b>Date:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ review.date_created.day }}/{{ review.date_created.month }}/{{ review.date_created.year }}
+                                        <br>
                                         <br>
                                         <b>Name:</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ review.user.username }}<br>
                                         <b>rating:</b>
@@ -58,8 +59,10 @@
                                         </label>
                                         </div>
                                         <br>
+                                        <b>Review:</b>
                                         {{ review.description }}
                                         <br>
+
 
                                         <script>
                                             console.log($('input[name="ratingnew_{{ review.pk }}"]:radio'));

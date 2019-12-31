@@ -7,6 +7,7 @@
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
+	<link href="{% static 'homepage/images/icons/favicon.png' %}" rel="icon" type="image/png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{% static 'homepage/img/favicon.png' %}" type="image/png">
 	<title>OMS</title>
@@ -54,7 +55,7 @@
 										<a class="nav-link   change"   href="{% url 'h_index' %}">home</a>
 									</li>
 									<li class="nav-item ">
-										<a class="nav-link   change"  href="">Donate</a>
+										<a class="nav-link   change"  href="{% url 'donation:donatemoney' %}">Donate</a>
 									</li>
 
 									<li class="nav-item">
@@ -167,194 +168,14 @@
 </section>
 
 	<!--================ Start Our Major Cause section =================-->
-	<section class="our_major_cause section_gap">
-		<div class="container">
-			<div class="row justify-content-center section-title-wrap">
-				<div class="col-lg-12">
-					<h1>Our Major Causes</h1>
-					<p>
-						The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence the natural
-						chain of events.
-					</p>
-				</div>
-			</div>
-
-			<div class="row">
-				<div id="our-major-cause" class="owl-carousel">
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d1.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-								<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-								<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d3.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-							<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc"    >donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-				<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d3.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-					<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d1.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-						<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-						<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================ Ens Our Major Cause section =================-->
-
+	
 	<!--================ Start Make Donation Area =================-->
 	<section class="make_donation section_gap">
 		<div class="container">
 			<div class="row justify-content-start section-title-wrap">
 				<div class="col-lg-12">
-					<h1>Make a Donation Today</h1>c					<p>
-						Las Vegas has more than 100,000 hotel rooms to choose from. There is something for every budget, and enough.
-					</p>
+					<h1>Make a Donation Today</h1>
+				
 				</div>
 			</div>
 
@@ -367,10 +188,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="ten_doller">
 									<label class="form-check-label d-flex justify-content-between" for="ten_doller">
 										<div class="label_text">
-											RS 10.00
+											USD 10.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -383,10 +204,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="fifty_doller">
 									<label class="form-check-label d-flex justify-content-between" for="fifty_doller">
 										<div class="label_text">
-											RS 50.00
+											USD 50.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -399,10 +220,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="hundred_doller">
 									<label class="form-check-label d-flex justify-content-between" for="hundred_doller">
 										<div class="label_text">
-											RS 100.00
+											USD 100.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -415,10 +236,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="two_fifty__doller">
 									<label class="form-check-label d-flex justify-content-between" for="two_fifty__doller">
 										<div class="label_text">
-											RS 250.00
+											USD 250.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -436,7 +257,7 @@
 
 						<div class="col-lg-4">
 							<div class="donate_box">
-								<button type="submit" class="main_btn w-100 wow bounceIn">donate now</button>
+								<a href="{% url 'donation:donatemoney' %}" class="main_btn w-100 wow bounceIn">Donate Now</a> 
 							</div>
 						</div>
 					</div>
@@ -452,7 +273,7 @@
 	<div class="container">
 		<div class="main_title wow fadeInLeft">
 			<h2>Top Donars</h2>
-			<p>Creepeth called face upon face yielding midst is after moveth </p>
+		
 		</div>
 		<div class="row">
 			<div class="col-lg-4 col-md-6 wow fadeInUp">
@@ -460,9 +281,6 @@
 					<img src="{% static 'homepage/images/roger9.jpg' %}"  class="rounded-circle profileabc-img">
 					<h4>Roger Federer
 </h4>
-					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-6 wow fadeInUp">
@@ -470,9 +288,6 @@
 					<img src="{% static 'homepage/images/medvevev.jpg' %}"  class="rounded-circle profileabc-img">
 					<h4>Daniil Medvedev
 </h4>
-					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
 				</div>
 			</div>
 			<div class="col-lg-4 col-md-6 wow fadeInUp">
@@ -480,9 +295,6 @@
 					<img src="{% static 'homepage/images/tiger.jpg' %}"  class="rounded-circle profileabc-img">
 					<h4>Tiger Woods
 </h4>
-					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
 				</div>
 			</div>
 		</div>

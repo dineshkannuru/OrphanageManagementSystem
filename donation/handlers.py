@@ -14,10 +14,6 @@ def show_me_the_money(sender, **kwargs):
             if ipn_obj.mc_gross == data[0].amount and ipn_obj.mc_currency == 'USD':
                 data.update(paypal_transaction = ipn_obj.txn_id,status=2)
                 print('Success')
-                #pk = ipn_obj.invoice
-                #dsr = DatasetRequest.objects.get(pk=pk)
-                #dsr.is_paid = True
-                #dsr.save()
                 return
             else:                
                 print("Error")
@@ -27,7 +23,6 @@ def show_me_the_money(sender, **kwargs):
             print("Error")
             data.update(status=1)
 
-print("FC barcelona")
 valid_ipn_received.connect(show_me_the_money)
 
 

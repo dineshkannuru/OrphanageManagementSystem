@@ -24,7 +24,7 @@
                         <div class="col-md-12">
                             <div class="card strpied-tabled-with-hover hoverable">
                                 <div class="card-header ">
-                                    <h4 class="card-title text-center"> Company </h4>
+                                    <h4 class="text-center text-heading title"> Company </h4>
                                 </div>
                                 <div class="card-body table-full-width table-responsive">
                                     <table class="table table-striped"  id = "customers">
@@ -32,16 +32,16 @@
                                         <thead><tr>
                                             <th class='cnt'> Company Name </th>
                                             <th class='cnt'> Menu </th>
-                                            <th class='cnt'> Timings </th>
+
                                             <th class='cnt'> Cost </th>
                                             <th class='cnt' colspan = '2' > Accept </th>
                                         </tr></thead>
                                         <tbody>
                                         {% for content in data1 %}
                                         <tr>
-                                            <td class= 'cnt'>{{ content.company_name }}</td>
-                                            <td class= 'cnt'><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-  Launch demo modal
+                                            <td class= 'cnt'><a href='{% url "superuser:viewcompanyprofile"  pk=content.pk  %}'>{{ content.company_name }}</a></td>
+                                            <td class= 'cnt'><button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModalCenter">
+  View Items
 </button>
 
 <!-- Modal -->
@@ -59,7 +59,7 @@
           <div class="container">
               <div class="row">
                   <div class="col l6">
-                      <img src="{% static 'homepage/images/medvevev.jpg' %}"  style="width: 300px !important;
+                      <img src="{{ content.image }}"  style="width: 300px !important;
     height: 300px !important;" >
                   </div>
 
@@ -89,7 +89,6 @@
     </div>
   </div>
 </div></td>
-                                            <td class= 'cnt'>{{ content.duration }}</td>
                                             <td class= 'cnt'>{{ content.price }}</td>
 
                                             <td  class='cnt' width="15%">

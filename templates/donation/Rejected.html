@@ -7,32 +7,47 @@
 
 
 
-            <h3>Rejected Transactions:</h3>
-            <table class="table table-striped">
-                <thead >
-                    <tr>
-                        <th scope="col">Transaction id</th>
-                        <th scope="col">Orphanage</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Object</th>
-                        <th scope="col">Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for reject in rejected %}
-                    <tr>
-                        <th scope="row">{{reject.tid}}</th>
-                        <td>{{reject.orphanage_name}}</td>
-                        <td>{{reject.donation_type}}</td>
-                        <td>{{reject.object_name}}</td>
-                        <td>{{reject.date_of_donation}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-       
-    
+<div class="content my-3">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card strpied-tabled-with-hover hoverable">
+                    <div class="card-header ">
+                     <h4 class="card-title text-center">Rejected Donations </h4>
+                    </div>
+                       <div class="card-body table-full-width table-responsive">
+                        <table class="table table-striped" >
 
-<!-- content ends here-->
+                            <thead><tr>
+                                <th class='cnt'>Transaction id </th>
+                                <th class='cnt'> Orphanage </th>
+                                <th class='cnt'> Type </th>
+                                <th class='cnt'> Object </th>
+                                <th class='cnt' > Date </th>
+                                
+                            </tr></thead>
+                            <tbody>
+                            {% for reject in rejected %}
+                            <tr>
+                                <td class= 'cnt'>{{reject.tid}}</td>
+                                <td class= 'cnt'>{{reject.orphanage_name}}</td>
+                                <td class= 'cnt'>{{reject.donation_type}}</td>
+                                <td  class='cnt' >{{reject.object_name}}</td>
+                            <td  class='cnt' >{{reject.date_of_donation}}</td>
+                                                    
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+</div>
+
+            <!-- content ends here-->
 {% endblock content %}

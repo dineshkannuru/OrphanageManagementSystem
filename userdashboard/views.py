@@ -141,3 +141,8 @@ def location(request):
         id1 = str(request.POST['id1'])
         orphanage = Orphanage.objects.get(orphanage_name = id1)
     return render(request,'userdashboard/about2.html',{'qs':orphanage})
+
+@login_required
+def view_emergency_posts(request):
+    posts = Emergency.objects.filter(status=1)
+    return render(request, 'userdashboard/emergency_posts_view.html', {'posts': posts})    

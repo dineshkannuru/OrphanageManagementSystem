@@ -49,11 +49,11 @@
       <th class='cnt'>{{accept.amount}}</th>
       <th class='cnt'>{{accept.date_of_donation}}</th>
       {% if accept.status == 2 %}
-        <td><button type="button" class="btn btn-success btn-sm">Completed</button></td>
+        <td><button type="button" class="btn btn-success btn-sm" disabled>Completed</button></td>
       {% elif accept.status == 0 %}
-      <td><button type="button" class="btn btn-warning btn-sm">Pending</button></td>
+      <td><button type="button" class="btn btn-warning btn-sm" disabled>Pending</button></td>
       {% else %}
-      <td><button type="button" class="btn btn-danger btn-sm">Interrupted</button></td>
+      <td><button type="button" class="btn btn-danger btn-sm" disabled>Interrupted</button></td>
       {% endif %}
     </tr>
     {% endfor %}
