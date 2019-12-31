@@ -1,0 +1,152 @@
+﻿
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'homepage/img/favicon.png' %}" type="image/png">
+	<title>OMS</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'homepage/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/css/font-awesome.min.css'%}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/lightbox/simpleLightbox.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/nice-select/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/animate-css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/jquery-ui/jquery-ui.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/css/responsive.css' %}">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+	<!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html">
+						<img src="{% static 'homepage/img/logo.png' %}" >
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row ml-0 w-100">
+							<div class="col-lg-12 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									<li class="nav-item active">
+										<a class="nav-link   change"   href="{% url 'h_index' %}">home</a>
+									</li>
+									<li class="nav-item ">
+										<a class="nav-link   change"  href="{% url 'registration:login' %}">Donate</a>
+									</li>
+									<li class="nav-item ">
+										<a class="nav-link   change"  href="{% url 'donation:social' %}">#Social</a>
+									</li>
+									<li class="nav-item">
+										<a class="nav-link   change" href="{% url 'contact_us' %}">Contact</a>
+									</li>
+									<li class="nav-item">
+										<a class="main_btn" href="{% url 'registration:login' %}">Login</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+    </div>
+	</header>
+	<!--================Header Menu Area =================-->
+  
+
+
+
+<!--
+<div style="padding-top:140px;">
+<a href="https://www.facebook.com/Kare-107316914058945/">Check out our facebook page to join rest of community</a></div>
+-->
+
+<div class="container">
+		<div style="padding-top:135px;"></div>
+		<center><a class="btn btn-primary" href="https://www.facebook.com/Kare-107316914058945/" role="button">Check out our facebook page to join rest of community</a></center><br>
+	<div class="row">
+			
+		<div class="col-sm">
+			<h3>Posts on our facebook page</h3>
+			{% for post in feed %}
+			<div class="card" style="width: 30rem;">
+				{% if post.2 != None %}
+				<img src={{ post.2 }} class="card-img-top" alt="...">
+				{% endif %}
+				<div class="card-body">
+				<table>
+					<tr>
+					<td width="65%">
+						<h5 class="card-title">{{ post.1 }}</h5>
+					</td>
+					<td width="33%">
+						<p class="card-text" >Posted on {{ post.4 }}</p>
+					</td>
+					</tr>
+				</table>
+				{% if post.3 != None %}
+				<p class="card-text">{{ post.3 }} liked this post</p>
+				{% endif %}
+				
+			</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="col">
+				<h3>Upcoming events </h3>
+				{% for event in events %}
+				<br>
+				<div class="card" style="width: 30rem;">
+					{% if event.3 != None %}
+					<img src={{ event.3 }} class="card-img-top" alt="...">
+					{% endif %}
+				
+					<div class="card-body">
+							<h4 class="card-title">{{ event.1 }}</h4>
+							<h5 style="text-align: right;">Started by {{ event.4 }}</h5>
+							<div class="card-text">{{ event.2 }}</div>
+					
+							<strong>Date: {{ event.5 }}</strong><br>
+							
+							<div align="left">Starts at {{ event.6 }}
+							<span style="float:right;">
+									Ends at {{ event.7 }}
+								</span>
+							</div>
+						
+					{% if post.3 != None %}
+					<p class="card-text">{{ post.3 }} liked this post</p>
+					{% endif %}
+					
+				</div>
+				</div>
+			
+				{% endfor %}
+		</div>
+	</div>
+	</div>
+</div>
+</body>
+</html>

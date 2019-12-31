@@ -1,0 +1,68 @@
+﻿{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+{% static '{{ badge }}' as rank %}
+
+ <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+
+<h3 >Transaction History:</h3>
+        <div class = 'col'>
+              <p>Your total donations: <button type="button" class="btn btn-success btn">{{ count }} $</button><br>
+        </div>
+        <div class="col">
+            {% if badge == '0' %}
+              You haven't earned a badge</p>
+            {% endif %}
+            {% if badge == '25' %}
+              <img src="{% static 'donation/images/bronze.jfif'%}" height="42" width="42">
+                You have earned Bronze badge for your contributions</p>
+            {% endif %}
+            {% if badge == '50' %}
+            <img src="{% static 'donation/images/sil.jfif'%}" height="42" width="42">
+                You have earned Silver badge for your contributions</p>
+            {% endif %}
+            {% if badge == '100' %}
+            <img src="{% static 'donation/images/gold.png'%}" height="42" width="42">
+              You have earned Gold badge for your contributions</p>
+            {% endif %}
+            </div>
+    </div>
+</div>
+
+  <thead >
+    <tr>
+      <th class='cnt'>Paypal Transaction id</th>
+      <th class='cnt'>Orphanage</th>
+      <th class='cnt'>Amount</th>
+      <th class='cnt'>Date</th>
+      <th class='cnt'>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for accept in donations %}
+      <tr>
+      <th class='cnt'>{{accept.paypal_transaction}}</th>
+      <th class='cnt'>{{accept.orphanage_name}}</th>
+      <th class='cnt'>{{accept.amount}}</th>
+      <th class='cnt'>{{accept.date_of_donation}}</th>
+      {% if accept.status == 2 %}
+        <td><button type="button" class="btn btn-success btn-sm" disabled>Completed</button></td>
+      {% elif accept.status == 0 %}
+      <td><button type="button" class="btn btn-warning btn-sm" disabled>Pending</button></td>
+      {% else %}
+      <td><button type="button" class="btn btn-danger btn-sm" disabled>Interrupted</button></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+                            </div>
+                        </div>
+                    </div>
+ </div>
+
+
+{% endblock content %}

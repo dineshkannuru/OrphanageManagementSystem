@@ -1,0 +1,154 @@
+
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Admin</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+    <link href="{% static 'registration/css/admin-style.css' %}" rel="stylesheet">
+      <!-- JQuery -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" rel="stylesheet"></script>
+    <script type="text/javascript" src="{% static 'registration/js/admin-script.js' %}"></script>
+</head>
+
+<body>
+
+
+<div class="container-fluid p-0 d-flex wrapper">
+
+	<!-- Sidebar  -->
+{#    <script>#}
+{#        function sidenav_navigation(x) {#}
+{#            switch (x) {#}
+{#            case "1":#}
+{#                document.getElementById('user_signup_div').style.display = 'block';#}
+{#                document.getElementById('orphanage_signup_div').style.display = 'none';#}
+{#                break;#}
+{#            case "2":#}
+{#                document.getElementById('user_signup_div').style.display = 'none';#}
+{#                document.getElementById('orphanage_signup_div').style.display = 'block';#}
+{#                break;#}
+{#            default:#}
+{#                document.getElementById('user_signup_div').style.display = 'block';#}
+{#                document.getElementById('orphanage_signup_div').style.display = 'none';#}
+{#                break#}
+{#        }#}
+{#        }#}
+{#    </script>#}
+    <nav id="sidebar">
+        <div class="sidebar-header  p-3.5">
+        <a href="{% url 'h_index' %}">
+                <h3>Kare</h3>
+        </a>
+        </div>
+
+        <ul class="list-unstyled components">
+          <li class="sidebar-active">
+              <a href="sidenav"><i class="fas fa-user mr-3"></i>Profile</a>
+          </li>
+          <li>
+              <a href="#user-donate" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Donations</a>
+              <ul class="collapse list-unstyled" id="user-donate">
+                  <li>
+                      <a href="{% url 'userdashboard:donate_page' 1 %}"><i class="fas fa-hand-holding-usd mr-3"></i>Donate</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'userdashboard:donate_history' 1  %}"><i class="fas fa-history mr-3"></i>History</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="#request-types" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle"><i class="fas fa-donate mr-3"></i>Requests</a>
+{#              <a href="{% url 'pending' %}"><i class="far fa-envelope mr-3"></i>Requests</a>#}
+              <ul class="collapse list-unstyled" id="request-types">
+                  <li>
+                      <a href="#"><i class="fas fa-hand-holding-usd mr-3"></i>Accepted</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'userdashboard:donate_history' 1 %}"><i class="fas fa-history mr-3"></i>Pending</a>
+                  </li>
+                  <li>
+                      <a href="{% url 'userdashboard:donate_history' 1 %}"><i class="fas fa-history mr-3"></i>Rejected</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+              <a href="{% url 'userdashboard:near_you' 1 %}"><i class="fas fa-street-view mr-3"></i>Orphanage near You</a>
+          </li>
+          <li>
+              <a href="{% url 'userdashboard:join_orphan' 1 %}"><i class="far fa-plus-square mr-3"></i>Join Orphan</a>
+          </li>
+        </ul>
+    </nav>
+
+
+		<!-- side bar ends here -->
+		<!-- Page Content Holder -->
+        <div id="content">
+
+            <nav class="navbar navbar-expand-lg navbar-light z-depth-0">
+                <div class="container-fluid">
+
+                    <button type="button" id="sidebarCollapse" class="c-navbar-btn">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <ul class="nav navbar-nav ml-auto">
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-user"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-default"
+                                aria-labelledby="navbarDropdownMenuLink-333">
+                                <a class="dropdown-item" href="#"><i class="fas fa-user mr-3"></i>Profile</a>
+                                <a class="dropdown-item" href="#"><i class="fas fa-hand-holding-usd mr-3"></i>Donate</a>
+                                <hr class="m-0 p-0">
+                                <a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt mr-3"></i>Log Out</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+            <!-- content starts here-->
+            <div class="content my-3">
+                <h1>Welcome to donate page </h1>
+                <h2>This page is currently unavailable, and will be available soon. </h2>
+            </div>
+            </div>
+            <!-- content ends here-->
+        </div>
+
+
+</div>
+
+
+<!-- SCRIPTS -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+
+<script>
+
+</script>
+</body>
+
+</html>

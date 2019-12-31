@@ -1,0 +1,40 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-emergency-posts")
+</script>
+            <!-- content starts here-->
+    <div class="content my-3">
+        <div class="container-fluid">
+        <div>
+            <h5 class="text-center text-heading title">Emergency posts</h5>
+        </div>
+        {% if posts %}
+        <div class="card-columns">
+                {% for post in posts %}
+                        <div class="card float" style="width:400px">
+                            <div class="card-body">
+                                <h4 class="card-title">{{ post.situation }}</h4>
+                                <p class="card-text">{{ post.requirement }}</p>
+                                <p class="float-right">By {{ post.orphanage_id.orphanage_name }}</p>
+
+                                <div><a href="{% url 'donation:emergencydonatemoney' post.id %}" class="btn btn-primary">Donate</a></div>
+                            </div>
+                        </div>
+
+                {% endfor %}
+        </div>
+        {% else %}
+            <div class="content my-3">
+            <div class="row">
+                <div class="col">
+            <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No emergency posts yet </h5>
+                </div>
+            </div>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+            <!-- content ends here-->
+{% endblock content %}

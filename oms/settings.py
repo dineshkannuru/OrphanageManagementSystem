@@ -11,6 +11,12 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+EMAIL_USE_TLS=True
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_HOST_USER='sudarshan333u@gmail.com'
+EMAIL_HOST_PASSWORD='9542569068'
+EMAIL_PORT=587
+
 
 
 
@@ -29,10 +35,10 @@ SECRET_KEY = 'elaak_hmy)uzom-@k%0ig-ah_tt)bl2lxe0ozv^2_+v@w90(*w'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+ALLOWED_HOSTS = ['3c11fa0e.ngrok.io','localhost','127.0.0.1']
 
-ALLOWED_HOSTS = []
 
-LOGIN_REDIRECT_URL = '/registration'
+LOGIN_REDIRECT_URL = '/homepage'
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,11 +52,13 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'widget_tweaks',
     'rest_framework',
+    'rest_framework.authtoken',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'paypal.standard.ipn',
 ]
 
 MIDDLEWARE = [
@@ -88,13 +96,27 @@ WSGI_APPLICATION = 'oms.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
+        'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'oms',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+        'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
+    }
+}
+'''DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
-}
+}'''
 
-MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
 # Password validation
@@ -121,7 +143,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -129,9 +151,28 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'oms.email.confirmation@gmail.com'
+EMAIL_HOST_PASSWORD = 'iiits@123'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'OMS Team <oms.email.confirmation@gmail.com>'
+
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',  # <-- And here
+    ],
+
+}
+
+PAYPAL_RECEIVER_EMAIL='sb-th3743389074@business.example.com'
+PAYPAL_TEST = True
+
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
-
-
-

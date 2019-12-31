@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="en">
+
+<head>
+        <link rel="stylesheet" type="text/css" href="{% static 'superuser/css/givereview.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+</head>
+<body>
+{% for review in list %}
+
+                    <p>{{ review.description }}</p>
+                <div class="star-rating">
+                    <input id="star-5_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                    <label for="star-5_{{ review.pk }}" title="5 stars">
+  					    <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+
+                    <input id="star-4_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                    <label for="star-4_{{ review.pk }}" title="5 stars">
+  					    <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-3_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                    <label for="star-3_{{ review.pk }}" title="5 stars">
+  					    <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-2_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                    <label for="star-2_{{ review.pk }}" title="5 stars">
+  					    <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <input id="star-1_{{ review.pk }}" type="radio" name="ratingnew_{{ review.pk }}" value="5" checked disabled>
+                    <label for="star-1_{{ review.pk }}" title="5 stars">
+  					    <i class="active fa fa-star" aria-hidden="true"></i>
+                    </label>
+                    <script>
+                        console.log($('input[name="ratingnew_{{ review.pk }}"]:radio'));
+                        $($('input[name="ratingnew_{{ review.pk }}"]:radio')[5-{{ review.rating }}])
+                            .prop("checked", true);
+                    </script>
+{% endfor %}                    
+                    
+</div>
+</body>
+</html>                    

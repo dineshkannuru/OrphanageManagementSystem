@@ -1,0 +1,79 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-profile")
+</script>
+        <br>
+            <!-- content starts here-->
+                        <!-- content starts here-->
+                        <div class="content my-3">
+                            <div class="row">
+                                <div class="col">
+                                        <div class="card">
+                                                <div class="card-header">
+                                                  <h5 class="title">Profile</h5>
+                                                </div>
+                                                <div class="card-body">
+                                                  <div class="row">
+                                                    <div class="col col-4 pt-4">
+                                                      <img src="{{ qs.image.url }}" class="profile-img">
+                                                    </div>
+                                                    <div class="col col-6">
+                                                      <div class="row my-2">
+                                                        <div class="col ">orphanage name</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col ">{{ qs.orphanage_name }}</div>
+                                                      </div>
+                                                      <!-- <div class="row my-5">
+                                                        <div class="col">Established By</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col">{{ qs. }}</div>
+                                                      </div>-->
+                                                      <div class="row my-5"> 
+                                                        <div class="col">Year of Establishment</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col">{{ qs.year_of_establishment}}</div>
+                                                      </div>
+                                                      <div class="row my-5">
+                                                        <div class="col">phone Number</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col">{{ qs.phone_no }}</div>
+                                                      </div>
+                                                      <div class="row my-5">
+                                                        <div class="col col-4">Email</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col">{{ qs1.email }}</div>
+                                                      </div>
+
+                                                      <div class="row my-5">
+                                                        <div class="col col-4">Address</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col">{{ qs.address }}</div>
+                                                      </div>
+
+                                                      <div class="row my-5">
+                                                        <div class="col">About us</div>
+                                                        <div class="col">:</div>
+                                                        <div class="col">{{ qs.description }}</div>
+                                                      </div>
+                                                    </div>
+                                                </div>
+
+                                              <form action="{% url 'orphanageadmin:o_result1'%}" method="post" class="text-center">
+                                                {% csrf_token %}
+
+                                              <button class="btn btn-primary "  >Edit Profile</button>
+
+                                              </form>
+                                                </div>
+
+                                              </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- content ends here-->
+
+            <!-- content ends here-->
+            {% endblock content %}

@@ -7,6 +7,7 @@
 <head>
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
+	<link href="{% static 'homepage/images/icons/favicon.png' %}" rel="icon" type="image/png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="icon" href="{% static 'homepage/img/favicon.png' %}" type="image/png">
 	<title>OMS</title>
@@ -51,17 +52,21 @@
 							<div class="col-lg-12 pr-0">
 								<ul class="nav navbar-nav center_nav pull-right">
 									<li class="nav-item active">
-										<a class="nav-link" href="index.html">home</a>
+										<a class="nav-link   change"   href="{% url 'h_index' %}">home</a>
 									</li>
 									<li class="nav-item ">
-										<a class="nav-link" href="#">Donate</a>
+										<a class="nav-link   change"  href="{% url 'donation:donatemoney' %}">Donate</a>
 									</li>
 
 									<li class="nav-item">
-										<a class="nav-link" href="{% url 'contact_us' %}">Contact</a>
+										<a class="nav-link   change" href="{% url 'donation:social' %}">Social</a>
+									</li>
+
+									<li class="nav-item">
+										<a class="nav-link   change" href="{% url 'contact_us' %}">Contact</a>
 									</li>
 									<li class="nav-item">
-										<a class="main_btn" href="{% url 'login1' %}">Log In</a>
+										<a class="main_btn" href="{% url 'registration:login' %}">Login</a>
 									</li>
 								</ul>
 							</div>
@@ -80,9 +85,8 @@
 			<div class="container">
 				<div class="banner_content row">
 					<div class="offset-lg-2 col-lg-8">
-						<img class="img-fluid" src="{% static 'homepage/img/banner/text-img.png' %}">
-						<p>If you are looking at blank cassettes on the web, you may be very confused at the difference in price You may see some
-							for as low as each.</p>
+						<img class="img-fluid wow bounceInDown" src="{% static 'homepage/img/banner/3.png' %}">
+						<p class="wow fadeInRightBig" >Start the change you want to see in the world</p>
 						<a class="main_btn mr-10" href="#">donate now</a>
 						<a class="white_bg_btn" href="#">view activity</a>
 					</div>
@@ -131,36 +135,32 @@
 	================ End important-points section =================-->
 	<section class="causes_area">
 	<div class="container">
-		<div class="main_title">
+		<div class="main_title wow fadeInDown">
 			<h2>How Could You Help</h2>
-			<p>Creepeth called face upon face yielding midst is after moveth </p>
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInLeft">
 				<div class="single_causes">
 					<h4>Give Donation</h4>
-					<img src="{% static 'homepage/img/causes/c1.png' %}">
+					<img src="{% static 'homepage/img/causes/c1.png' %}" >
 					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
+						“We make a living by what we get,
+						But we make a life by what we give.”					</p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_causes">
 					<h4>Give Inspiration</h4>
-					<img src="{% static 'homepage/img/causes/c2.png' %}" >
+					<img src="{% static 'homepage/img/causes/c2.png' %}" style="margin-bottom: 42px;">
 					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
-				</div>
+						“We rise by lifting others.” 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInRight">
 				<div class="single_causes">
 					<h4>Become volunteer</h4>
 					<img src="{% static 'homepage/img/causes/c3.png' %}" >
 					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
+						“Volunteers do not necessarily have the time; they just have the heart.”					</p>
 				</div>
 			</div>
 		</div>
@@ -168,194 +168,14 @@
 </section>
 
 	<!--================ Start Our Major Cause section =================-->
-	<section class="our_major_cause section_gap">
-		<div class="container">
-			<div class="row justify-content-center section-title-wrap">
-				<div class="col-lg-12">
-					<h1>Our Major Causes</h1>
-					<p>
-						The French Revolution constituted for the conscience of the dominant aristocratic class a fall from innocence the natural
-						chain of events.
-					</p>
-				</div>
-			</div>
-
-			<div class="row">
-				<div id="our-major-cause" class="owl-carousel">
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d1.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-								<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-								<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d3.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-							<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc"    >donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-				<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d3.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-					<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d1.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-						<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-
-					<div class="card">
-						<div class="card-body">
-							<figure>
-								<img class="card-img-top img-fluid" src="{% static 'homepage/img/donation/d2.jpg' %}" >
-							</figure>
-							<div class="progress">
-								<div class="progress-bar" role="progressbar" aria-valuenow="76" aria-valuemin="0" aria-valuemax="100" style="width: 76%;">
-									<span>Funded 76%</span>
-								</div>
-							</div>
-							<div class="card_inner_body">
-						<div class="card-body-top">
-									<span>Raised: RS 7,689</span> / RS 10,000
-								</div>
-								<h4 class="card-title">Did not find your Package</h4>
-								<p class="card-text">inappropriate behavior is often laughed off as “boys will be boys,” women face higher conduct standards especially
-									in the workplace that’s why it’s crucial.
-								</p>
-								<a href="#" class="main_btnc">donate here</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--================ Ens Our Major Cause section =================-->
-
+	
 	<!--================ Start Make Donation Area =================-->
 	<section class="make_donation section_gap">
 		<div class="container">
 			<div class="row justify-content-start section-title-wrap">
 				<div class="col-lg-12">
-					<h1>Make a Donation Today</h1>c					<p>
-						Las Vegas has more than 100,000 hotel rooms to choose from. There is something for every budget, and enough.
-					</p>
+					<h1>Make a Donation Today</h1>
+				
 				</div>
 			</div>
 
@@ -368,10 +188,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="ten_doller">
 									<label class="form-check-label d-flex justify-content-between" for="ten_doller">
 										<div class="label_text">
-											RS 10.00
+											USD 10.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -384,10 +204,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="fifty_doller">
 									<label class="form-check-label d-flex justify-content-between" for="fifty_doller">
 										<div class="label_text">
-											RS 50.00
+											USD 50.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -400,10 +220,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="hundred_doller">
 									<label class="form-check-label d-flex justify-content-between" for="hundred_doller">
 										<div class="label_text">
-											RS 100.00
+											USD 100.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -416,10 +236,10 @@
 									<input type="radio" class="form-check-input" name="donation" id="two_fifty__doller">
 									<label class="form-check-label d-flex justify-content-between" for="two_fifty__doller">
 										<div class="label_text">
-											RS 250.00
+											USD 250.00
 										</div>
 										<div class="label_text">
-											RS
+											USD
 										</div>
 									</label>
 								</div>
@@ -437,7 +257,7 @@
 
 						<div class="col-lg-4">
 							<div class="donate_box">
-								<button type="submit" class="main_btn w-100">donate now</button>
+								<a href="{% url 'donation:donatemoney' %}" class="main_btn w-100 wow bounceIn">Donate Now</a> 
 							</div>
 						</div>
 					</div>
@@ -448,47 +268,38 @@
 	<!--================ End Make Donation Area =================-->
 
 	<!--================ Start TOP Donars  Area =================-->
+
 	<section class="causes_area">
 	<div class="container">
-		<div class="main_title">
+		<div class="main_title wow fadeInLeft">
 			<h2>Top Donars</h2>
-			<p>Creepeth called face upon face yielding midst is after moveth </p>
+		
 		</div>
 		<div class="row">
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_cause">
-					<img src="{% static 'homepage/img/banner/v1.jpg' %}"  class="rounded-circle">
-					<h4>Alea Mirslava
+					<img src="{% static 'homepage/images/roger9.jpg' %}"  class="rounded-circle profileabc-img">
+					<h4>Roger Federer
 </h4>
-					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_cause">
-					<img src="{% static 'homepage/img/banner/v4.jpg' %}"  class="rounded-circle">
-					<h4>Adam Virland
+					<img src="{% static 'homepage/images/medvevev.jpg' %}"  class="rounded-circle profileabc-img">
+					<h4>Daniil Medvedev
 </h4>
-					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6">
+			<div class="col-lg-4 col-md-6 wow fadeInUp">
 				<div class="single_cause">
-					<img src="{% static 'homepage/img/banner/v3.jpg' %}"  class="rounded-circle">
-					<h4>Adam Virland
+					<img src="{% static 'homepage/images/tiger.jpg' %}"  class="rounded-circle profileabc-img">
+					<h4>Tiger Woods
 </h4>
-					<p>
-						It you're. Was called you're fowl grass lesser land together waters beast darkness earth land whose male all moveth fruitful.
-					</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
 
 
 
@@ -672,7 +483,7 @@
 
 	<section class="experience_donation "     style="padding: 100px;"
 >
-		<div class="container">
+		<div class="container wow jackInTheBox">
 			<div class="row align-items-center justify-content-center">
 				<div class="col-lg-12">
 					<h1>Join An Orphan</h1>
@@ -744,11 +555,11 @@
 				<div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
 
 					<!-- Content -->
-					<h6 class="text-uppercase font-weight-bold text-white">Company name</h6>
+					<h6 class="text-uppercase font-weight-bold text-white">Kare</h6>
 					<hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
-					<p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-						consectetur
-						adipisicing elit.</p>
+					<p>We provide a service to connect potential donors to orphanages.You can donate any products,
+						money
+						or clothes.</p>
 
 				</div>
 				<!-- Grid column -->
@@ -760,16 +571,16 @@
 					<h6 class="text-uppercase font-weight-bold text-white">Products</h6>
 					<hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
 					<p>
-						<a href="">MDBootstrap</a>
+						<a href="">Google</a>
 					</p>
 					<p>
-						<a href="">MDWordPress</a>
+						<a href="">Facebook</a>
 					</p>
 					<p>
-						<a href="">BrandFlow</a>
+						<a href="">Twitter</a>
 					</p>
 					<p>
-						<a href="">Bootstrap Angular</a>
+						<a href="">Microsoft</a>
 					</p>
 
 				</div>
@@ -808,7 +619,7 @@
 					<p>
 						<i class="fas fa-envelope mr-3"></i> info@example.com</p>
 					<p>
-						<i class="fas fa-phone mr-3"></i> + 0123456789</p>
+						<i class="fas fa-phone mr-3"></i> + 91985764321</p>
 					<p>
 						<i class="fas fa-print mr-3"></i> + 0123456789</p>
 
@@ -890,6 +701,10 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	================ End Footer Area  =================-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+								<script>
+								new WOW().init();
+								</script>
 
 
 

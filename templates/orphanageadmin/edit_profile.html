@@ -1,0 +1,99 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-profile")
+</script>
+        <br>
+
+            <div class="content my-3">
+                <div class="row">
+                    <div class="col">
+                            <div class="card">
+                                    <div class="card-header">
+                                      <h5 class="title">Edit Profile</h5>
+                                    </div>
+                                    <div class="card-body">
+                                      <form action="{% url 'orphanageadmin:o_result'%}" method="post">{% csrf_token %}
+                                        <div class="row">
+                                          <div class="col-md-5 pr-1">
+                                            <div class="form-group">
+                                              <label>orphanage_name (disabled)</label>
+                                              <input type="text" class="form-control" disabled="" placeholder="orphanage_name" value="{{ qs.orphanage_name }}" name="orphanage_name" >
+                                            </div>
+                                          </div>
+                                          <div class="col-md-3 px-1">
+                                            <div class="form-group">
+                                              <label>year_of_establishment</label>
+                                              <input type="text" class="form-control" placeholder="year_of_establishment" value="{{ qs.year_of_establishment }}" name="year_of_establishment">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                              <label >Established By</label>
+                                              <input type="text" class="form-control" placeholder="Established By" value="{{ qs.established}}" name="Established">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-6 pr-1">
+                                            <div class="form-group">
+                                              <label>Phone Number</label>
+                                              <input type="text" class="form-control" placeholder="Phone Number" value="{{ qs.phone_no}}" name="phone_no">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-6 pl-1">
+                                            <div class="form-group">
+                                              <label for="exampleInputEmail1">Email address</label>
+                                              <input type="email" class="form-control" placeholder="Email" value="{{ qs1.email }}" name="email">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="form-group">
+                                              <label>Address</label>
+                                              <input type="text" class="form-control" placeholder="Home Address" value="{{ qs.address }}" name="address">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-4 pr-1">
+                                            <div class="form-group">
+                                              <label>City</label>
+                                              <input type="text" class="form-control" placeholder="City" value="Mike">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 px-1">
+                                            <div class="form-group">
+                                              <label>Country</label>
+                                              <input type="text" class="form-control" placeholder="Country" value="Andrew">
+                                            </div>
+                                          </div>
+                                          <div class="col-md-4 pl-1">
+                                            <div class="form-group">
+                                              <label>Postal Code</label>
+                                              <input type="number" class="form-control" placeholder="ZIP Code">
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="row">
+                                          <div class="col-md-12">
+                                            <div class="form-group">
+                                              <label>About Us</label>
+                                              <textarea rows="4" cols="80" class="form-control" placeholder="Here can be your description" name="description">{{ qs.description }}</textarea>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="text-center">
+                                        <button class="btn btn-primary"  >Save </button>
+                                      </div>
+                                      </form>
+
+                                    </div>
+                                  </div>
+                    </div>
+                </div>
+            </div>
+
+{% endblock content %}
