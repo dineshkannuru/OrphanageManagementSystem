@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/SOAD.pyproj
+/SOAD.sln
+/.vs/VSWorkspaceState.json
+/.vs/SOAD/v16/.suo
+/.vs/SOAD/v16
+/.vs/slnx.sqlite
+/.vs

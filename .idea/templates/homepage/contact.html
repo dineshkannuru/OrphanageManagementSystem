@@ -1,0 +1,479 @@
+
+{% load staticfiles %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="icon" href="{% static 'homepage/img/favicon.png' %}" type="image/png">
+	<title>OMS</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="{% static 'homepage/css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/linericon/style.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/css/font-awesome.min.css'%}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/owl-carousel/owl.carousel.min.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/lightbox/simpleLightbox.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/nice-select/css/nice-select.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/animate-css/animate.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/vendors/jquery-ui/jquery-ui.css' %}">
+	<!-- main css -->
+	<link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'homepage/css/responsive.css' %}">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/css/mdb.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+
+	<!--================Header Menu Area =================-->
+	<header class="header_area">
+		<div class="main_menu">
+			<nav class="navbar navbar-expand-lg navbar-light">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<a class="navbar-brand logo_h" href="index.html">
+						<img src="{% static 'homepage/img/logo.png' %}" >
+					</a>
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+					 aria-expanded="false" aria-label="Toggle navigation">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+						<div class="row ml-0 w-100">
+							<div class="col-lg-12 pr-0">
+								<ul class="nav navbar-nav center_nav pull-right">
+									<li class="nav-item ">
+										<a class="nav-link   change" href="{% url 'h_index' %}">home</a>
+									</li>
+									<li class="nav-item ">
+										<a class="nav-link   change" href="#">Donate</a>
+									</li>
+
+									<li class="nav-item active">
+										<a class="nav-link   change" href="{% url 'contact_us' %}">Contact</a>
+									</li>
+									<li class="nav-item">
+										<a class="main_btn" href="{% url 'registration:login' %}">Login</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+	</header>
+	<!--================Header Menu Area =================-->
+
+    <!--================ Banner Area =================-->
+    <section class="banner_area">
+        <div class="banner_inner d-flex align-items-center">
+            <div class="overlay"></div>
+            <div class="container">
+                <div class="banner_content text-center">
+                    <h2>Contact Us</h2>
+                    <!--<div class="page_link">
+                        <a href="index.html">Home</a>
+                        <a href="contact.html">Contact</a>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--================End Banner Area =================-->
+
+    <section class="causes_area">
+  	<div class="container">
+  		<div class="main_title">
+  			<h2>Keep In Touch</h2>
+  			<p>Creepeth called face upon face yielding midst is after moveth </p>
+  		</div>
+  		<div class="row">
+  			<div class="col-lg-4 col-md-6">
+  				<div class="single_causes">
+            <i class="fa fa-map" aria-hidden="true"></i>
+            <h4>ADDRESS</h4>
+            <p>IIIT sri city <br>Andhra pradesh-500011</p>
+
+  				</div>
+  			</div>
+  			<div class="col-lg-4 col-md-6">
+  				<div class="single_causes">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <h4>CALL US</h4>
+            <p>+613 1234-5678<br>+613 1234-5678</p>
+  				</div>
+  			</div>
+  			<div class="col-lg-4 col-md-6">
+  				<div class="single_causes">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <h4>EMAIL US</h4>
+            <p>info@grantfound.com <br>info@grantfound.com</p>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  </section>
+
+<!--
+    <section class="keep-in-touch-area pt-90 pb-90">
+                    <div class="container">
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <div class="section-title text-center">
+                                    <h2>Keep In <span>Touch</span></h2>
+                                    <img src="img/title-bottom.png" alt="">
+                                    <p>We create events aiming to pear to the voice for children and gather for support. <br>Please update with our events and confirm you presence.</p>
+                                </div>
+                            </div>
+
+                            <div class="keep-in-touch-therd-box">
+
+                                <div class="col-sm-4">
+                                    <div class="single-box text-center">
+                                        <i class="fa fa-map" aria-hidden="true"></i>
+                                        <h3>ADDRESS</h3>
+                                        <p>Lathif pur, North para 13/1999, <br>Kolony Bogra - 5800,<br>Bangladesh</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="single-box text-center">
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        <h3>CALL US</h3>
+                                        <p>+613 1234-5678<br>+613 1234-5678</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <div class="single-box text-center">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <h3>EMAIL US</h3>
+                                        <p>info@grantfound.com <br>info@grantfound.com</p>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                End keep in touch area -->
+                <!-- Start contact form area -->
+                <section class="contact-form-area pb-60 pt-90 py-5 ">
+                    <div class="container ">
+                        <div class="row">
+                            <!-- Start section title -->
+                            <div class="col-sm-12">
+                                <div class="section-title text-center">
+                                    <h2>Say <span>Hello</span></h2>
+                                    <!--<img src="{% static 'homepage/img/title-bottom.png'%}" >-->
+                                </div>
+                            </div>
+                            <!-- End section title -->
+                            <div class="col-sm-12">
+                                <div class="contact-form">
+                                    <form id="contact-form" method="POST" action="http://preview.hasthemes.com/grant-foundation-preview/grant-foundation/mail.php">
+                                        <div class="form-fields">
+                                            <label for="name">Name</label>
+                                            <input id="name" name="name" type="text" placeholder="Your Name" required>
+                                        </div>
+                                        <div class="form-fields">
+                                            <label for="email">Email</label>
+                                            <input id="email" name="email" type="text" placeholder="Your Email" required>
+                                        </div>
+                                        <div class="form-fields last">
+                                            <label for="phone">Phone</label>
+                                            <input id="phone" name="phone" type="text" placeholder="Your Phone" required>
+                                        </div>
+                                        <div class="message-fields">
+                                            <label for="mess">Message</label>
+                                            <textarea name="mess" id="mess" cols="30" rows="10" placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="form-button">
+                                            <button type="submit">Send your message</button>
+                                        </div>
+                                    </form>
+                                    <p class="form-messege"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- End contact form area -->
+                <!-- Start google map -->
+                <div class="container">
+
+                <h2 class="text-center my-5">Location</h2>
+
+                <div class="google-map px-2  py-5">
+
+                    <div id="googleMap"></div>
+                </div>
+              </div>
+    <!--================Contact Area =================
+
+    <section class="contact_area p_120">
+        <div class="container">
+            <div id="mapBox" class="mapBox">
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="contact_info">
+                        <div class="info_item">
+                            <i class="lnr lnr-home"></i>
+                            <h6>California, United States</h6>
+                            <p>Santa monica bullevard</p>
+                        </div>
+                        <div class="info_item">
+                            <i class="lnr lnr-phone-handset"></i>
+                            <h6>
+                                <a href="#">00 (440) 9865 562</a>
+                            </h6>
+                            <p>Mon to Fri 9am to 6 pm</p>
+                        </div>
+                        <div class="info_item">
+                            <i class="lnr lnr-envelope"></i>
+                            <h6>
+                                <a href="#">support@colorlib.com</a>
+                            </h6>
+                            <p>Send us your query anytime!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <form class="row contact_form" action="contact_process.php" method="post" id="contactForm" novalidate="novalidate">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Enter email address">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="subject" name="subject" placeholder="Enter Subject">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" id="message" rows="1" placeholder="Enter Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12 text-right">
+                            <button type="submit" value="submit" class="btn submit_btn">Send Message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    ================Contact Area =================-->
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer class="page-footer font-small unique-color-dark">
+
+      <div style="background-color: #c7b198;">
+        <div class="container">
+
+          <!-- Grid row-->
+          <div class="row py-4 d-flex align-items-center ">
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0 ">
+              <h6 class="mb-0 text-white">Get connected with us on social networks!</h6>
+            </div>
+            <!-- Grid column -->
+
+            <!-- Grid column -->
+            <div class="col-md-6 col-lg-7 text-center text-md-right">
+
+              <!-- Facebook -->
+              <a  href="" class="fb-ic">
+                <i class="fab fa-facebook-f white-text mr-4"> </i>
+              </a>
+              <!-- Twitter -->
+              <a href="" class="tw-ic">
+                <i class="fab fa-twitter white-text mr-4"> </i>
+              </a>
+              <!-- Google +-->
+              <a href=""class="gplus-ic">
+                <i class="fab fa-google-plus-g white-text mr-4"> </i>
+              </a>
+              <!--Linkedin -->
+              <a href="" class="li-ic">
+                <i class="fab fa-linkedin-in white-text mr-4"> </i>
+              </a>
+              <!--Instagram-->
+              <a href="" class="ins-ic">
+                <i class="fab fa-instagram white-text"> </i>
+              </a>
+
+            </div>
+            <!-- Grid column -->
+
+          </div>
+          <!-- Grid row-->
+
+        </div>
+      </div>
+
+      <!-- Footer Links -->
+      <div class="container text-center text-md-left mt-5">
+
+        <!-- Grid row -->
+        <div class="row mt-3">
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+
+            <!-- Content -->
+            <h6 class="text-uppercase font-weight-bold text-white">Company name</h6>
+            <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+            <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
+              consectetur
+              adipisicing elit.</p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+            <!-- Links -->
+            <h6 class="text-uppercase font-weight-bold text-white">Products</h6>
+            <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+            <p>
+              <a href="">MDBootstrap</a>
+            </p>
+            <p>
+              <a href="">MDWordPress</a>
+            </p>
+            <p>
+              <a href="">BrandFlow</a>
+            </p>
+            <p>
+              <a href="">Bootstrap Angular</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+
+            <!-- Links -->
+            <h6 class="text-uppercase font-weight-bold text-white">Useful links</h6>
+            <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+            <p>
+              <a href="{% url 'h_index' %}">Home</a>
+            </p>
+            <p>
+              <a href="">Donate Now</a>
+            </p>
+            <p>
+              <a href="{% url 'contact_us' %}">Contact Us</a>
+            </p>
+            <p>
+              <a href="">About Us</a>
+            </p>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+
+            <!-- Links -->
+            <h6 class="text-uppercase font-weight-bold text-white">Contact</h6>
+            <hr class="accent-2 mb-4 mt-0 d-inline-block mx-auto" style="background-color:#ea2c58;width: 60px;">
+            <p>
+              <i class="fas fa-home mr-3"></i> IIIT SriCity, AP, India</p>
+            <p>
+              <i class="fas fa-envelope mr-3"></i> info@example.com</p>
+            <p>
+              <i class="fas fa-phone mr-3"></i> + 0123456789</p>
+            <p>
+              <i class="fas fa-print mr-3"></i> + 0123456789</p>
+
+          </div>
+          <!-- Grid column -->
+
+        </div>
+        <!-- Grid row -->
+
+      </div>
+      <!-- Footer Links -->
+
+
+
+    </footer>
+    <!-- Footer -->
+
+    <!--================End Contact Success and Error message Area =================-->
+
+
+
+          <!-- styleswitch js
+          ============================================ -->
+          <script src="js/styleswitch.js"></script>
+
+     		<!-- main js
+  		============================================ -->
+          <script src="js/main.js"></script>
+
+          <!-- Google Map js -->
+          <!--<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15514.615168212827!2d80.0261283!3d13.5568171!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xadb0842ffc2719e4!2sIndian%20Institute%20of%20Information%20Technology%20Sri%20City!5e0!3m2!1sen!2sin!4v1569142438596!5m2!1sen!2sin" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+          -->
+
+          <script>
+
+          function initMap() {
+  var locationRio = {lat: 12.915, lng: 80.197};
+  var map = new google.maps.Map(document.getElementById('googleMap'), {
+    zoom: 13,
+    center: locationRio,
+    gestureHandling: 'cooperative'
+  });
+  var marker = new google.maps.Marker({
+    position: locationRio,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
+          </script>
+          <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7nx22ZmINYk9TGiXDEXGVxghC43Ox6qA&callback=initMap"
+            type="text/javascript"></script>
+
+
+  <!-- Mirrored from preview.hasthemes.com/grant-foundation-preview/grant-foundation/contact-us.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 19 Sep 2019 14:17:30 GMT -->
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="{% static 'homepage/js/jquery-3.2.1.min.js' %}"></script>
+  	<script src="{% static 'homepage/js/popper.js' %}"></script>
+  	<script src="{% static 'homepage/js/bootstrap.min.js' %}"></script>
+  	<!-- <script src="{% static 'homepage/vendors/lightbox/simpleLightbox.min.js' %}"></script> -->
+  	<script src="{% static 'homepage/vendors/nice-select/js/jquery.nice-select.min.js' %}"></script>
+  	<!-- <script src="{% static 'homepage/vendors/isotope/imagesloaded.pkgd.min.js' %}"></script> -->
+  	<script src="{% static 'homepage/vendors/isotope/isotope-min.js' %}"></script>
+  	<script src="{% static 'homepage/vendors/owl-carousel/owl.carousel.min.js' %}"></script>
+  	<script src="{% static 'homepage/js/jquery.ajaxchimp.min.js' %}"></script>
+  	<!-- <script src="vendors/counter-up/jquery.waypoints.min.js"></script> -->
+  	<!-- <script src="vendors/flipclock/timer.js"></script> -->
+  	<!-- <script src="vendors/counter-up/jquery.counterup.js"></script> -->
+  	<script src="{% static 'homepage/js/mail-script.js' %}"></script>
+  	<script src="{% static 'homepage/js/custom.js' %}"></script>
+</body>
+
+</html>

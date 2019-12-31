@@ -1,0 +1,142 @@
+{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-orphans")
+</script>
+            <!-- content starts here-->
+            {% if f == 1 %}
+            <div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div class='alert alert-{{ message.tags }}'>
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            {% else %}
+            <br>
+            <div class="content my-3">
+                <div class="row">
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="text-center text-heading title">Add Event</h5>
+                            </div>
+                            <div class="card-body px-5">
+                                <div class="container">
+                                <form class="from-horizontal" method="post" action="{%  url 'superuser:addevent' %}" autocomplete="off" onsubmit="myButton.disabled = true;">
+                                        {% csrf_token %}
+                                    <!-- Name -->
+                                    <center><span id="datecheck" ></span></center>
+
+                                    <div class="md-form mt-3 ">
+                                            <label for="orphanage">Orphanage</label>
+                                            <br>
+                                            <br>
+
+                                            <select style="margin-left: 0%" class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage" id="orphanage">
+                                                    <option value="{{ b }}" selected>{{ b }}</option>
+                                                    {% for orphanages in t %}
+                                                    <option value="{{ orphanages }}">{{ orphanages }}</option>
+                                                    {% endfor %}
+                                            </select>
+                                    </div>
+                                    <!-- date picker -->
+                                    <br>
+                                    <div class="md-form">
+                                        <input type="date" id="date" class="form-control" onchange="see(this.id)" name="date" required>
+                                        <label for="date"> Date of Event</label>
+                                    </div>
+                                    <div class="md-form mt-3 ">
+                                            <input type="text" name = "event" id = "event" class="form-control"  maxlength='30' required>
+                                            <label for="event"> Event </label>
+                                        </div>
+                                <!-- inline radio buttons -->
+
+                                    <!-- Name -->
+                                    <div class="md-form mt-3 ">
+                                        <input type="text" name = "description" id = "description" class="form-control"  maxlength='50' required>
+                                        <label for="description"> Description </label>
+                                    </div>
+                                    <div id='error'></div>
+
+                                    <div class="md-form">
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light form-button" id="submitbutton">Submit</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            <!-- SCRIPTS -->
+
+<!-- Bootstrap tooltips -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!-- MDB core JavaScript -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.10/js/mdb.min.js"></script>
+<script type="text/javascript" src="{% static 'superuser/js/admin-script.js' %}"></script>
+<script type="text/javascript">
+
+
+
+    function see(element) {
+        var date = document.getElementById(element).value;
+        var orphanage = document.getElementById('orphanage').value;
+        console.log(date)
+        console.log(orphanage)
+
+
+        $.ajax({
+
+
+            url: "{% url 'superuser:checkdate' %}",
+            data: {
+                date:date,
+                orphanage:orphanage,
+                csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+            },
+            method: 'GET',
+            dataType:"json",
+
+            success: function (data) {
+                console.log('hiitojson');
+                console.log(data);
+                if (data.is_success==true){
+                  if (data.valid==false){
+                    console.log('cametoerror')
+                    alert('Date not available')
+                    document.getElementById('datecheck').innerText='Date not available'
+                    $('#datecheck').css("color","red");
+
+                    $('#submitbutton').attr("disabled", true);
+                    document.getElementById('error').innerText='Please satisfy all the conditions';
+                    $('#error').css("color","red");
+
+
+
+                  }
+                  else{
+                    document.getElementById('datecheck').innerText='Date available'
+                    $('#datecheck').css("color","green");
+                    $('#submitbutton').attr("disabled",false);
+                    document.getElementById('error').innerText=''
+
+
+                  }
+                }
+            }
+        });
+    }
+
+    </script>
+
+
+                        <!-- content ends here-->
+{% endblock content %}

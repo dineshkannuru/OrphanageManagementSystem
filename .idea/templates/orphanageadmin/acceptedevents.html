@@ -1,0 +1,79 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+    sidebar_shift("sidebar-events")
+</script>
+<center>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class='alert alert-{{ message.tags }}'>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            <br>
+</center>
+<!-- Start Here -->
+        <h3 style="margin-left: 35%;"> Accepted Events </h3>
+        <div id="caleandar" style="margin-left: 30%;mar ">
+
+        </div>
+        <script type="text/javascript">
+
+        var f={{ t|safe }};
+        console.log(f);
+        var n=f.length;
+        console.log(n);
+        var i;
+
+var events = [];
+        for(i=0;i<n;i++)
+        {
+            console.log(f[i][0]);console.log(f[i][1]);console.log(f[i][2]);
+            events[i]={'Date': new Date(Number(f[i][0]), Number(f[i][1])-1, f[i][2]), 'Title': 'View Details','Link':"{% url 'orphanageadmin:showevent' id=12345 %}".replace('12345', Number(f[i][4]))};
+            console.log(events[i]['Date'])
+
+        }
+        var settings = {
+
+Color: '',
+
+LinkColor: '',
+
+NavShow: true,
+
+NavVertical: false,
+
+NavLocation: '',
+
+DateTimeShow: true,
+
+DateTimeFormat: 'mmm, yyyy',
+
+DatetimeLocation: '',
+
+EventClick: '',
+
+EventTargetWholeDay: false,
+
+DisabledDays: [],
+
+ModelChange: events
+
+};
+var element = document.getElementById('caleandar');
+
+caleandar(element, events, settings);
+
+
+
+
+
+
+
+        </script>
+<!--End Here-->
+{% endblock content %}

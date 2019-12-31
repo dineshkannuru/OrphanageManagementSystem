@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Register as User</title>
+</head>
+<body>
+    <form id="register_form" method="POST" action="">
+        {% load widget_tweaks %}
+        {% csrf_token %}
+
+        {{ signup_form.first_name|add_class:"validate" }}
+        <label for="{{ signup_form.first_name.id_for_label }}">First Name</label><br>
+
+        {% if signup_form.first_name.help_text %}
+            <span >{{ signup_form.first_name.help_text }}</span>
+        {% endif %}
+        {% if signup_form.first_name.errors %}
+            <span >{{ signup_form.first_name.errors }}</span>
+        {% endif %}
+
+
+
+        {{ signup_form.last_name|add_class:"validate" }}
+        <label for="{{ signup_form.last_name.id_for_label }}">Last Name</label><br>
+
+            {% if signup_form.last_name.help_text %}
+                <span >{{ signup_form.last_name.help_text }}</span>
+            {% endif %}
+            {% if signup_form.last_name.errors %}
+                <span >{{ signup_form.first_name.errors }}</span>
+            {% endif %}
+
+        {{ signup_form.username|add_class:"validate" }}
+        <label for="{{ signup_form.username.id_for_label }}">Username</label><br>
+            {% if signup_form.first_name.help_text %}
+                <span >{{ signup_form.username.help_text }}</span>
+            {% endif %}
+            {% if signup_form.username.errors %}
+                <span >{{ signup_form.username.errors }}</span>
+            {% endif %}
+
+        {{ signup_form.password|add_class:"validate" }}
+        <label for="{{ signup_form.password.id_for_label }}">Password</label><br>
+            {% if signup_form.password.help_text %}
+                <span >{{ signup_form.password.help_text }}</span>
+            {% endif %}
+            {% if signup_form.password.errors %}
+                <span >{{ signup_form.password.errors }}</span>
+            {% endif %}
+
+        {{ signup_form.confirm_password|add_class:"validate" }}
+        <label for="{{ signup_form.confirm_password.id_for_label }}">Confirm Password</label><br>
+            {% if signup_form.confirm_password.help_text %}
+                <span >{{ signup_form.confirm_password.help_text }}</span>
+            {% endif %}
+            {% if signup_form.confirm_password.errors %}
+                <span >{{ signup_form.confirm_password.errors }}</span>
+            {% endif %}
+
+        {{ signup_form.email|add_class:"validate" }}
+        <label for="{{ signup_form.email.id_for_label }}">E-mail</label><br>
+            {% if signup_form.email.help_text %}
+                <span >{{ signup_form.email.help_text }}</span>
+            {% endif %}
+            {% if signup_form.email.errors %}
+                <span >{{ signup_form.email.errors }}</span>
+            {% endif %}
+
+        <button><a href="javascript:void(0)" onclick="document.getElementById('register_form').submit()">register</a></button>(attrs={'placeholder': 'Password'})
+    </form>
+</body>

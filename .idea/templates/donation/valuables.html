@@ -1,0 +1,88 @@
+﻿{% extends 'userdashboard/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-valuable")
+</script>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=790224518079845&autoLogAppEvents=1"></script>
+    <form method="post" >
+        {% csrf_token %}
+        <div class="form-group">
+          
+                        <div class="card">
+                <div class="card-header">
+                    <h5 class="text-center text-heading title">Donate Valuables</h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                            <div class="card-header">
+                       
+                        <div class="form-group">
+                            <!-- <span>Subject</span> -->
+                            <label for="drop">Donation type</label>
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" id="drop" name="type" >
+                                <option value="" selected>Choose option</option>
+                                <option value="F">Food</option>
+                                <option value="C">Clothes</option>
+                                <option value="B">Books</option>
+                                <option value="E">Electronic appliances</option>
+                                <option value="O">Other</option>
+                            </select>
+                        
+                            <!-- <span>Subject</span> -->
+                            <label for="drop">Orphanage</label>
+                            <select class="btn btn-outline-info dropdown-toggle z-depth-0 border-bottom drop-btn" name="orphanage_id" id="drop">
+                                <option value="" selected>Choose option</option>
+                                {% for orphanage in orphanages %}
+                                <option value="{{ orphanage.pk }}">{{ orphanage.orphanage_name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="md-form mt-3 ">
+                            <label for="user_name">Object name:</label>
+                            <input type="text" id="user_name" class="form-control" name="object_name">
+                            
+                        </div>
+                        <!--Message-->
+                        <div class="md-form">
+                            <textarea id="description" class="form-control md-textarea" rows="2" name="description"></textarea>
+                            <label for="description">Description</label>
+                        </div>
+                        <div class="md-form">
+                        <textarea id="address" class="form-control md-textarea" rows="2" name="address"></textarea>
+                        <label for="address">Address</label>
+                    </div>
+                        <div class="form-group">
+                        <label for="customRange1">Quantity: <span id="range1"></span></label>
+                        <input type="range" class="custom-range" id="customRange1" min="0" max="100" name="quantity" >
+                    </div>
+                        <script>
+                            var slider = document.getElementById("customRange1");
+                            var output = document.getElementById("range1");
+                            output.innerHTML = slider.value;
+
+                            slider.oninput = function() {
+                              output.innerHTML = this.value;
+                            }
+                        </script>
+                       
+                      
+                <div class="col-sm-8">
+                <div class="md-form" style="left: 50%;">
+
+                     <button value="submit"  type="submit" class="btn btn-primary waves-effect waves-light form-button">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            
+                </div>
+            </div>
+            </div>
+            </div>
+
+                                
+</form>
+
+            <!-- content ends here-->
+{% endblock content %}

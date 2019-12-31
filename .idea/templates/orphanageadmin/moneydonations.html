@@ -1,0 +1,46 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+        sidebar_shift("sidebar-donations")
+</script>
+            <!-- Start Content -->
+            <div class="content my-3">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="card strpied-tabled-with-hover hoverable">
+                                    <div class="card-header ">
+                                        <h4 class="card-title text-center"> Money Donations </h4>
+                                    </div>
+                                    <div class="card-body table-full-width table-responsive">
+                                        <table class="table table-hover table-striped">
+                                            {% if  donation_request %}
+                                            <thead><tr>
+                                            <th class= 'cnt'> User </th>
+                                            <th class= 'cnt'> Date </th>
+                                            <th class= 'cnt'> Amount </th>
+                                            <th class= 'cnt'> Description </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        {% for content in donation_request %}
+                                        <tr>
+                                                <td class= 'cnt'>{{ content.user_id }}</td>
+                                                <td class= 'cnt'>{{ content.date_of_donation.date }}</td>
+                                                <td class= 'cnt'> {{ content.amount }} </td>
+                                                <td class= 'cnt'>{{ content.description }} </td> 
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            {% else %}
+                            <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No Money Daonations </h5>
+                            {% endif %}
+                        </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- End Content -->
+{% endblock content %}

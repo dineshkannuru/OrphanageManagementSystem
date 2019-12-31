@@ -1,0 +1,77 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+    sidebar_shift("sidebar-events")
+</script>
+            <!-- Start Content -->
+            <center>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class='alert alert-{{ message.tags }}'>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </center>
+            <br>
+            <div class="content my-3">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="card strpied-tabled-with-hover hoverable">
+                                <div class="card-header ">
+                                    <h4 class="card-title text-center"> Requested Events </h4>
+                                </div>
+                                <div class="card-body table-full-width table-responsive">
+                                    <table class="table table-striped"  id = "customers">
+                                        {% if  donation_request %}
+                                        <thead><tr>
+                                            <th class='cnt'> User </th>
+
+                                            <th class='cnt'> Date of Event </th>
+                                            <th class='cnt'> Event </th>
+                                            <th class='cnt' colspan = '2' > Accept/Reject </th>
+                                        </tr></thead>
+                                        <tbody>
+                                        {% for content in donation_request %}
+                                        <tr>
+                                            <td class= 'cnt'>{{ content.user_id }}</td>
+                                            <td class= 'cnt'>{{ content.date_of_event }}</td>
+                                            <td class= 'cnt'>{{ content.event }}</td>
+                                            <td rowspan='2' class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'orphanageadmin:o_acceptedeventschangestatus' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
+                                                {% csrf_token %}
+                                                <input type="hidden" name="id1" value={{ content.id }}>
+                                                <input type="hidden" name="val" value= 1 >
+                                                <input class="acc btn" type="submit" value="Accept" name ="myButton">
+                                            </form>
+                                            </td>
+                                            <td rowspan='2' class='cnt' width="15%">
+                                            <form method="post" action= "{% url 'orphanageadmin:o_acceptedeventschangestatus' %}" autocomplete="off" onsubmit="myButton.disabled = true; return true;">
+                                                    {% csrf_token %}
+                                                    <input type="hidden" name="id1" value={{ content.id }}>
+                                                    <input type="hidden" name="val" value= -1>
+                                                    <input class="rej btn" type="submit" value="Reject" name ="myButton">
+                                            </form>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                        <td colspan="3" > DESCRIPTION : &nbsp; {{ content.description }}</td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    {% else %}
+                                    <h5> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; No Requests Available </h5>
+                                    {% endif %}
+                                </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <!-- End Content -->
+{% endblock content %}

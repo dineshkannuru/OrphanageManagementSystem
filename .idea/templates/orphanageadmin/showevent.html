@@ -1,0 +1,60 @@
+{% extends 'orphanageadmin/basic.html' %}
+{% load static %}
+{% block content %}
+<script>
+    sidebar_shift("sidebar-events")
+</script>
+<center>
+                <div>
+                    {% if messages %}
+                        {% for message in messages %}
+                        <div class='alert alert-{{ message.tags }}'>
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            <br>
+</center>
+<!-- Start Here -->
+{% if b == 1 %}
+    <div style="margin-left: 33%"><h3>Event Details</h3></div>
+    <form method="POST" action="{% url 'orphanageadmin:deleteevent' t.pk %}">
+    {% csrf_token %}
+    <div style="margin-left: 33%"><div class="form-group row">
+        <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
+        <div class="col-sm-10">
+          <input type="text" style="border: none;" class="form-control" id="inputName" value={{ t.user_id.username }} name="name" placeholder="Namfgfge">
+        </div>
+</div>
+<div class="form-group row">
+  <label for="inputEmail3" class="col-sm-2 col-form-label">Orphanage name:</label>
+  <div class="col-sm-10">
+    <input type="text" style="border: none;" class="form-control" name="email" value={{ t.orphanage_id.orphanage_name }} id="inputEmail3" placeholder="Email">
+  </div>
+</div>
+<div class="form-group row">
+        <label for="inputphone" class="col-sm-2 col-form-label">phone</label>
+        <div class="col-sm-10">
+          <input type="text" style="border: none;" class="form-control" name="phone_no" value="{{ t.date_of_event }}" id="inputphone" placeholder="phone">
+        </div>
+</div>
+<div class="form-group row">
+        <label for="inputoccasion" class="col-sm-2 col-form-label">Event</label>
+        <div class="col-sm-10">
+          <input type="text" style="border: none;" class="form-control" name="occasion" value={{ t.description }} id="inputoccasion" placeholder="occasion">
+        </div>
+</div>
+<div class="form-group row">
+        <label for="inputorphanage" class="col-sm-2 col-form-label">Orphanage</label>
+        <div class="col-sm-10">
+          <input type="text" style="border: none;" class="form-control" name="orphanage" id="inputorphanage" value={{ t.event }} placeholder="orphanage">
+        </div>
+      </div>
+
+
+
+</form>
+    {% endif %}
+    <!--End Here-->
+{% endblock %}
